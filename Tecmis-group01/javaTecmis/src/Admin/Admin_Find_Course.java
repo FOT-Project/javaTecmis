@@ -4,6 +4,8 @@
  */
 package Admin;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Hasitha
@@ -15,6 +17,7 @@ public class Admin_Find_Course extends javax.swing.JFrame {
      */
     public Admin_Find_Course() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
