@@ -5,6 +5,7 @@
 package Main;
 
 import Admin.Admin_Dashboard;
+import Alerts.Failed_Alert;
 import Lecturer.lecturer_Dashboard;
 import Student.Dashboard;
 import TechnicalOfficer.Officer_Dashboard;
@@ -187,7 +188,8 @@ public class Login extends javax.swing.JFrame {
                    student.show();
                }
            }else{
-               JOptionPane.showMessageDialog(this, "The username or passsword is incorrect");
+               Failed_Alert failed = new Failed_Alert();
+               failed.show();
            }
 
             
