@@ -4,18 +4,25 @@
  */
 package Student;
 
+import java.sql.Connection;
+import DBConn.DBconn;
+import javax.swing.JOptionPane;
+import java.sql.PreparedStatement;
 /**
  *
  * @author Hiru
  */
 public class CourseDetails extends javax.swing.JFrame {
-
+    Connection conn = null;
+    PreparedStatement pst = null;
     /**
      * Creates new form CourseDetails
      */
     public CourseDetails() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        conn = (Connection) DBconn.connect();
     }
 
     /**
@@ -40,7 +47,6 @@ public class CourseDetails extends javax.swing.JFrame {
         cNameTXT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1450, 850));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1350, 750));
