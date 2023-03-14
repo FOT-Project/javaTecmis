@@ -1,6 +1,7 @@
 package DBConn;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class DBconn {
     
@@ -8,12 +9,13 @@ public class DBconn {
         connect();
     }
     
+    @SuppressWarnings("UseSpecificCatch")
     public static Connection connect()
     {
-        Connection conn = null;
+       Connection conn = null;
         
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://191.96.56.1:3306/u812963415_javag1", "u812963415_javag1", "p*lC5tH0^");
             //System.out.println("Connected");
         } catch (Exception e) {
