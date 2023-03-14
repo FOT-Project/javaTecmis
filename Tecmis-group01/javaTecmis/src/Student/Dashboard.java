@@ -430,7 +430,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_noticeBTNActionPerformed
 
     private void profileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBTNActionPerformed
-        // TODO add your handling code here:
+        UserProfile user = new UserProfile();
+        user.show();
+        dispose();
     }//GEN-LAST:event_profileBTNActionPerformed
 
     private void medicalBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalBTNActionPerformed
