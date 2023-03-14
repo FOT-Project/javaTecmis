@@ -4,23 +4,29 @@
  */
 package Main;
 
+import Admin.Admin_Dashboard;
 import DBConn.Database;
+import Lecturer.lecturer_Dashboard;
+import Student.Dashboard;
+import TechnicalOfficer.Officer_Dashboard;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import tecmis.DB;
 
 /**
  *
  * @author Hasitha
  */
-public class Lecturer_Login extends javax.swing.JFrame {
+public class Login extends javax.swing.JFrame {
 
     /**
      * Creates new form Lecturer_Login
      */
-    public Lecturer_Login() {
+    public Login() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
@@ -55,7 +61,6 @@ public class Lecturer_Login extends javax.swing.JFrame {
         heading_2.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         heading_2.setText("Welcome back");
 
-        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login.png"))); // NOI18N
         image.setText("jLabel4");
 
         lblUserName.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -157,21 +162,39 @@ public class Lecturer_Login extends javax.swing.JFrame {
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
 
-        Database db = new Database();
-//        db.connect();
-//        try {
-//            String sql = "SELECT * FROM u812963415_javag1.lecturer WHERE password = " +password+ " AND S_id =" +username+ " UNION SELECT * FROM u812963415_javag1.lecturer WHERE password = " +password+ " AND lec_id = " +username+ " UNION SELECT * FROM u812963415_javag1.admin WHERE password = " +password+ " AND ad_id = " +username+ " UNION SELECT * FROM u812963415_javag1.technical_officer WHERE password = " +password+ " AND to_id = " +username;
-//
-//            ResultSet result = db.stm.executeQuery(sql);
-//
-//            System.out.println(result);
-//            if(result.next()){
+        DB db = new DB();
+        db.getconnect();
+        try {
+//            String sql = "SELECT * FROM users WHERE password = " +password+ " AND S_id =" +username+ ";
+              String sql = "select * from mis.users where user_id = '"+username+"' and password = '"+password+"'";
+              System.out.println(sql);
+            ResultSet result = db.stm.executeQuery(sql);
+
+            System.out.println(result);
+            if(result.next()){
 //                dispose();
-//
-//            }
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Student_Login.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+                int position = result.getInt("position");
+               if(position == 1){
+                   Admin_Dashboard admin = new Admin_Dashboard();
+                   admin.show();
+               }else if(position == 2){
+                   Officer_Dashboard officer = new Officer_Dashboard();
+                   officer.show();
+               }else if(position == 3){
+                   lecturer_Dashboard lecturer = new lecturer_Dashboard();
+                   lecturer.show();
+               }else if(position == 4){
+                   Dashboard student = new Dashboard();
+                   student.show();
+               }
+           }else{
+               JOptionPane.showMessageDialog(this, "The username or passsword is incorrect");
+           }
+
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnMLoginActionPerformed
 
     /**
@@ -191,20 +214,21 @@ public class Lecturer_Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Lecturer_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Lecturer_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Lecturer_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Lecturer_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Lecturer_Login().setVisible(true);
+                new Login().setVisible(true);
             }
         });
     }
