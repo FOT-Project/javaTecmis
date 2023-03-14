@@ -5,7 +5,6 @@
 package Main;
 
 import Admin.Admin_Dashboard;
-import DBConn.Database;
 import Lecturer.lecturer_Dashboard;
 import Student.Dashboard;
 import TechnicalOfficer.Officer_Dashboard;
@@ -15,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import tecmis.DB;
+import DBConn.DB;
 
 /**
  *
@@ -61,6 +60,7 @@ public class Login extends javax.swing.JFrame {
         heading_2.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         heading_2.setText("Welcome back");
 
+        image.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/login.png"))); // NOI18N
         image.setText("jLabel4");
 
         lblUserName.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -165,15 +165,14 @@ public class Login extends javax.swing.JFrame {
         DB db = new DB();
         db.getconnect();
         try {
-//            String sql = "SELECT * FROM users WHERE password = " +password+ " AND S_id =" +username+ ";
-              String sql = "select * from mis.users where user_id = '"+username+"' and password = '"+password+"'";
+              String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
               System.out.println(sql);
             ResultSet result = db.stm.executeQuery(sql);
 
             System.out.println(result);
             if(result.next()){
-//                dispose();
-                int position = result.getInt("position");
+               dispose();
+               int position = result.getInt("position");
                if(position == 1){
                    Admin_Dashboard admin = new Admin_Dashboard();
                    admin.show();
