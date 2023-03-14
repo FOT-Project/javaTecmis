@@ -9,9 +9,7 @@ import java.sql.*;
 
 public class DBconn {
     
-    public String url = "jdbc:mysql://191.96.56.1:3306/u812963415_javag1";
-    public String user = "u812963415_javag1";
-    public String password = "p*lC5tH0^";
+   
     public Connection conn;
     public Statement stm;
     
@@ -19,18 +17,19 @@ public class DBconn {
      
     }
     
-    public void connect()
-    {
-        try {
+    public Connection connect()throws Exception{
+    
+        
             Class.forName("com.mysql.jdbc.Driver");
-            
+            String url = "jdbc:mysql://191.96.56.1:3306/u812963415_javag1";
+            String user = "u812963415_javag1";
+            String password = "p*lC5tH0^";
             conn = DriverManager.getConnection(url, user, password);
             
-            stm = conn.createStatement();
-            //System.out.println("Connected");
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println("Connection Error: " +ex);
-        }
+            
+            System.out.println("Connected");
+            return conn;
+        
     }
             
 }

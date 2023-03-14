@@ -22,9 +22,11 @@ public class Admin_Login extends javax.swing.JFrame {
     /**
      * Creates new form Admin_Login
      */
-    public Admin_Login() {
+    String userType;
+    public Admin_Login(String userType) {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        this.userType = userType;
     }
 
     /**
@@ -152,7 +154,11 @@ public class Admin_Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+public static void main(String[] args) {
+        Admin_Login admin = new Admin_Login("admin");
+        admin.setVisible(true);
+    }
+    
     private void btnMLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMLoginActionPerformed
 
         // TODO add your handling code here:
@@ -162,14 +168,15 @@ public class Admin_Login extends javax.swing.JFrame {
         DBconn db = new DBconn();
         db.connect();
         try {
-            String sql = "SELECT * FROM admin WHERE ad_id = "+username+" and password = '"+password+"'";
-
+            String sql = "SELECT * FROM "+userType+" WHERE ad_id = '"+username+"' and password = '"+password+"'";
+            System.out.println(sql);
             ResultSet result = db.stm.executeQuery(sql);
             System.out.println(result);
             if(result.next()){
+                System.out.println("Done");
                 dispose();
                 Admin_Dashboard admin = new Admin_Dashboard();
-                admin.show();
+                admin.setVisible(true);
             }else{
                failed_alert failed = new failed_alert();
                failed.show();
@@ -182,37 +189,7 @@ public class Admin_Login extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Admin_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Admin_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Admin_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Admin_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Admin_Login().setVisible(true);
-            }
-        });
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel background;
