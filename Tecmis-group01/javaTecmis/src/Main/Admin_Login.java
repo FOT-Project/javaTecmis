@@ -6,7 +6,7 @@ package Main;
 
 import Admin.Admin_Dashboard;
 import Alerts.failed_alert;
-import DBConn.DBconn;
+import DBConn.Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -165,25 +165,25 @@ public static void main(String[] args) {
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
 
-        DBconn db = new DBconn();
-        db.connect();
-        try {
-            String sql = "SELECT * FROM "+userType+" WHERE ad_id = '"+username+"' and password = '"+password+"'";
-            System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
-            if(result.next()){
-                System.out.println("Done");
-                dispose();
-                Admin_Dashboard admin = new Admin_Dashboard();
-                admin.setVisible(true);
-            }else{
-               failed_alert failed = new failed_alert();
-               failed.show();
-           }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student_Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Database db = new Database();
+//        db.connect();
+//        try {
+//            String sql = "SELECT * FROM "+userType+" WHERE ad_id = '"+username+"' and password = '"+password+"'";
+//            System.out.println(sql);
+//            ResultSet result = db.stm.executeQuery(sql);
+//            System.out.println(result);
+//            if(result.next()){
+//                System.out.println("Done");
+//                dispose();
+//                Admin_Dashboard admin = new Admin_Dashboard();
+//                admin.setVisible(true);
+//            }else{
+//               failed_alert failed = new failed_alert();
+//               failed.show();
+//           }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Student_Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnMLoginActionPerformed
 
     /**

@@ -4,7 +4,7 @@
  */
 package Main;
 
-import DBConn.DBconn;
+import DBConn.Database;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -157,21 +157,21 @@ public class Officer_Login extends javax.swing.JFrame {
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
 
-        DBconn db = new DBconn();
-        db.connect();
-        try {
-            String sql = "SELECT * FROM u812963415_javag1.Officer WHERE password = " +password+ " AND S_id =" +username+ " UNION SELECT * FROM u812963415_javag1.lecturer WHERE password = " +password+ " AND lec_id = " +username+ " UNION SELECT * FROM u812963415_javag1.admin WHERE password = " +password+ " AND ad_id = " +username+ " UNION SELECT * FROM u812963415_javag1.technical_officer WHERE password = " +password+ " AND to_id = " +username;
-
-            ResultSet result = db.stm.executeQuery(sql);
-
-            System.out.println(result);
-            if(result.next()){
-                dispose();
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(Student_Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        Database db = new Database();
+//        db.connect();
+//        try {
+//            String sql = "SELECT * FROM u812963415_javag1.Officer WHERE password = " +password+ " AND S_id =" +username+ " UNION SELECT * FROM u812963415_javag1.lecturer WHERE password = " +password+ " AND lec_id = " +username+ " UNION SELECT * FROM u812963415_javag1.admin WHERE password = " +password+ " AND ad_id = " +username+ " UNION SELECT * FROM u812963415_javag1.technical_officer WHERE password = " +password+ " AND to_id = " +username;
+//
+//            ResultSet result = db.stm.executeQuery(sql);
+//
+//            System.out.println(result);
+//            if(result.next()){
+//                dispose();
+//
+//            }
+//        } catch (SQLException ex) {
+//            Logger.getLogger(Student_Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }//GEN-LAST:event_btnMLoginActionPerformed
 
     /**
