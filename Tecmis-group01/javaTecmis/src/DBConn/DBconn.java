@@ -20,7 +20,6 @@ public class DBconn {
      
     }
     
-<<<<<<< HEAD
     @SuppressWarnings("UseSpecificCatch")
     public static Connection connect()
     {
@@ -29,16 +28,6 @@ public class DBconn {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://191.96.56.1:3306/u812963415_javag1", "u812963415_javag1", "p*lC5tH0^");
-=======
-    public void connect()
-    {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            conn = DriverManager.getConnection(url, user, password);
-            
-            stm = conn.createStatement();
->>>>>>> a99cd2aac7a0cfffe3d0859e51a437723118616f
             //System.out.println("Connected");
         } catch (ClassNotFoundException | SQLException ex) {
             System.out.println("Connection Error: " +ex);
