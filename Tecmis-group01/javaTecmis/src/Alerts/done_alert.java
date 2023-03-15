@@ -8,12 +8,12 @@ package Alerts;
  *
  * @author Hasitha
  */
-public class done_alert extends javax.swing.JFrame {
+public class Done_Alert extends javax.swing.JFrame {
 
     /**
      * Creates new form done_alert
      */
-    public done_alert() {
+    public Done_Alert() {
         initComponents();
         this.setLocationRelativeTo(null); 
     }
@@ -48,6 +48,11 @@ public class done_alert extends javax.swing.JFrame {
         btnOk.setText("Ok");
         btnOk.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnOk.setPreferredSize(new java.awt.Dimension(190, 40));
+        btnOk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOkActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout backgroundLayout = new javax.swing.GroupLayout(background);
         background.setLayout(backgroundLayout);
@@ -93,6 +98,11 @@ public class done_alert extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOkActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_btnOkActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -110,20 +120,21 @@ public class done_alert extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(done_alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Done_Alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(done_alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Done_Alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(done_alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Done_Alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(done_alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Done_Alert.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new done_alert().setVisible(true);
+                new Done_Alert().setVisible(true);
             }
         });
     }
