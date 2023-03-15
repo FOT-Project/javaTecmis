@@ -45,6 +45,7 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -196,6 +197,8 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/dashboard11.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
