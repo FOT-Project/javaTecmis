@@ -55,14 +55,11 @@ public class UpdateProfile extends javax.swing.JFrame {
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-<<<<<<< Updated upstream
-=======
         backLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backLBLMouseClicked(evt);
             }
         });
->>>>>>> Stashed changes
 
         bgImgLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update-profile.png"))); // NOI18N
 
