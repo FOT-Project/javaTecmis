@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Student;
 
 import java.sql.Connection;
@@ -16,9 +13,7 @@ import java.sql.SQLException;
 public class UpdateProfile extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
-    /**
-     * Creates new form UpdateProfile
-     */
+
     public UpdateProfile() {
         initComponents();
         
@@ -60,6 +55,14 @@ public class UpdateProfile extends javax.swing.JFrame {
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+<<<<<<< Updated upstream
+=======
+        backLBL.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                backLBLMouseClicked(evt);
+            }
+        });
+>>>>>>> Stashed changes
 
         bgImgLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update-profile.png"))); // NOI18N
 
@@ -214,29 +217,47 @@ public class UpdateProfile extends javax.swing.JFrame {
     }//GEN-LAST:event_chooseImgBTNActionPerformed
 
     private void idNoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idNoTXTActionPerformed
-        // TODO add your handling code here:
+        String id;
+         id = idNoTXT.getText();
     }//GEN-LAST:event_idNoTXTActionPerformed
 
     private void updateProBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProBTNActionPerformed
-        String id;
+       String id;
         String mail;
         String newMail;
-        int newPhone;
+       int newPhone;
+      // String newPhone;
+   
         
-        id = idNoTXT.getText();
+       id = idNoTXT.getText();
         mail = emailTXT.getText();
         newMail = newMailTXT.getText();
-        newPhone = Integer.parseInt(newPhoneTXT.getText());
+       newPhone = Integer.parseInt(newPhoneTXT.getText());
+       //newPhone = newPhoneTXT.getText();
         
         try {
-            String sql = "UPDATE TABLE Student SET email = '"+newMail+"', phone_no = '"+newPhone+"' WHERE s_id = '"+id+"'";
+           String sql = "UPDATE student SET email = '"+newMail+"', phone_no = '"+newPhone+"' WHERE s_id = '"+id+"'";
+           // String sql ="INSERT INTO department (dep_id, dep_name) values ('"+newMail+"', '"+newPhone+"')";
             pst = conn.prepareStatement(sql);
             pst.execute();
+      
             JOptionPane.showMessageDialog(null, "User Profile Updated Succesfully...!");
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+           // redirect to UserProfile
+        }
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);    
        }
+         idNoTXT.setText("");
+         emailTXT.setText("");
+         newMailTXT.setText("");
+         newPhoneTXT.setText("");          
     }//GEN-LAST:event_updateProBTNActionPerformed
+
+    private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
+        UserProfile update = new UserProfile();
+        update.show();
+        dispose();
+    }//GEN-LAST:event_backLBLMouseClicked
 
     /**
      * @param args the command line arguments
