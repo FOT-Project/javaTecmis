@@ -165,6 +165,7 @@ public class Login extends javax.swing.JFrame {
 
         DB db = new DB();
         db.getconnect();
+        
         try {
               String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
               System.out.println(sql);
