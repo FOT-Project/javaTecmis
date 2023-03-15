@@ -1,23 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Student;
 
+import java.sql.Connection;
+import DBConn.DBconn;
+import java.sql.PreparedStatement;
 /**
  *
  * @author Hiru
  */
 public class UserProfile extends javax.swing.JFrame {
-
+    Connection conn = null;
+    PreparedStatement pst = null;
     /**
      * Creates new form UserProfile
      */
     public UserProfile() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        conn = DBconn.connect();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -273,6 +275,8 @@ public class UserProfile extends javax.swing.JFrame {
 
     private void nameTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTXTActionPerformed
         // display the name from the database related to above S_ID
+        String nameSql = "SELECT name from Stundet where s_id = 'id'";
+        
     }//GEN-LAST:event_nameTXTActionPerformed
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
