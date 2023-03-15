@@ -14,8 +14,8 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import DBConn.DB;
+import Student.UserProfile;
 
 /**
  *
@@ -80,6 +80,11 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 102, 102));
         jLabel1.setText("Forgot Password..?");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         btnMLogin.setBackground(new java.awt.Color(76, 159, 255));
         btnMLogin.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -162,6 +167,8 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
+        
+        
 
         DB db = new DB();
         db.getconnect();
@@ -197,6 +204,13 @@ public class Login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnMLoginActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        dispose();
+        Update_password reset = new Update_password();
+        reset.show();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
