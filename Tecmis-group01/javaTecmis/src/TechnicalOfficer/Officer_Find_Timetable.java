@@ -216,7 +216,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
         
         
         
-        
+     
         Officer_Timetable Timetable = new Officer_Timetable();
         Timetable.show();
         dispose();

@@ -209,6 +209,7 @@ public class Officer_Search_Medical extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+
         String StudentId = stuId.getText();
         
         DB db = new DB();
@@ -226,6 +227,8 @@ public class Officer_Search_Medical extends javax.swing.JFrame {
         }
         
         
+
+
         Officer_Show_Medical ShowMedical = new Officer_Show_Medical();
         ShowMedical.show();
         dispose();

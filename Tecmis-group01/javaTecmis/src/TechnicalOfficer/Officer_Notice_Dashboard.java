@@ -160,6 +160,7 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         // TODO add your handling code here: 
         DB db = new DB();
         db.getconnect();
@@ -176,6 +177,8 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         }
         
         
+
+        // TODO add your handling code here
         Officer_Notice Notice = new Officer_Notice();
         Notice.show();
         dispose();

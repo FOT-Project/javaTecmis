@@ -166,9 +166,9 @@
                           <Component id="jTextField1" min="-2" pref="83" max="-2" attributes="0"/>
                           <Component id="jScrollPane3" alignment="0" pref="338" max="32767" attributes="0"/>
                           <Component id="jButton1" max="32767" attributes="0"/>
-                          <Component id="UpName" max="32767" attributes="0"/>
-                          <Component id="UpEmail" alignment="0" max="32767" attributes="0"/>
-                          <Component id="UpPhoneNo" max="32767" attributes="0"/>
+                          <Component id="name" max="32767" attributes="0"/>
+                          <Component id="email" alignment="0" max="32767" attributes="0"/>
+                          <Component id="phoneNo" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace pref="93" max="32767" attributes="0"/>
                   </Group>
@@ -180,11 +180,11 @@
                       <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Component id="jTextField1" min="-2" pref="26" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="UpName" min="-2" max="-2" attributes="0"/>
+                      <Component id="name" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jTextField2" min="-2" pref="27" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="UpEmail" min="-2" max="-2" attributes="0"/>
+                      <Component id="email" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jTextField3" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -192,7 +192,7 @@
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jTextField4" min="-2" pref="29" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="UpPhoneNo" min="-2" max="-2" attributes="0"/>
+                      <Component id="phoneNo" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" pref="41" max="-2" attributes="0"/>
                       <EmptySpace pref="41" max="32767" attributes="0"/>
@@ -271,7 +271,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="javax.swing.JTextArea" name="UpAddress">
+                <Component class="javax.swing.JTextArea" name="address">
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
@@ -324,14 +324,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="UpName">
+            <Component class="javax.swing.JTextField" name="name">
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="UpNameActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="nameActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="UpEmail">
+            <Component class="javax.swing.JTextField" name="email">
             </Component>
-            <Component class="javax.swing.JTextField" name="UpPhoneNo">
+            <Component class="javax.swing.JTextField" name="phoneNo">
             </Component>
           </SubComponents>
         </Container>

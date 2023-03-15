@@ -35,7 +35,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -57,10 +57,10 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                jLabel4MouseClicked(evt);
             }
         });
 
@@ -68,11 +68,15 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(0, 27, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(0, 48, Short.MAX_VALUE))
         );
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -256,12 +260,9 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_StuIdActionPerformed
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {                                     
         // TODO add your handling code here:
-        Officer_Attendance_Dashboard AttendanceDashboard = new Officer_Attendance_Dashboard();
-        AttendanceDashboard.show();
-        dispose();
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }                                    
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
@@ -288,6 +289,13 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         LocalDate date = LocalDate.now();
         System.out.print(date);
     }//GEN-LAST:event_dateActionPerformed
+
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        Officer_Attendance_Dashboard AttendanceDashboard = new Officer_Attendance_Dashboard();
+        AttendanceDashboard.show();
+        dispose();
+    }//GEN-LAST:event_jLabel4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -329,9 +337,9 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
     private javax.swing.JTextField SubId;
     private javax.swing.JTextField date;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

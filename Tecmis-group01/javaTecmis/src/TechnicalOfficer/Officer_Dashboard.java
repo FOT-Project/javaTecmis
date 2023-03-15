@@ -4,7 +4,13 @@
  */
 package TechnicalOfficer;
 
+
+
+
 import Main.Welcome;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+
 
 /**
  *
@@ -352,7 +358,6 @@ public class Officer_Dashboard extends javax.swing.JFrame {
         Officer_Notice_Dashboard NoticeDashboard = new Officer_Notice_Dashboard();
         NoticeDashboard.show();
         dispose();
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -378,6 +383,7 @@ public class Officer_Dashboard extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+
         Officer_User_Profile UserProfleDashboard = new Officer_User_Profile();
         UserProfleDashboard.show();
         dispose();
@@ -385,6 +391,8 @@ public class Officer_Dashboard extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
+
+
         Welcome welcome = new Welcome();
         welcome.show();
         dispose();

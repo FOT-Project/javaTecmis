@@ -304,8 +304,8 @@ public class Officer_User_Profile extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Officer_Update_Profile UpdateProfle = new Officer_Update_Profile();
-        UpdateProfle.show();
+        Officer_Update_Profile UpdateProfile = new Officer_Update_Profile();
+        UpdateProfile.show();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
