@@ -4,18 +4,25 @@
  */
 package Student;
 
+import java.sql.Connection;
+import DBConn.DBconn;
+import java.sql.PreparedStatement;
+
 /**
  *
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
-
+    Connection conn = null;
+    PreparedStatement pst = null;
     /**
      * Creates new form GPA
      */
     public GPA() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        conn = DBconn.connect();
     }
 
     /**
