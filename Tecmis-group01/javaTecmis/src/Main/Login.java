@@ -15,14 +15,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import DBConn.DB;
-import Student.UserProfile;
-
 /**
  *
  * @author Hasitha
  */
 public class Login extends javax.swing.JFrame {
-
     /**
      * Creates new form Lecturer_Login
      */
@@ -167,17 +164,15 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
-        
-        
-
+                       
         DB db = new DB();
         db.getconnect();
         try {
-              String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
-              System.out.println(sql);
+            String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
+            //System.out.println(sql);
             ResultSet result = db.stm.executeQuery(sql);
 
-            System.out.println(result);
+           // System.out.println(result);
             if(result.next()){
                dispose();
                int position = result.getInt("position");
@@ -191,12 +186,14 @@ public class Login extends javax.swing.JFrame {
                    lecturer_Dashboard lecturer = new lecturer_Dashboard();
                    lecturer.show();
                }else if(position == 4){
-                   Dashboard student = new Dashboard();
+                   //System.out.println(username);
+                   Dashboard student = new Dashboard(username);
                    student.show();
                }
            }else{
                Failed_Alert failed = new Failed_Alert();
                failed.show();
+              // System.out.print("error generated in login.java");
            }
 
             

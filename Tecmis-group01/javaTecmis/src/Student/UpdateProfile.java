@@ -1,23 +1,31 @@
 
 package Student;
 
-import java.sql.Connection;
-import DBConn.DBconn;
-import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
+import DBConn.DB;
+import java.awt.HeadlessException;
+import java.awt.Image;
+import java.io.File;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
  * @author Hiru
  */
 public class UpdateProfile extends javax.swing.JFrame {
-    Connection conn = null;
-    PreparedStatement pst = null;
 
+    private String username;
+    /**
+     * Creates new form UpdateProfile
+     */
+   
     public UpdateProfile() {
         initComponents();
-        
-        conn = DBconn.connect();
+        setExtendedState(MAXIMIZED_BOTH); 
     }
 
     /**
@@ -29,95 +37,81 @@ public class UpdateProfile extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         backLBL = new javax.swing.JLabel();
-        bgImgLBL = new javax.swing.JLabel();
         updateProLBL = new javax.swing.JLabel();
         idNoLBL = new javax.swing.JLabel();
         idNoTXT = new javax.swing.JTextField();
         emailLBL = new javax.swing.JLabel();
         emailTXT = new javax.swing.JTextField();
         newMailLBL = new javax.swing.JLabel();
-        newMailTXT = new javax.swing.JTextField();
+        newperMailTXT = new javax.swing.JTextField();
         newPhoneLBL = new javax.swing.JLabel();
         newPhoneTXT = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        chooseImgBTN = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        proPicLBL = new javax.swing.JLabel();
+        imgBTN = new javax.swing.JButton();
+        imgLBL = new javax.swing.JLabel();
         updateProBTN = new javax.swing.JButton();
+        bgImgLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1450, 850));
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel.setPreferredSize(new java.awt.Dimension(1350, 750));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setPreferredSize(new java.awt.Dimension(13350, 750));
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-<<<<<<< Updated upstream
-=======
         backLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backLBLMouseClicked(evt);
             }
         });
->>>>>>> Stashed changes
-
-        bgImgLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update-profile.png"))); // NOI18N
 
         updateProLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         updateProLBL.setText("Update Profile");
 
-        idNoLBL.setBackground(new java.awt.Color(153, 153, 153));
         idNoLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         idNoLBL.setForeground(new java.awt.Color(153, 153, 153));
         idNoLBL.setText("ID Number");
 
-        idNoTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        idNoTXT.setPreferredSize(new java.awt.Dimension(64, 30));
-        idNoTXT.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                idNoTXTActionPerformed(evt);
-            }
-        });
+        idNoTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        idNoTXT.setPreferredSize(new java.awt.Dimension(71, 25));
 
         emailLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         emailLBL.setForeground(new java.awt.Color(153, 153, 153));
         emailLBL.setText("Email");
 
-        emailTXT.setPreferredSize(new java.awt.Dimension(64, 30));
+        emailTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        emailTXT.setPreferredSize(new java.awt.Dimension(71, 25));
 
         newMailLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         newMailLBL.setForeground(new java.awt.Color(153, 153, 153));
-        newMailLBL.setText("New Email");
+        newMailLBL.setText("New Personal Email");
 
-        newMailTXT.setPreferredSize(new java.awt.Dimension(64, 30));
+        newperMailTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        newperMailTXT.setPreferredSize(new java.awt.Dimension(71, 25));
 
         newPhoneLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         newPhoneLBL.setForeground(new java.awt.Color(153, 153, 153));
         newPhoneLBL.setText("New Phone Number");
 
-        newPhoneTXT.setPreferredSize(new java.awt.Dimension(64, 30));
+        newPhoneTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
 
-        jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel1.setText("Profile Picture");
+        proPicLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        proPicLBL.setForeground(new java.awt.Color(153, 153, 153));
+        proPicLBL.setText("Profile Picture");
 
-        chooseImgBTN.setBackground(new java.awt.Color(245, 245, 245));
-        chooseImgBTN.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        chooseImgBTN.setText("Choose Image");
-        chooseImgBTN.setPreferredSize(new java.awt.Dimension(131, 30));
-        chooseImgBTN.addActionListener(new java.awt.event.ActionListener() {
+        imgBTN.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        imgBTN.setText("Choose Image");
+        imgBTN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chooseImgBTNActionPerformed(evt);
+                imgBTNActionPerformed(evt);
             }
         });
 
-        jLabel2.setBackground(new java.awt.Color(245, 245, 245));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Account.png"))); // NOI18N
-        jLabel2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 100));
+        imgLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Account.png"))); // NOI18N
+        imgLBL.setPreferredSize(new java.awt.Dimension(100, 100));
 
         updateProBTN.setBackground(new java.awt.Color(76, 159, 255));
         updateProBTN.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -129,135 +123,146 @@ public class UpdateProfile extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanelLayout = new javax.swing.GroupLayout(jPanel);
-        jPanel.setLayout(jPanelLayout);
-        jPanelLayout.setHorizontalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelLayout.createSequentialGroup()
+        bgImgLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update-profile.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(138, 138, 138)
+                        .addComponent(bgImgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 438, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(backLBL)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLayout.createSequentialGroup()
-                        .addContainerGap(166, Short.MAX_VALUE)
-                        .addComponent(bgImgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 457, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(171, 171, 171)))
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(idNoLBL)
-                    .addComponent(updateProLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(idNoTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(emailLBL)
-                    .addComponent(emailTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newMailLBL)
-                    .addComponent(newMailTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(106, 106, 106)
+                        .addComponent(updateProLBL)))
+                .addGap(269, 269, 269)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(newPhoneLBL)
-                    .addComponent(newPhoneTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(chooseImgBTN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))
+                    .addComponent(newMailLBL)
+                    .addComponent(emailLBL)
+                    .addComponent(idNoLBL)
+                    .addComponent(idNoTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(emailTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newperMailTXT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newPhoneTXT)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(imgBTN, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(proPicLBL, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36)
+                        .addComponent(imgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(updateProBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 321, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(235, 235, 235))
+                .addContainerGap(296, Short.MAX_VALUE))
         );
-        jPanelLayout.setVerticalGroup(
-            jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLayout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(backLBL)
-                    .addGroup(jPanelLayout.createSequentialGroup()
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanelLayout.createSequentialGroup()
-                                        .addComponent(newPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel1))
-                                    .addComponent(bgImgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 391, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(updateProLBL)
-                                .addGap(35, 35, 35)
-                                .addComponent(idNoLBL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(idNoTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(emailLBL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(emailTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(newMailLBL)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(newMailTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(newPhoneLBL)))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(backLBL))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(128, 128, 128)
+                        .addComponent(idNoLBL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(chooseImgBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelLayout.createSequentialGroup()
-                                .addGap(2, 2, 2)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(idNoTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(updateProBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(93, Short.MAX_VALUE))
+                        .addComponent(emailLBL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(emailTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(newMailLBL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newperMailTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(newPhoneLBL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(newPhoneTXT, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(proPicLBL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(imgBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(imgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)
+                        .addComponent(updateProBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(updateProLBL)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(bgImgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(198, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void chooseImgBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chooseImgBTNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chooseImgBTNActionPerformed
-
-    private void idNoTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idNoTXTActionPerformed
-        String id;
-         id = idNoTXT.getText();
-    }//GEN-LAST:event_idNoTXTActionPerformed
-
-    private void updateProBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProBTNActionPerformed
-       String id;
-        String mail;
-        String newMail;
-       int newPhone;
-      // String newPhone;
-   
-        
-       id = idNoTXT.getText();
-        mail = emailTXT.getText();
-        newMail = newMailTXT.getText();
-       newPhone = Integer.parseInt(newPhoneTXT.getText());
-       //newPhone = newPhoneTXT.getText();
-        
-        try {
-           String sql = "UPDATE student SET email = '"+newMail+"', phone_no = '"+newPhone+"' WHERE s_id = '"+id+"'";
-           // String sql ="INSERT INTO department (dep_id, dep_name) values ('"+newMail+"', '"+newPhone+"')";
-            pst = conn.prepareStatement(sql);
-            pst.execute();
-      
-            JOptionPane.showMessageDialog(null, "User Profile Updated Succesfully...!");
-           // redirect to UserProfile
-        }
-        catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);    
-       }
-         idNoTXT.setText("");
-         emailTXT.setText("");
-         newMailTXT.setText("");
-         newPhoneTXT.setText("");          
-    }//GEN-LAST:event_updateProBTNActionPerformed
-
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        UserProfile update = new UserProfile();
-        update.show();
+        UserProfile up = new UserProfile(username);
+        up.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
+
+    private void updateProBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProBTNActionPerformed
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        String id;
+        String mail;
+        String newperMail;
+        int newPhone;
+        byte[] img;
+       
+       id = idNoTXT.getText();
+       mail = emailTXT.getText();
+       newperMail = newperMailTXT.getText();
+       newPhone = Integer.parseInt(newPhoneTXT.getText());
+ 
+       
+       try {
+           String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"'";
+       
+            db.stm.executeUpdate(sql);
+           
+            JOptionPane.showMessageDialog(null, "User Profile Updated Succesfully...!");
+            UserProfile upl = new UserProfile(username);
+            upl.show();
+            dispose();
+       }
+        catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(null, e); 
+            System.out.println(e);
+       } catch (SQLException ex) {
+            Logger.getLogger(UpdateProfile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         idNoTXT.setText("");
+         emailTXT.setText("");
+         newperMailTXT.setText("");
+         newPhoneTXT.setText("");
+         
+    }//GEN-LAST:event_updateProBTNActionPerformed
+
+    private void imgBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgBTNActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg","gif","png");
+        fileChooser.addChoosableFileFilter(filter);
+        
+        int result = fileChooser.showSaveDialog(null);
+        
+        if(result == JFileChooser.APPROVE_OPTION){
+            File selectedFile = fileChooser.getSelectedFile();
+            String path = selectedFile.getAbsolutePath();
+            imgLBL.setIcon(ResizeImage(path));
+        }
+    }//GEN-LAST:event_imgBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -297,19 +302,27 @@ public class UpdateProfile extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
     private javax.swing.JLabel bgImgLBL;
-    private javax.swing.JButton chooseImgBTN;
     private javax.swing.JLabel emailLBL;
     private javax.swing.JTextField emailTXT;
     private javax.swing.JLabel idNoLBL;
     private javax.swing.JTextField idNoTXT;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel;
+    private javax.swing.JButton imgBTN;
+    private javax.swing.JLabel imgLBL;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel newMailLBL;
-    private javax.swing.JTextField newMailTXT;
     private javax.swing.JLabel newPhoneLBL;
     private javax.swing.JTextField newPhoneTXT;
+    private javax.swing.JTextField newperMailTXT;
+    private javax.swing.JLabel proPicLBL;
     private javax.swing.JButton updateProBTN;
     private javax.swing.JLabel updateProLBL;
     // End of variables declaration//GEN-END:variables
+
+    public ImageIcon ResizeImage(String imgPath){
+        ImageIcon MyImage = new ImageIcon(imgPath);
+        Image img = MyImage.getImage();
+        Image newImage = img.getScaledInstance(imgLBL.getWidth(), imgLBL.getHeight(),Image.SCALE_SMOOTH);
+        ImageIcon image = new ImageIcon(newImage);
+        return image;
+    }
 }
