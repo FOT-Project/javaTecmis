@@ -4,9 +4,12 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
 import Alerts.Failed_Alert;
 import DBConn.DB;
-import java.sql.ResultSet;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -167,21 +170,25 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         
         try{
             String sql = "select * from Notice";
-            System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
+            db.stm.executeQuery(sql);
             
+            
+            Done_Alert done = new Done_Alert();
+            done.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    Officer_Notice Notice = new Officer_Notice();
+                    Notice.show();
+                    dispose();
+                }
+            });
+            done.show();
+            
+
         }catch(SQLException ex){
             Failed_Alert failed = new Failed_Alert();
             failed.show();
         }
-        
-        
-
-        // TODO add your handling code here
-        Officer_Notice Notice = new Officer_Notice();
-        Notice.show();
-        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

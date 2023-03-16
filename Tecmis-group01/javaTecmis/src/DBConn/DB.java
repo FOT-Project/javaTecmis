@@ -28,7 +28,7 @@ public class DB {
     public Statement stm;
     
     public static void main(String args[]){
- 
+        
     }
     
     public void getconnect(){
