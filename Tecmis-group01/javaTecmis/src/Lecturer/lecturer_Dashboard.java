@@ -179,7 +179,7 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)

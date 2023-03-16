@@ -123,6 +123,9 @@
                   <Image iconType="3" name="/Icons/Go Back.png"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -176,7 +179,7 @@
                       <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jTextField1" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTextField2" min="-2" pref="319" max="-2" attributes="0"/>
+                          <Component id="subId" min="-2" pref="319" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -188,7 +191,7 @@
                       <EmptySpace min="-2" pref="72" max="-2" attributes="0"/>
                       <Component id="jTextField1" min="-2" pref="32" max="-2" attributes="0"/>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jTextField2" min="-2" max="-2" attributes="0"/>
+                      <Component id="subId" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="82" max="32767" attributes="0"/>
@@ -241,8 +244,11 @@
                 </Property>
                 <Property name="horizontalTextPosition" type="int" value="0"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextField2">
+            <Component class="javax.swing.JTextField" name="subId">
             </Component>
           </SubComponents>
         </Container>

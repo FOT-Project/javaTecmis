@@ -4,6 +4,11 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Rashmika
@@ -42,6 +47,11 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -91,6 +101,11 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         jButton1.setAlignmentY(588.0F);
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setPreferredSize(new java.awt.Dimension(274, 49));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,6 +158,38 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        // TODO add your handling code here: 
+        DB db = new DB();
+        db.getconnect();
+        
+        try{
+            String sql = "select * from Notice";
+            System.out.println(sql);
+            ResultSet result = db.stm.executeQuery(sql);
+            System.out.println(result);
+            
+        }catch(SQLException ex){
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+        }
+        
+        
+
+        // TODO add your handling code here
+        Officer_Notice Notice = new Officer_Notice();
+        Notice.show();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        Officer_Dashboard Dashboard = new Officer_Dashboard();
+        Dashboard.show();
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
