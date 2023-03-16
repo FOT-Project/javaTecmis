@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Student;
 
 import java.sql.Connection;
 import DBConn.DBconn;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 /**
  *
@@ -15,14 +12,12 @@ import java.sql.PreparedStatement;
 public class CourseDetails extends javax.swing.JFrame {
     Connection conn = null;
     PreparedStatement pst = null;
-    /**
-     * Creates new form CourseDetails
-     */
+  
     public CourseDetails() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         
-        conn = (Connection) DBconn.connect();
+        conn = DBconn.connect();
     }
 
     /**
