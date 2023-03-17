@@ -4,9 +4,10 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
 import Alerts.Failed_Alert;
 import DBConn.DB;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -204,10 +205,13 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
         db.getconnect();
         
         try{
-            String sql = "select * from timetable where s_id = '"+SubjectId;
-            System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
+            String sql = "select tt_pdf from timetable where s_id = '"+SubjectId;
+            db.stm.executeQuery(sql);
+            
+            
+            Done_Alert done = new Done_Alert();
+            done.show();
+            
             
         }catch(SQLException ex){
             Failed_Alert failed = new Failed_Alert();

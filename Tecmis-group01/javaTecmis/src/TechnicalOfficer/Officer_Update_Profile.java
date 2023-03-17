@@ -4,11 +4,11 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
 import Alerts.Failed_Alert;
 import DBConn.DB;
-import java.sql.ResultSet;
+//import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JFrame;
 
 /**
  *
@@ -257,9 +257,14 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         
         try{
             String sql = "Update technical_officer set name = '"+Name+"',email = '"+Email+"',address = '"+Address+"', phone_no = '"+PhoneNo+"'where to_id = '" +IDNumber;
-            System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
+            db.stm.executeQuery(sql);
+            
+            
+            
+            Done_Alert done = new Done_Alert();
+            done.show();
+            
+            
             
         }catch(SQLException ex){
             Failed_Alert failed = new Failed_Alert();

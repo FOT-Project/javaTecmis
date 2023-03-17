@@ -4,10 +4,14 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
 import Alerts.Failed_Alert;
 import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 
 /**
  *
@@ -215,23 +219,41 @@ public class Officer_Search_Medical extends javax.swing.JFrame {
         DB db = new DB();
         db.getconnect();
         
+        String sql = "select subject.sub_name, medical.sub_id, medical.date, medical.type from (subject inner join medical on medical.sub_id = subject.sub_id) where medical.s_id = '"+StudentId+"'";
+        System.out.println(sql);
+        
         try{
-            String sql = "select * from Medical where s_id = '"+StudentId;
-            System.out.println(sql);
+            //String sql = "select sub_id,date,type from medical where s_id = '"+StudentId+"'";
+            //System.out.println(sql);
+            //db.stm.execute(sql);
+
             ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
+            
+            if(result.next()){
+                String SubjectName = result.getString("sub_name");
+                String SubjectId = result.getString("sub_id");
+                String Date = result.getString("date");
+                String types = result.getString("type");
+                
+            }
+            
+            
+            
+                
+            //Officer_Show_Medical ShowMedical = new  Officer_Show_Medical(SubjectName,SubjectId,Date,types);
+            //ShowMedical.show();
+            //dispose();
+                
+            
+            
+            
             
         }catch(SQLException ex){
             Failed_Alert failed = new Failed_Alert();
             failed.show();
+            
+            System.out.println(ex);
         }
-        
-        
-
-
-        Officer_Show_Medical ShowMedical = new Officer_Show_Medical();
-        ShowMedical.show();
-        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
