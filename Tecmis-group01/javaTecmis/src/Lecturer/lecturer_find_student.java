@@ -4,8 +4,13 @@
  */
 package Lecturer;
 
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
 import javax.swing.JFrame;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author USER
@@ -131,8 +136,28 @@ public class lecturer_find_student extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        lecturer_view_StudentProfile SProfile = new lecturer_view_StudentProfile();
-        SProfile.setVisible(true);
+        String username = jTextField1.getText();
+        
+        DB db=new DB();
+        db.getconnect();
+        
+        try {
+            String sql = "select * from users where user_id ='"+username+"'";
+            ResultSet result = db.stm.executeQuery(sql);
+            if(result.next()){
+                lecturer_view_StudentProfile Sprofile = new lecturer_view_StudentProfile();
+                Sprofile.setVisible(true);
+                dispose();
+            }
+            else {
+                Failed_Alert alert= new Failed_Alert();
+                alert.show();
+            }
+        } catch (SQLException ex) {
+            Failed_Alert alert= new Failed_Alert();
+            alert.show();
+        }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

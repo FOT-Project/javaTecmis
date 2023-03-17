@@ -4,7 +4,13 @@
  */
 package Lecturer;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import java.sql.SQLException;
 
 /**
  *
@@ -32,13 +38,11 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
@@ -52,14 +56,11 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         jLabel1.setText("Add Final Marks");
 
-        jLabel2.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel2.setText("Final Exam ID ");
-
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jLabel3.setText("Subject ID ");
 
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel4.setText("Student ID ");
+        jLabel4.setText("Refill Student ID ");
 
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jLabel5.setText("Theory ");
@@ -71,9 +72,12 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Add Marks");
-
-        jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(217, 217, 217));
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(217, 217, 217));
@@ -109,12 +113,10 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
                             .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                            .addComponent(jTextField2)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
                             .addComponent(jTextField3)
                             .addComponent(jTextField4)
                             .addComponent(jTextField5)))
@@ -126,11 +128,7 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,7 +146,7 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
                     .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37)
                 .addComponent(jButton1)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
@@ -168,20 +166,22 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(92, 92, 92)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(32, 32, 32)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(364, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,6 +212,117 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         Examfinal.show();
         dispose();
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        //String FinalExid = jTextField1.getText();
+        String subid = jTextField2.getText();
+        String stuid = jTextField3.getText();
+        float theory = Float.parseFloat(jTextField4.getText());
+        float practi = Float.parseFloat(jTextField5.getText());
+        
+        DB db=new DB();
+        db.getconnect();
+        
+        try {
+            if(subid.equals("ENG1114")){
+                String sql ="Insert into final_exam_2023_ENG1114(s_id,theory,practical) values ('"+stuid+"','"+theory+"','"+practi+"' )";
+                System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            lecturer_add_FinalMarks fmarks = new lecturer_add_FinalMarks();
+                            fmarks.show();
+                            dispose();
+                        }
+            });
+                done.show();
+            }   
+             else if(subid.equals("ICT1113")){
+                 String sql = "Insert into final_exam_2023_ICT1113(s_id,theory,practical) values ('"+stuid+"','"+theory+"','"+practi+"' )";
+                 System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_FinalMarks fmarks = new lecturer_add_FinalMarks();
+                            fmarks.show();
+                            dispose();
+                        }
+                    });
+                done.show();
+            }
+              else if(subid.equals("ICT1123")){
+                 String sql = "Insert into final_exam_2023_ICT1123(s_id,theory,practical) values ('"+stuid+"','"+theory+"','"+practi+"' )";
+                 System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_FinalMarks fmarks = new lecturer_add_FinalMarks();
+                            fmarks.show();
+                            dispose();
+                        }
+                    });
+                done.show();
+              }
+               else if(subid.equals("ICT1133")){
+                 String sql = "Insert into final_exam_2023_ICT1133(s_id,theory,practical) values ('"+stuid+"','"+theory+"','"+practi+"' )";
+                 System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_FinalMarks fmarks = new lecturer_add_FinalMarks();
+                            fmarks.show();
+                            dispose();
+                        }
+                    });
+                done.show();
+               }
+                else if(subid.equals("ICT1143")){
+                 String sql = "Insert into final_exam_2023_ICT1143(s_id,theory,practical) values ('"+stuid+"','"+theory+"','"+practi+"' )";
+                 System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_FinalMarks fmarks = new lecturer_add_FinalMarks();
+                            fmarks.show();
+                            dispose();
+                        }
+                    });
+                done.show();
+                }
+                 else if(subid.equals("TMS1113")){
+                 String sql = "Insert into final_exam_2023_TMS1113(s_id,theory,practical) values ('"+stuid+"','"+theory+"','"+practi+"' )";
+                 System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_FinalMarks fmarks = new lecturer_add_FinalMarks();
+                            fmarks.show();
+                            dispose();
+                        }
+                    });
+                done.show();
+                 }
+             else {
+                 Failed_Alert falert=new Failed_Alert();
+                 falert.show();
+             }
+        }catch(SQLException e) {
+            System.out.println("Executed");
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,7 +362,6 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -259,7 +369,6 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;

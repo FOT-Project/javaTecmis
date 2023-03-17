@@ -80,7 +80,7 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
         jLabel5.setText("CA Marks");
 
         jLabel6.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel6.setText("Grade");
+        jLabel6.setText("GPA");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
