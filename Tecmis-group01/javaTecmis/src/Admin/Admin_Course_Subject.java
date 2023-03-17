@@ -4,6 +4,8 @@
  */
 package Admin;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author Hasitha
@@ -15,6 +17,7 @@ public class Admin_Course_Subject extends javax.swing.JFrame {
      */
     public Admin_Course_Subject() {
         initComponents();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
     /**
@@ -43,6 +46,12 @@ public class Admin_Course_Subject extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         jLabel2.setText("Course - Subject");
@@ -68,6 +77,11 @@ public class Admin_Course_Subject extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(76, 159, 255));
         jButton2.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -172,6 +186,20 @@ public class Admin_Course_Subject extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        Admin_Find_Course course = new Admin_Find_Course();
+        course.show();
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Admin_Update_Course update = new Admin_Update_Course();
+        update.show();
+        dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

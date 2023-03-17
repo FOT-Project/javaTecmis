@@ -68,6 +68,7 @@ public class UpdateProfile extends javax.swing.JFrame {
             }
         });
 
+
         updateProLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         updateProLBL.setText("Update Profile");
 

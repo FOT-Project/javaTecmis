@@ -58,6 +58,12 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
         jLabel1.setText("Grade Point Average");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Prize.png"))); // NOI18N
 
@@ -74,7 +80,7 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
         jLabel5.setText("CA Marks");
 
         jLabel6.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel6.setText("Grade");
+        jLabel6.setText("GPA");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -282,6 +288,13 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        lecturer_examinations GPA = new lecturer_examinations();
+        GPA.show();
+        dispose();
+    }//GEN-LAST:event_jLabel7MouseClicked
 
     /**
      * @param args the command line arguments

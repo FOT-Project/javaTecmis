@@ -167,6 +167,7 @@ public class Login extends javax.swing.JFrame {
                        
         DB db = new DB();
         db.getconnect();
+        
         try {
             String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
             //System.out.println(sql);
@@ -204,9 +205,9 @@ public class Login extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        dispose();
         Update_password reset = new Update_password();
         reset.show();
+        dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
