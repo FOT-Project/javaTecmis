@@ -28,7 +28,10 @@ public class DB {
     public Statement stm;
     
     public static void main(String args[]){
+
+
         
+
     }
     
     public void getconnect(){
@@ -45,6 +48,5 @@ public class DB {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("not Connected");
         }
-    }
-    
+    }  
 }
