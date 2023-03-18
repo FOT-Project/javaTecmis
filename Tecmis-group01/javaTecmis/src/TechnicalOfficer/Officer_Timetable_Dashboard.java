@@ -158,21 +158,21 @@ public class Officer_Timetable_Dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
         Officer_Find_Timetable FindTimetable = new Officer_Find_Timetable();
         FindTimetable.show();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Dashboard Dashboard = new Officer_Dashboard();
         Dashboard.show();
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         Officer_Dashboard Dashboard = new Officer_Dashboard();
         Dashboard.show();
         dispose();

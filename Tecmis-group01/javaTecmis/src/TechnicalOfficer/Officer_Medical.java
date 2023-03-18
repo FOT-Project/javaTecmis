@@ -160,21 +160,21 @@ public class Officer_Medical extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         Officer_Upload_Medical UploadMedical = new Officer_Upload_Medical();
         UploadMedical.show();
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+
         Officer_Search_Medical SearchMedical = new Officer_Search_Medical();
         SearchMedical.show();
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
-        // TODO add your handling code here:
+
         Officer_Dashboard Dashboard = new Officer_Dashboard();
         Dashboard.show();
         dispose();

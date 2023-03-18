@@ -269,7 +269,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
     }                                    
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         String StudentId = StuId.getText();
         String SubjectId  = SubId.getText();
         String Attendance  = attendance.getText();
@@ -313,7 +313,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
     }//GEN-LAST:event_attendanceActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
-        // TODO add your handling code here:
+
         Officer_Attendance_Dashboard AttendanceDashboard = new Officer_Attendance_Dashboard();
         AttendanceDashboard.show();
         dispose();

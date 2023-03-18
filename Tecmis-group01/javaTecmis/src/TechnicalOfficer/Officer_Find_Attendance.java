@@ -4,14 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Done_Alert;
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-//import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  *
  * @author Rashmika
@@ -204,130 +196,18 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         String StudentId = stuId.getText();
         String SubjectId = subId.getText();
         
-        DB db = new DB();
-        db.getconnect();
-        
-        try{
-  
-             if(SubjectId.equals("ICT1143")){
-                String sql = "select * from attendanec_2023_ICT1143 where s_id = '"+StudentId;
-                System.out.println(sql);
-                db.stm.executeQuery(sql);
-                
-                Done_Alert done = new Done_Alert();
-                done.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        Attendance Attendance = new Attendance();
-                        Attendance.show();
-                        dispose();
-                        }
-                    });
-                done.show();
-            }
-             
-            else if(SubjectId.equals("ENG1114")){
-                String sql = "select * from attendanec_2023_ENG1114 where s_id = '"+StudentId;
-                System.out.println(sql);
-                db.stm.executeUpdate(sql);
-                
-                Done_Alert done = new Done_Alert();
-                done.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        Attendance Attendance = new Attendance();
-                        Attendance.show();
-                        dispose();
-                        }
-                    });
-                done.show();
-            }
-             
-            else if(SubjectId.equals("ICT1113")){
-                String sql = "select * from attendanec_2023_ICT1113 where s_id = '"+StudentId;
-                System.out.println(sql);
-                db.stm.executeUpdate(sql);
-                
-                Done_Alert done = new Done_Alert();
-                done.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        Attendance Attendance = new Attendance();
-                        Attendance.show();
-                        dispose();
-                        }
-                    });
-                done.show();
-            }
-             
-            else if(SubjectId.equals("ICT1123")){
-                String sql = "select * from attendanec_2023_ICT1123 where s_id = '"+StudentId;
-                System.out.println(sql);
-                db.stm.executeUpdate(sql);
-                
-                Done_Alert done = new Done_Alert();
-                done.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        Attendance Attendance = new Attendance();
-                        Attendance.show();
-                        dispose();
-                        }
-                    });
-                done.show();
-            }
-            
-            else if(SubjectId.equals("ICT1133")){
-                String sql = "select * from attendanec_2023_ICT1133 where s_id = '"+StudentId;
-                System.out.println(sql);
-                db.stm.executeUpdate(sql);
-                
-                Done_Alert done = new Done_Alert();
-                done.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        Attendance Attendance = new Attendance();
-                        Attendance.show();
-                        dispose();
-                        }
-                    });
-                done.show();
-            }
-             
-            else if(SubjectId.equals("TMS1113")){
-                String sql = "select * from attendanec_2023_TMS1113 where s_id = '"+StudentId;
-                System.out.println(sql);
-                db.stm.executeUpdate(sql);
-                
-                Done_Alert done = new Done_Alert();
-                done.addWindowListener(new WindowAdapter() {
-                    @Override
-                    public void windowClosed(WindowEvent e) {
-                        Attendance Attendance = new Attendance();
-                        Attendance.show();
-                        dispose();
-                        }
-                    });
-                done.show();
-            }
-             
-            else{
-                Failed_Alert failed = new Failed_Alert();
-                failed.show();
-            }
-            
-        }catch(SQLException ex){
-            //Failed_Alert failed = new Failed_Alert();
-            //failed.show();
-        }
+        Attendance Attendance = new Attendance(StudentId,SubjectId);
+        Attendance.show();
+        dispose();
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Attendance_Dashboard AttendanceDashboard = new Officer_Attendance_Dashboard();
         AttendanceDashboard.show();
         dispose();

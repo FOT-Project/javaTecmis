@@ -9,24 +9,66 @@ import DBConn.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author Rashmika
  */
 public class Officer_Show_Medical extends javax.swing.JFrame {
 
+    String StudentId; 
+    
+    Officer_Show_Medical(String StudentId) {
+        initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+        
+        this.StudentId = StudentId;
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        String sql = "select subject.sub_name, medical.sub_id, medical.date, medical.type from (subject inner join medical on medical.sub_id = subject.sub_id) where medical.s_id = '"+StudentId+"'";
+        System.out.println(sql);
+        
+        try{
+            ResultSet result = db.stm.executeQuery(sql);
+            System.out.println(result);
+            
+            if(result.next()){
+                String SubjectName = result.getString("sub_name");
+                String SubjectId = result.getString("sub_id");
+                String Date = result.getString("date");
+                String Type = result.getString("type");
+                
+                subName.setText(SubjectName);
+                subId.setText(SubjectId);
+                date.setText(Date);
+                type.setText(Type);
+                
+            }
+            
+        }catch(SQLException ex){
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            System.out.println(ex);
+        }
+    }
+
+    private Officer_Show_Medical() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+       
+    
+
     /**
      * Creates new form Officer_Show_Medical
      */
-    public Officer_Show_Medical() {
-        initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-    }
+//    public Officer_Show_Medical() {
+//        initComponents();
+//        setExtendedState(MAXIMIZED_BOTH);
+//    }
 
-    Officer_Show_Medical(String SubjectName,String SubjectId,String Date,String types) {
-        
-        
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -94,7 +136,7 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
         subName.setBackground(new java.awt.Color(255, 255, 255));
         subName.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         subName.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        subName.setText("Data Structures and Algorithem");
+        subName.setText("Web Development");
         subName.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         jLabel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -128,19 +170,19 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(189, 189, 189)
-                .addComponent(subName)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(100, 100, 100))
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(subId)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(type)
-                .addGap(169, 169, 169))
+                .addGap(140, 140, 140))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(180, 180, 180)
+                .addComponent(subName, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +216,7 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
                         .addGap(277, 277, 277)
                         .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(60, 60, 60)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(60, 60, 60))
         );
@@ -199,11 +241,11 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
                 .addContainerGap(287, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 775, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(285, 285, 285))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(540, 540, 540))))
+                        .addGap(540, 540, 540))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(292, 292, 292))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +279,7 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Search_Medical SearchMedical = new Officer_Search_Medical();
         SearchMedical.show();
         dispose();
@@ -292,4 +334,5 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
     private javax.swing.JLabel subName;
     private javax.swing.JLabel type;
     // End of variables declaration//GEN-END:variables
+
 }

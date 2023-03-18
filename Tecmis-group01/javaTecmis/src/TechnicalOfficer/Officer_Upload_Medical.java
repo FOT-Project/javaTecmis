@@ -305,7 +305,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
+
         Officer_Medical MedicalDashboard = new Officer_Medical();
         MedicalDashboard.show();
         dispose();
@@ -316,7 +316,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
     }//GEN-LAST:event_StuIdActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         String StudentId = StuId.getText();
         String SubjectId = subId.getText();
         String Date = date.getText();

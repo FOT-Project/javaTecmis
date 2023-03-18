@@ -4,14 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Done_Alert;
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Date;
 
 /**
  *
@@ -212,52 +204,17 @@ public class Officer_Search_Medical extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
 
         String StudentId = stuId.getText();
         
-        DB db = new DB();
-        db.getconnect();
+        Officer_Show_Medical ShowMedical = new  Officer_Show_Medical(StudentId);
+        ShowMedical.show();
+        dispose();
         
-        String sql = "select subject.sub_name, medical.sub_id, medical.date, medical.type from (subject inner join medical on medical.sub_id = subject.sub_id) where medical.s_id = '"+StudentId+"'";
-        System.out.println(sql);
-        
-        try{
-            //String sql = "select sub_id,date,type from medical where s_id = '"+StudentId+"'";
-            //System.out.println(sql);
-            //db.stm.execute(sql);
-
-            ResultSet result = db.stm.executeQuery(sql);
-            
-            if(result.next()){
-                String SubjectName = result.getString("sub_name");
-                String SubjectId = result.getString("sub_id");
-                String Date = result.getString("date");
-                String types = result.getString("type");
-                
-            }
-            
-            
-            
-                
-            //Officer_Show_Medical ShowMedical = new  Officer_Show_Medical(SubjectName,SubjectId,Date,types);
-            //ShowMedical.show();
-            //dispose();
-                
-            
-            
-            
-            
-        }catch(SQLException ex){
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-            
-            System.out.println(ex);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
+
         Officer_Medical MedicalDashboard = new Officer_Medical();
         MedicalDashboard.show();
         dispose();
