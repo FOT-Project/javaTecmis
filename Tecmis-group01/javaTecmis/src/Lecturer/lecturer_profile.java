@@ -49,6 +49,7 @@ public class lecturer_profile extends javax.swing.JFrame {
                 jLabel13.setText(phone);
                 jLabel12.setText(gender);
                 jLabel12.setText(address);
+                
 
             }else{
                Failed_Alert failed = new Failed_Alert();
