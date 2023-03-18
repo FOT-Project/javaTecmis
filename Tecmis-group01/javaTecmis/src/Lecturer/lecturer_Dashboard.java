@@ -4,6 +4,7 @@
  */
 package Lecturer;
 
+import DBConn.DB;
 import javax.swing.JFrame;
 
 /**
@@ -17,10 +18,11 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
      */
     public lecturer_Dashboard() {
         initComponents();
-        
+    
+
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

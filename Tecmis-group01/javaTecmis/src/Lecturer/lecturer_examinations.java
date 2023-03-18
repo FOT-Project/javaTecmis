@@ -11,7 +11,7 @@ import javax.swing.JFrame;
  * @author USER
  */
 public class lecturer_examinations extends javax.swing.JFrame {
-
+String username;
     /**
      * Creates new form lecturer_examinations
      */

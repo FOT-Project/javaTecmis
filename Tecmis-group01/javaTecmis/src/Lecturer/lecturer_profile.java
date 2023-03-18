@@ -4,7 +4,12 @@
  */
 package Lecturer;
 
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,6 +24,42 @@ public class lecturer_profile extends javax.swing.JFrame {
         initComponents();
         
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        DB db = new DB();
+        db.getconnect();
+       
+        
+       jLabel10.setText(username); 
+       
+        String mysql = "SELECT name, email, phone_no, gender, address FROM users WHERE user_id = '"+username+"'";
+        System.out.println(mysql);
+        try {
+
+           ResultSet res = db.stm.executeQuery(mysql);
+           
+            if(res.next()){            
+                String name = res.getString("name");
+                String mail = res.getString("email");
+                String phone = res.getString("phone_no");
+                String gender = res.getString("gender");
+                String address = res.getString("address");
+            
+                jLabel11.setText(name);
+                jLabel12.setText(mail);
+                jLabel13.setText(phone);
+                jLabel12.setText(gender);
+                jLabel12.setText(address);
+
+            }else{
+               Failed_Alert failed = new Failed_Alert();
+               failed.show();
+            }
+            
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e); 
+            //System.out.println(e);
+        }
+    }
     }
 
     /**
@@ -45,7 +86,7 @@ public class lecturer_profile extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        LName = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -122,9 +163,9 @@ public class lecturer_profile extends javax.swing.JFrame {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel11.setText("jLabel10");
+        LName.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LName.setForeground(new java.awt.Color(217, 217, 217));
+        LName.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -132,14 +173,14 @@ public class lecturer_profile extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
+                .addComponent(LName)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11))
+                .addComponent(LName))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
@@ -403,10 +444,10 @@ public class lecturer_profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LName;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;

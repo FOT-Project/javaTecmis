@@ -5,7 +5,9 @@
 package Lecturer;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
+import Student.Dashboard;
 import java.lang.System.Logger;
 import java.lang.System.Logger.Level;
 import javax.swing.JFrame;
@@ -137,6 +139,10 @@ public class lecturer_find_student extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String username = jTextField1.getText();
+       
+        Auth auth = Auth.getInstance();
+        auth.setUsername(username);
+        
         
         DB db=new DB();
         db.getconnect();
@@ -148,6 +154,9 @@ public class lecturer_find_student extends javax.swing.JFrame {
                 lecturer_view_StudentProfile Sprofile = new lecturer_view_StudentProfile();
                 Sprofile.setVisible(true);
                 dispose();
+                
+                //Auth auth = Auth.getInstance();
+                //auth.setUsername(username);
             }
             else {
                 Failed_Alert alert= new Failed_Alert();

@@ -4,7 +4,11 @@
  */
 package Lecturer;
 
+import Alerts.Done_Alert;
 import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 import javax.swing.JFrame;
 
 /**
@@ -166,18 +170,33 @@ public class lecturer_update_profile extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String email=jTextField1.getText();
-        String phone = jTextField2.getText();
-        String address = jTextField3.getText();
+        String email =jTextField1.getText();
+        String phone =jTextField2.getText();
+        String address =jTextField3.getText();
+        
         DB db=new DB();
         db.getconnect();
         
         try {
-            String sql="update lecturer set email='"+email+"'", phone_no ='"+phone+"', address='"+address+"' where ;
-        } catch (Exception e) {
+            String sql="update lecturer set email='"+email+"'", phone_no ='"+phone+"', address='"+address+"' where lec_id='"++"' ;
+            System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                    Done_Alert done = new Done_Alert();
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                            lecturer_update_profile updatepro = new lecturer_update_profile();
+                            updatepro.show();
+                            dispose();
+                        }
+            });
+                done.show();
+            }
+        } catch(SQLException e) {
+            System.out.println("Executed");
         }
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked

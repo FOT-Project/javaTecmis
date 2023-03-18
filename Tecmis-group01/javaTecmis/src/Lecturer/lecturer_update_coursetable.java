@@ -4,7 +4,16 @@
  */
 package Lecturer;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -34,18 +43,20 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        sid = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        name = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        typebox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
-        jLabel1.setText("Update Course");
+        jLabel1.setText("Remove Materials");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/update-time_table_400x400.jpg"))); // NOI18N
 
@@ -53,23 +64,51 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Subject ID");
 
-        jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        sid.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        sid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sidActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Name");
 
-        jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        name.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Update");
+        jButton1.setText("Remove");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
+            }
+        });
+
+        jLabel6.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel6.setText("Type");
+
+        typebox.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        typebox.setForeground(new java.awt.Color(153, 153, 153));
+        typebox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lab Sheets", "Notes", "Tutorials" }));
+        typebox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeboxActionPerformed(evt);
             }
         });
 
@@ -80,15 +119,17 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 146, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2)
+                    .addComponent(name)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(101, Short.MAX_VALUE))
+                    .addComponent(sid)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addComponent(typebox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel5)
                 .addGap(0, 0, Short.MAX_VALUE))
@@ -101,17 +142,21 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(44, 44, 44)
                             .addComponent(jLabel1)
-                            .addGap(84, 84, 84)
+                            .addGap(36, 36, 36)
+                            .addComponent(jLabel6)
+                            .addGap(18, 18, 18)
+                            .addComponent(typebox, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(50, 50, 50)
                             .addComponent(jLabel3)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(54, 54, 54)
+                            .addComponent(sid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
                             .addComponent(jLabel4)
                             .addGap(18, 18, 18)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(114, 114, 114)
+                            .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(55, 55, 55)
                             .addComponent(jButton1)
-                            .addGap(100, 100, 100))
+                            .addGap(119, 119, 119))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                             .addGap(95, 95, 95)
                             .addComponent(jLabel2)))
@@ -139,6 +184,96 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
         Courses.show();
         dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        String Type = typebox.getSelectedItem().toString();
+        String Cname = sid.getText();
+        String Description = name.getText();
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        try {
+            System.out.println(Type);
+            
+             if(typebox.getSelectedIndex() ==0){
+                String sql = "delete from lab_sheets where unit_num='"+Description+"' AND sub_id='"+Cname+"' ";
+                System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                
+                Done_Alert done = new Done_Alert();
+            
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_materials newnote = new lecturer_add_materials();
+                        newnote.show();
+                        dispose();
+                        }
+                    });
+                done.show();
+                
+             }
+             
+             else if(typebox.getSelectedIndex() ==1){
+                String sql = "delete from notes where unit_num='"+Description+"' AND sub_id='"+Cname+"' ";
+                System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                
+                Done_Alert done = new Done_Alert();
+            
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_materials newnote = new lecturer_add_materials();
+                        newnote.show();
+                        dispose();
+                        }
+                    });
+                done.show();
+                
+             }
+             
+             else if(typebox.getSelectedIndex() ==2){
+                String sql = "delete from reference_notes where unit_num='"+Description+"' AND sub_id='"+Cname+"' ";
+                System.out.println(sql);
+                db.stm.executeUpdate(sql);
+                
+                Done_Alert done = new Done_Alert();
+            
+                done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        lecturer_add_materials newnote = new lecturer_add_materials();
+                        newnote.show();
+                        dispose();
+                        }
+                    });
+                done.show();
+                
+             }
+             else {
+                Failed_Alert failed = new Failed_Alert();
+                failed.show();
+             }
+        } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, e);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sidActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sidActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameActionPerformed
+
+    private void typeboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,8 +317,10 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField sid;
+    private javax.swing.JComboBox<String> typebox;
     // End of variables declaration//GEN-END:variables
 }
