@@ -54,6 +54,7 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         jLabel1.setText("Lecturer Dashboard");
 
+        jPanel2.setBackground(new java.awt.Color(245, 245, 245));
         jPanel2.setForeground(new java.awt.Color(231, 231, 231));
         jPanel2.setPreferredSize(new java.awt.Dimension(137, 168));
 
@@ -275,6 +276,8 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        lecturer_find_student SearchStudent = new lecturer_find_student();
+        SearchStudent.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
