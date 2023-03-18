@@ -45,7 +45,6 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -55,6 +54,7 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         jLabel1.setText("Lecturer Dashboard");
 
+        jPanel2.setBackground(new java.awt.Color(245, 245, 245));
         jPanel2.setForeground(new java.awt.Color(231, 231, 231));
         jPanel2.setPreferredSize(new java.awt.Dimension(137, 168));
 
@@ -166,7 +166,6 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Search Student ");
-        jButton5.setActionCommand("Search Student ");
         jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +179,7 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(jLabel10)
@@ -197,8 +196,6 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/dashboard11.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
-
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/logout.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -279,6 +276,8 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        lecturer_find_student SearchStudent = new lecturer_find_student();
+        SearchStudent.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
