@@ -6,6 +6,7 @@ package Main;
 
 import Admin.Admin_Dashboard;
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import Lecturer.lecturer_Dashboard;
 import Student.Dashboard;
 import TechnicalOfficer.Officer_Dashboard;
@@ -164,24 +165,27 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
-                       
+               
+        Auth auth = Auth.getInstance();
+        auth.setUsername(username);
+        
         DB db = new DB();
         db.getconnect();
         
         try {
-<<<<<<< HEAD
+//<<<<<<< HEAD
               String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
               System.out.println(sql);
               ResultSet result = db.stm.executeQuery(sql);
               System.out.println(result);
             
-=======
-            String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
-            //System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-
-           // System.out.println(result);
->>>>>>> 23e2257b850c7f80ba47c0a516729ad1e388c694
+//=======
+//            String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
+//            //System.out.println(sql);
+//            ResultSet result = db.stm.executeQuery(sql);
+//
+//           // System.out.println(result);
+//>>>>>>> 23e2257b850c7f80ba47c0a516729ad1e388c694
             if(result.next()){
                dispose();
                int position = result.getInt("position");
