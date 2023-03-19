@@ -4,6 +4,15 @@
  */
 package Admin;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import Main.Login;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -40,15 +49,15 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        txtOfficerId = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
+        txtDepartment = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAddress = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        pwdPassword = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,21 +98,21 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(153, 153, 153));
         jLabel8.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel8.setText("Separtment Id");
+        jLabel8.setText("Department");
 
         jLabel9.setBackground(new java.awt.Color(153, 153, 153));
         jLabel9.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel9.setText("Address");
 
-        jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField1.setMinimumSize(new java.awt.Dimension(300, 32));
-        jTextField1.setPreferredSize(new java.awt.Dimension(300, 32));
+        txtOfficerId.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
+        txtOfficerId.setMinimumSize(new java.awt.Dimension(300, 32));
+        txtOfficerId.setPreferredSize(new java.awt.Dimension(300, 32));
 
-        jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField2.setMinimumSize(new java.awt.Dimension(300, 32));
-        jTextField2.setPreferredSize(new java.awt.Dimension(300, 32));
+        txtName.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
+        txtName.setMinimumSize(new java.awt.Dimension(300, 32));
+        txtName.setPreferredSize(new java.awt.Dimension(300, 32));
 
-        jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
         jTextField4.setMinimumSize(new java.awt.Dimension(300, 32));
         jTextField4.setPreferredSize(new java.awt.Dimension(300, 32));
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
@@ -112,24 +121,31 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
             }
         });
 
-        jTextField5.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField5.setMinimumSize(new java.awt.Dimension(300, 32));
-        jTextField5.setPreferredSize(new java.awt.Dimension(300, 32));
+        txtPhone.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
+        txtPhone.setMinimumSize(new java.awt.Dimension(300, 32));
+        txtPhone.setPreferredSize(new java.awt.Dimension(300, 32));
 
-        jTextField6.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField6.setMinimumSize(new java.awt.Dimension(300, 32));
-        jTextField6.setPreferredSize(new java.awt.Dimension(300, 32));
+        txtDepartment.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
+        txtDepartment.setMinimumSize(new java.awt.Dimension(300, 32));
+        txtDepartment.setPreferredSize(new java.awt.Dimension(300, 32));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtAddress.setColumns(20);
+        txtAddress.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
+        txtAddress.setRows(5);
+        jScrollPane1.setViewportView(txtAddress);
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Update User");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        pwdPassword.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -147,13 +163,13 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
                     .addComponent(jLabel9))
                 .addGap(29, 29, 29)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDepartment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtPhone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtOfficerId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addComponent(jPasswordField1))
+                    .addComponent(pwdPassword))
                 .addContainerGap(27, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -166,15 +182,15 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtOfficerId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
-                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pwdPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -182,11 +198,11 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
                 .addGap(6, 6, 6)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
@@ -216,7 +232,7 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2)
                     .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -245,6 +261,56 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
         user.show();
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String StudentId = txtOfficerId.getText();
+        String name = txtName.getText();
+        String email = txtPhone.getText();
+        String phone = txtPhone.getText();
+        String password = pwdPassword.getText();
+        String addess = txtAddress.getText();
+        String department = txtDepartment.getText();
+        
+        DB db = new DB();
+        db.getconnect();
+        
+         try {
+            String sql = "UPDATE users SET "+ "name = '" + name + "', "+ "phone_no = '" + phone + "', "+ "email = '" + email + "', "+ "password = '" + password + "', "+ "dep_id = '" + department + "', "+ "address = '" + addess + "' "+ "WHERE user_id = '" + StudentId+"'";
+            
+            db.stm.executeUpdate(sql);
+
+                    System.out.println(sql);
+                    
+                    Done_Alert done = new Done_Alert();
+                   
+                   
+                   txtOfficerId.setText("");
+                   txtName.setText("");
+                   txtPhone.setText("");
+                   txtPhone.setText("");
+                   pwdPassword.setText("");
+                   txtAddress.setText("");
+                   txtDepartment.setText("");
+                   
+
+                    done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        Admin_Update_Officer officer = new Admin_Update_Officer();
+                        officer.show();
+                        dispose();
+                        }
+                    });
+                    done.show();
+                    
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+             Failed_Alert failed = new Failed_Alert();
+             failed.show();
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,13 +360,13 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JPasswordField pwdPassword;
+    private javax.swing.JTextArea txtAddress;
+    private javax.swing.JTextField txtDepartment;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtOfficerId;
+    private javax.swing.JTextField txtPhone;
     // End of variables declaration//GEN-END:variables
 }

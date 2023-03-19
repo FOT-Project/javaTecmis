@@ -4,6 +4,19 @@
  */
 package Admin;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import Lecturer.lecturer_Dashboard;
+import Main.Login;
+import Student.Dashboard;
+import TechnicalOfficer.Officer_Dashboard;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 /**
@@ -34,13 +47,15 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtDate = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        txtTopic = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtSubject = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtDepartment = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,6 +64,7 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         jLabel1.setText("jLabel1");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -64,18 +80,18 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Date");
 
-        jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField1.setPreferredSize(new java.awt.Dimension(364, 40));
+        txtDate.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        txtDate.setPreferredSize(new java.awt.Dimension(364, 40));
 
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Topic");
 
-        jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField2.setPreferredSize(new java.awt.Dimension(364, 40));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        txtTopic.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        txtTopic.setPreferredSize(new java.awt.Dimension(364, 40));
+        txtTopic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                txtTopicActionPerformed(evt);
             }
         });
 
@@ -83,10 +99,10 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Subject");
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtSubject.setColumns(20);
+        txtSubject.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        txtSubject.setRows(5);
+        jScrollPane1.setViewportView(txtSubject);
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -96,6 +112,18 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setBackground(new java.awt.Color(153, 153, 153));
+        jLabel7.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel7.setText("Department");
+
+        txtDepartment.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        txtDepartment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDepartmentActionPerformed(evt);
             }
         });
 
@@ -115,10 +143,12 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel5)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtTopic, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jScrollPane1)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7)
+                    .addComponent(txtDepartment))
                 .addContainerGap(118, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -130,23 +160,28 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 71, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTopic, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addGap(0, 71, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -163,12 +198,52 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void txtTopicActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTopicActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_txtTopicActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        String date = txtDate.getText();
+        String department = txtDepartment.getText();
+        String topic = txtTopic.getText();
+        String subject = txtSubject.getText();
+        
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        try {
+            String sql = "INSERT INTO notice(dep_id, subject, topic, date) VALUES ('"+department+"', '"+subject+"', '"+topic+"', '"+date+"')";
+            db.stm.executeUpdate(sql);
+
+                    System.out.println(sql);
+                    
+                    Done_Alert done = new Done_Alert();
+                   
+                   
+                   txtDate.setText("");
+                   txtDepartment.setText("");
+                   txtTopic.setText("");
+                   txtSubject.setText("");
+                   
+
+                    done.addWindowListener(new WindowAdapter() {
+                        @Override
+                        public void windowClosed(WindowEvent e) {
+                        Admin_Add_New_Notice newNotice = new Admin_Add_New_Notice();
+                        newNotice.show();
+                        dispose();
+                        }
+                    });
+                    done.show();
+                    
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+             Failed_Alert failed = new Failed_Alert();
+             failed.show();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -177,6 +252,10 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
         Admin_Notice_Dashboard notice = new Admin_Notice_Dashboard();
         notice.show();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void txtDepartmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDepartmentActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDepartmentActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,10 +300,12 @@ public class Admin_Add_New_Notice extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField txtDate;
+    private javax.swing.JTextField txtDepartment;
+    private javax.swing.JTextArea txtSubject;
+    private javax.swing.JTextField txtTopic;
     // End of variables declaration//GEN-END:variables
 }
