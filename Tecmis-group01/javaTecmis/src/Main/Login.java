@@ -6,6 +6,7 @@ package Main;
 
 import Admin.Admin_Dashboard;
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import Lecturer.lecturer_Dashboard;
 import Student.Dashboard;
 import TechnicalOfficer.Officer_Dashboard;
@@ -164,7 +165,10 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = txtUserName.getText();
         String password = pwdPassword.getText();
-                       
+               
+        Auth auth = Auth.getInstance();
+        auth.setUsername(username);
+        
         DB db = new DB();
         db.getconnect();
         

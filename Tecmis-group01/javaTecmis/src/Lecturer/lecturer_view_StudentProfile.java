@@ -30,7 +30,7 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
         System.out.println(user);
         
         try {
-            String sql="select user_id, name, email, per_email, phone_no, gender, level, DOB, address from u812963415_javag1.users where user_id= '"+user+"'";
+            String sql="select user_id, name, email, per_email, phone_no, gender, level, DOB, address from users where user_id= '"+user+"'";
             ResultSet result = db.stm.executeQuery(sql);
 
             System.out.println(result);

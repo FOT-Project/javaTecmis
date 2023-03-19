@@ -25,8 +25,7 @@ public class lecturer_update_coursetable extends javax.swing.JFrame {
      * Creates new form lecturer_update_coursetable
      */
     public lecturer_update_coursetable() {
-        initComponents();
-        
+        initComponents();       
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
