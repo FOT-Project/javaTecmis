@@ -448,7 +448,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBTNActionPerformed
 
     private void medicalBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalBTNActionPerformed
-        Medical med = new Medical();
+        Medical med = new Medical(this.username);
         med.show();
         dispose();
     }//GEN-LAST:event_medicalBTNActionPerformed
@@ -460,13 +460,13 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_courseBTNActionPerformed
 
     private void attendanceBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendanceBTNActionPerformed
-        Attendance att = new Attendance();
+        Attendance att = new Attendance(this.username);
         att.show();
         dispose();
     }//GEN-LAST:event_attendanceBTNActionPerformed
 
     private void timetableBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timetableBTNActionPerformed
-       TimeTable tt = new TimeTable();
+       TimeTable tt = new TimeTable(this.username);
        tt.show();
        dispose();
     }//GEN-LAST:event_timetableBTNActionPerformed
