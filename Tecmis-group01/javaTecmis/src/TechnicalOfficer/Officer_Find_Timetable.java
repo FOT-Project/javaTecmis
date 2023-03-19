@@ -199,6 +199,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
         Timetable.show();
         dispose();
         
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked

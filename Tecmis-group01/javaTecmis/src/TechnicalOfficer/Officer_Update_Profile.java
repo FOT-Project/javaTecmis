@@ -28,7 +28,6 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
     Officer_Update_Profile(String username) {
         this.username = username;
         
-        System.out.println("username");
     }
 
     /**
@@ -303,7 +302,7 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         String PhoneNo = phoneNo.getText();
         
         String uname = username;
-        //System.out.println(username);
+        System.out.println(username);
         
 
         try{
