@@ -37,7 +37,7 @@ public class Attendance extends javax.swing.JFrame {
         db.getconnect();
         
         try{
-  
+    
              if (SubjectId.equals("ICT1143")){
                 String sql = "select subject.sub_id, attendance_2023_ICT1143.attendance from subject JOIN attendance_2023_ICT1143 where subject.sub_id = 'ICT1143' and attendance_2023_ICT1143.s_id = '"+StudentId+"'";
                 System.out.println(sql);
@@ -46,8 +46,8 @@ public class Attendance extends javax.swing.JFrame {
                 System.out.println(result);
                 
                 if(result.next()){
-                    StudentId = result.getString("sub_id");
-                    String Attendance = result.getString("type");
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
                 
                     subId.setText(SubjectId);
                     attend.setText(Attendance);
@@ -64,8 +64,8 @@ public class Attendance extends javax.swing.JFrame {
                 System.out.println(result);
                 
                 if(result.next()){
-                    result.getString("sub_id");
-                    String Attendance = result.getString("type");
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
                 
                     subId.setText(SubjectId);
                     attend.setText(Attendance);
@@ -82,8 +82,8 @@ public class Attendance extends javax.swing.JFrame {
                 System.out.println(result);
                 
                 if(result.next()){
-                    result.getString("sub_id");
-                    String Attendance = result.getString("type");
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
                 
                     subId.setText(SubjectId);
                     attend.setText(Attendance);
@@ -100,8 +100,8 @@ public class Attendance extends javax.swing.JFrame {
                 System.out.println(result);
                 
                 if(result.next()){
-                    result.getString("sub_id");
-                    String Attendance = result.getString("type");
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
                 
                     subId.setText(SubjectId);
                     attend.setText(Attendance);
@@ -118,8 +118,8 @@ public class Attendance extends javax.swing.JFrame {
                 System.out.println(result);
                 
                 if(result.next()){
-                    result.getString("sub_id");
-                    String Attendance = result.getString("type");
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
                 
                     subId.setText(SubjectId);
                     attend.setText(Attendance);
@@ -136,8 +136,8 @@ public class Attendance extends javax.swing.JFrame {
                 System.out.println(result);
                 
                 if(result.next()){
-                    result.getString("sub_id");
-                    String Attendance = result.getString("type");
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
                 
                     subId.setText(SubjectId);
                     attend.setText(Attendance);

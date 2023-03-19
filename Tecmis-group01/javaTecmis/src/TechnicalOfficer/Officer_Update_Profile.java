@@ -6,6 +6,7 @@ package TechnicalOfficer;
 
 import Alerts.Done_Alert;
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
 import java.sql.SQLException;
 
@@ -28,7 +29,6 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
     Officer_Update_Profile(String username) {
         this.username = username;
         
-        System.out.println("username");
     }
 
     /**
@@ -292,6 +292,9 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Auth auth = Auth.getInstance();
+        String username = auth.getUsername();
+        
         DB db = new DB();
         db.getconnect();
         
@@ -303,7 +306,7 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         String PhoneNo = phoneNo.getText();
         
         String uname = username;
-        //System.out.println(username);
+        System.out.println(username);
         
 
         try{

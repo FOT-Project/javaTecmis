@@ -4,6 +4,16 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import com.mysql.cj.jdbc.Blob;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.sql.ResultSet;
+
 /**
  *
  * @author Rashmika
@@ -192,13 +202,47 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
         String CourseId = courseId.getText();
-        
-        Officer_Timetable Timetable = new Officer_Timetable(CourseId);
-        Timetable.show();
-        dispose();
-        
+
+        DB db = new DB();
+        db.getconnect();
+
+        try {
+
+            String sql = "select tt_pdf from timetable where c_id = '"+CourseId+"'";
+            ResultSet result = db.stm.executeQuery(sql);
+
+            if (result.next()) {
+                Done_Alert done = new Done_Alert();
+
+                courseId.setText("");
+
+                Blob pdfBlob = (Blob) result.getBlob("tt_pdf");
+                byte[] pdfBytes = pdfBlob.getBytes(1, (int) pdfBlob.length());
+                OutputStream outputStream = new FileOutputStream("downloaded_file.pdf");
+                outputStream.write(pdfBytes);
+                outputStream.close();
+                System.out.println("PDF file downloaded successfully.");
+
+                done.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        Officer_Timetable Timetable = new Officer_Timetable();
+                        Timetable.show();
+                        dispose();
+                    }
+                });
+                done.show();
+            } else {
+                Failed_Alert failed = new Failed_Alert();
+                failed.show();
+            }
+
+        } catch (Exception e) {
+            //System.out.println(e.getMessage());
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+        }  
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
