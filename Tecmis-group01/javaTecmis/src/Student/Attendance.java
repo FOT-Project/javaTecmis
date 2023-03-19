@@ -53,6 +53,17 @@ public class Attendance extends javax.swing.JFrame {
                 String s1P =  String.format("%.2f%%",att1Pfinal);
                 perLBL2.setText(s1P);
             } 
+            
+//            String sub1 = "SELECT attendance FROM attendance_2023_ICT1113 WHERE s_id = '"+username+"'";
+//            ResultSet res1 = db.stm.executeQuery(sub1);
+//            while(res1.next()){
+//                Double att1 = res1.getDouble("attendance");
+//              //  System.out.println(att2);
+//                
+//                Double att1final = ((att1/30)*100);
+//                String s1 =  String.format("%.2f%%",att1final);
+//                perLBL3.setText(s1);
+//            } 
       
         
             String sub2 = "SELECT attendance FROM attendance_2023_ICT1123 WHERE s_id = '"+username+"'";

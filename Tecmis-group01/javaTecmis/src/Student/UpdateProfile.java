@@ -8,10 +8,14 @@ import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 /**
  *
@@ -68,7 +72,6 @@ public class UpdateProfile extends javax.swing.JFrame {
                 backLBLMouseClicked(evt);
             }
         });
-
 
         updateProLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         updateProLBL.setText("Update Profile");
@@ -246,7 +249,7 @@ public class UpdateProfile extends javax.swing.JFrame {
             done.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    UserProfile upl = new UserProfile(username);
+                    Dashboard upl = new Dashboard();
                     upl.show();
                     dispose();
                     
@@ -303,7 +306,24 @@ public class UpdateProfile extends javax.swing.JFrame {
             String path = selectedFile.getAbsolutePath();
             imgLBL.setIcon(ResizeImage(path));
             
+            try{
+                File image = new File(path);
+                FileInputStream input = new FileInputStream(image);
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                byte[] btimg = new byte[65535];
+                    for(int readNum; (readNum = input.read(btimg)) != 1;)
+                    {
+                        output.write(btimg, 0, readNum);
+                    }
+                byte[] propic = output.toByteArray();
+
+            }catch(IOException ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null,ex);
+            }
         }
+        
+       
     }//GEN-LAST:event_imgBTNActionPerformed
 
     /**
@@ -366,5 +386,5 @@ public class UpdateProfile extends javax.swing.JFrame {
         Image newImage = img.getScaledInstance(imgLBL.getWidth(), imgLBL.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImage);
         return image;
-    }
+    }    
 }

@@ -3,11 +3,11 @@ package Student;
 
 import Alerts.Failed_Alert;
 import DBConn.DB;
+import calculateGPA.CalcGPA;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import calculateGPA.CalcGPA;
 /**
  *
  * @author Hiru
@@ -43,13 +43,10 @@ public class GPA extends javax.swing.JFrame {
                 depidtxtLBL.setText(depname);
                 cnameTxtLBL.setText(cname);
                 
-                
-                CalcGPA cal = new CalcGPA(username);
-                //gpaTxtLBL.setText(String.valueOf(cal));
-                
-                
-                
-                //classTxtLBL.setText();
+              CalcGPA cal = new CalcGPA(username);
+//              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
+       
+//                classTxtLBL.setText();
              
 
             }else{

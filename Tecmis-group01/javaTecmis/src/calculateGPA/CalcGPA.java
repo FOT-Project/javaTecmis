@@ -35,61 +35,61 @@ public class CalcGPA extends javax.swing.JFrame {
                 Double sub1CA = ((q1+q2+q3+mid)/4);
                 Double sub1final = ((finalT+finalP)/2);
                 Double sub1finalMarks = ((sub1CA+sub1final)/2);
-                System.out.println("f_marks "+sub1finalMarks); 
+//                System.out.println("f_marks "+sub1finalMarks); 
                 
                 Double grade1;
                 if(sub1finalMarks >= 93)
                 {
                     grade1 = 4.0;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 90)
+//                    System.out.println("if 1"+  grade1);
+                }else if(sub1finalMarks >= 90 && sub1finalMarks < 93)
                 {
                     grade1 = 3.7;
-                     System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 87)
+//                     System.out.println("if 2"+  grade1);
+                }else if(sub1finalMarks >= 87 && sub1finalMarks < 90)
                 {
                     grade1 = 3.3;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 83)
+//                    System.out.println("if 3"+  grade1);
+                }else if(sub1finalMarks >= 83 && sub1finalMarks < 87)
                 {
                     grade1 = 3.0;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 80)
+//                    System.out.println("if 4"+  grade1);
+                }else if(sub1finalMarks >= 80 && sub1finalMarks < 83)
                 {
                     grade1 = 2.7;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 77)
+//                    System.out.println("if 5"+  grade1);
+                }else if(sub1finalMarks >= 77 && sub1finalMarks < 80)
                 {
                     grade1 = 2.3;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 73)
+//                    System.out.println("if 6"+  grade1);
+                }else if(sub1finalMarks >= 73 && sub1finalMarks < 77)
                 {
                     grade1 = 2.0;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 70)
+//                    System.out.println("if 7"+  grade1);
+                }else if(sub1finalMarks >= 70 && sub1finalMarks < 73)
                 {
                     grade1 = 1.7;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 67)
+//                    System.out.println("if 8"+  grade1);
+                }else if(sub1finalMarks >= 67 && sub1finalMarks < 70)
                 {
                     grade1 = 1.3;
-                    System.out.println("if "+  grade1);
-                }else if(sub1finalMarks >= 65)
+//                    System.out.println("if 9"+  grade1);
+                }else if(sub1finalMarks >= 65 && sub1finalMarks < 67)
                 {
                     grade1 = 1.0;
-                    System.out.println("if "+  grade1);
+//                    System.out.println("if 10"+  grade1);
                 }else{
                     grade1 = 0.0;
-                    System.out.println("if "+  grade1);
+//                    System.out.println("if 11"+  grade1);
                 }
-                System.out.println(grade1);
+//                System.out.println(grade1);
                 Double gpaSub1 = (3*grade1);
-                System.out.println("gpa "+gpaSub1);
+//                System.out.println("gpa "+gpaSub1);
             } 
       
         
         String sub2 = "SELECT C.s_id, C.q1, C.q2, C.q3, C.q4, C.ass1, C.ass2, C.mid, F.theory FROM (ca_2023_ICT1123 C INNER JOIN final_exam_2023_ICT1123 F ON C.s_id = F.s_id) WHERE C.s_id = '"+username+"'";
-        System.out.println(sub2);
+//        System.out.println(sub2);
        
             ResultSet res2 = db.stm.executeQuery(sub2);
             while(res2.next()){
@@ -104,7 +104,7 @@ public class CalcGPA extends javax.swing.JFrame {
                 
                 Double sub2CA = ((q1+q2+q3+q4+ass1+ass2+mid)/7);
                 Double sub2finalMarks = ((sub2CA+finalT)/2);
-                System.out.println(sub2finalMarks);
+//                System.out.println(sub2finalMarks);
                 
                 Double grade2;
                 if(sub2finalMarks >= 93)
@@ -142,7 +142,7 @@ public class CalcGPA extends javax.swing.JFrame {
                 }
                 
                 Double gpaSub2 = (3*grade2);
-                System.out.println(gpaSub2);
+//                System.out.println(gpaSub2);
             }
             
         String sub3 = "SELECT C.s_id, C.q1, C.q2, C.q3, C.ass1, C.ass2, F.theory, F.practical FROM (ca_2023_ICT1133 C INNER JOIN final_exam_2023_ICT1133 F ON C.s_id = F.s_id) WHERE C.s_id = '"+username+"'";
@@ -161,7 +161,7 @@ public class CalcGPA extends javax.swing.JFrame {
                 Double sub3CA = ((q1+q2+q3+ass1+ass2)/5);
                 Double sub3final = ((finalT+finalP)/2);
                 Double sub3finalMarks = ((sub3CA+sub3final)/2);
-                System.out.println(sub3finalMarks);
+//                System.out.println(sub3finalMarks);
                 
                 Double grade3;
                 if(sub3finalMarks >= 93)
@@ -199,11 +199,11 @@ public class CalcGPA extends javax.swing.JFrame {
                 }
                 
                 Double gpaSub3 = (3*grade3);
-                System.out.println(gpaSub3);
+//                System.out.println(gpaSub3);
             }
             
         String sub4 = "SELECT C.s_id, C.q1, C.q2, C.q3, C.ass1, C.ass2, F.theory, F.practical FROM (ca_2023_ICT1143 C INNER JOIN final_exam_2023_ICT1143 F ON C.s_id = F.s_id) WHERE C.s_id = '"+username+"'";
-        System.out.println(sub4);
+//        System.out.println(sub4);
        
             ResultSet res4 = db.stm.executeQuery(sub4);
             while(res4.next()){
@@ -256,11 +256,11 @@ public class CalcGPA extends javax.swing.JFrame {
                 }
                 
                 Double gpaSub4 = (3*grade4);
-                System.out.println(gpaSub4);
+//                System.out.println(gpaSub4);
             }
             
         String sub5 = "SELECT C.s_id, C.q1, C.q2, C.q3, C.ass1, C.ass2,C.mid, F.theory FROM (ca_2023_TMS1113 C INNER JOIN final_exam_2023_TMS1113 F ON C.s_id = F.s_id) WHERE C.s_id = '"+username+"'";
-        System.out.println(sub5);
+//        System.out.println(sub5);
        
             ResultSet res5 = db.stm.executeQuery(sub5);
             while(res5.next()){
@@ -274,7 +274,7 @@ public class CalcGPA extends javax.swing.JFrame {
                 
                 Double sub5CA = ((q1+q2+q3+ass1+ass2)/5);
                 Double sub5finalMarks = ((sub5CA+finalT)/2);
-                System.out.println(sub5finalMarks);
+//                System.out.println(sub5finalMarks);
                 
                 Double grade5;
                 if(sub5finalMarks >= 93)
@@ -312,11 +312,11 @@ public class CalcGPA extends javax.swing.JFrame {
                 }
                 
                 Double gpaSub5 = (3*grade5);
-                System.out.println(gpaSub5);
+//                System.out.println(gpaSub5);
             }
             
         String sub6 = "SELECT C.s_id, C.q1, C.q2, C.q3, C.ass1, C.ass2,C.mid, F.theory FROM (ca_2023_ENG1114 C INNER JOIN final_exam_2023_ENG1114 F ON C.s_id = F.s_id) WHERE C.s_id = '"+username+"'";
-        System.out.println(sub6);
+//        System.out.println(sub6);
        
             ResultSet res6 = db.stm.executeQuery(sub6);
             while(res6.next()){
@@ -330,7 +330,7 @@ public class CalcGPA extends javax.swing.JFrame {
                 
                 Double sub6CA = ((q1+q2+q3+ass1+ass2)/5);
                 Double sub6finalMarks = ((sub6CA+finalT)/2);
-                System.out.println(sub6finalMarks);
+//                System.out.println(sub6finalMarks);
                 
                 Double grade6;
                 if(sub6finalMarks >= 93)
@@ -368,13 +368,15 @@ public class CalcGPA extends javax.swing.JFrame {
                 }
                 
                Double gpaSub6 = (4*grade6);
-               System.out.println(gpaSub6);
+//               System.out.println(gpaSub6);
             }
             
 //            Double finalGPA = (gpaSub1 + gpaSub2 + gpaSub3 + gpaSub4 + gpaSub5 + gpaSub6)/19;
+//            cal.setGPA(finalGPA);
               
         }catch(SQLException ex){
-            System.out.println(ex);}
+            System.out.println(ex);
+        }
     }
     
     public static void main(String[] args) {
@@ -382,5 +384,5 @@ public class CalcGPA extends javax.swing.JFrame {
     }
 
     private void initComponents() {
-          }   
+          } 
 }
