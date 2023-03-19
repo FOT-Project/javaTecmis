@@ -164,7 +164,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         });
 
         typeBox.setForeground(new java.awt.Color(153, 153, 153));
-        typeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "T", "P" }));
+        typeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Theory", "Practical" }));
         typeBox.setPreferredSize(new java.awt.Dimension(64, 22));
         typeBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

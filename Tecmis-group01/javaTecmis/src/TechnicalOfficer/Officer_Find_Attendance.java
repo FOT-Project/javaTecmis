@@ -34,10 +34,10 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        subId = new javax.swing.JTextField();
+        aaa = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         stuId = new javax.swing.JTextField();
-        date = new javax.swing.JTextField();
+        subId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,13 +89,13 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
 
-        subId.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        subId.setForeground(new java.awt.Color(153, 153, 153));
-        subId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        subId.setText("Subject ID");
-        subId.setBorder(null);
-        subId.setSelectedTextColor(new java.awt.Color(153, 153, 153));
-        subId.setSelectionColor(new java.awt.Color(255, 255, 255));
+        aaa.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        aaa.setForeground(new java.awt.Color(153, 153, 153));
+        aaa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        aaa.setText("Subject ID");
+        aaa.setBorder(null);
+        aaa.setSelectedTextColor(new java.awt.Color(153, 153, 153));
+        aaa.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -119,10 +119,10 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(aaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(stuId)
-                            .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
+                            .addComponent(subId, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(91, 91, 91)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -136,9 +136,9 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(stuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(aaa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(45, 45, 45))
@@ -203,7 +203,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
         Attendance Attendance = new Attendance(StudentId,SubjectId);
         Attendance.show();
         dispose();
-      
+ 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
@@ -249,7 +249,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField date;
+    private javax.swing.JTextField aaa;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

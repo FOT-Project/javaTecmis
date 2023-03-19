@@ -151,7 +151,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
 
         typeBox.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
         typeBox.setForeground(new java.awt.Color(153, 153, 153));
-        typeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "T", "P" }));
+        typeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Theory", "Practical" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
