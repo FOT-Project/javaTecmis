@@ -150,7 +150,8 @@ public class Admin_Add_Officer extends javax.swing.JFrame {
             }
         });
 
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        cmbGender.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
