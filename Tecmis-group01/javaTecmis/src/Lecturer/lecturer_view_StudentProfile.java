@@ -4,7 +4,10 @@
  */
 package Lecturer;
 
+import Auth.Auth;
+import DBConn.DB;
 import javax.swing.JFrame;
+import java.sql.ResultSet;
 
 /**
  *
@@ -18,6 +21,33 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
     public lecturer_view_StudentProfile() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        DB db=new DB();
+        db.getconnect();
+        
+        Auth auth = Auth.getInstance();
+        String user = auth.getUsername();
+        System.out.println(user);
+        
+        try {
+            String sql="select user_id, name, email, per_email, phone_no, gender, level, DOB, address from users where user_id= '"+user+"'";
+            ResultSet result = db.stm.executeQuery(sql);
+
+            System.out.println(result);
+            System.out.println(sql);
+            if(result.next()){
+                  LBLstid.setText(result.getString("user_id"));
+                  LBLname.setText(result.getString("name"));
+                  LBLemail.setText(result.getString("email"));
+                  LBLperemail.setText(result.getString("per_email"));
+                  LBLphone.setText(result.getString("phone_no"));
+                  LBLgender.setText(result.getString("gender"));
+                  LBLlevel.setText(result.getString("level"));
+                  LBLDOB.setText(result.getString("DOB"));
+                  LBLaddress.setText(result.getString("address"));
+            }
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -41,26 +71,26 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        LBLstid = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
+        LBLname = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel12 = new javax.swing.JLabel();
+        LBLemail = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel13 = new javax.swing.JLabel();
+        LBLperemail = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        LBLphone = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
+        LBLgender = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
-        jLabel19 = new javax.swing.JLabel();
+        LBLlevel = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
+        LBLDOB = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        LBLaddress = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -101,9 +131,9 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel10.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel10.setText("jLabel10");
+        LBLstid.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLstid.setForeground(new java.awt.Color(217, 217, 217));
+        LBLstid.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -111,21 +141,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(284, Short.MAX_VALUE))
+                .addComponent(LBLstid, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10))
+                .addComponent(LBLstid))
         );
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel11.setText("jLabel10");
+        LBLname.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLname.setForeground(new java.awt.Color(217, 217, 217));
+        LBLname.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -133,21 +163,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBLname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel11))
+                .addComponent(LBLname))
         );
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel12.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel12.setText("jLabel10");
+        LBLemail.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLemail.setForeground(new java.awt.Color(217, 217, 217));
+        LBLemail.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -155,21 +185,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel12)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBLemail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel12))
+                .addComponent(LBLemail))
         );
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel13.setText("jLabel10");
+        LBLperemail.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLperemail.setForeground(new java.awt.Color(217, 217, 217));
+        LBLperemail.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -177,21 +207,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBLperemail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel13)
+                .addComponent(LBLperemail)
                 .addGap(0, 6, Short.MAX_VALUE))
         );
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel14.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel14.setText("jLabel10");
+        LBLphone.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLphone.setForeground(new java.awt.Color(217, 217, 217));
+        LBLphone.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -199,21 +229,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBLphone, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 6, Short.MAX_VALUE)
-                .addComponent(jLabel14))
+                .addComponent(LBLphone))
         );
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel15.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel15.setText("jLabel10");
+        LBLgender.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLgender.setForeground(new java.awt.Color(217, 217, 217));
+        LBLgender.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -221,14 +251,14 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel15)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBLgender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel15))
+                .addComponent(LBLgender))
         );
 
         jLabel16.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -242,9 +272,9 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel19.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel19.setText("jLabel10");
+        LBLlevel.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLlevel.setForeground(new java.awt.Color(217, 217, 217));
+        LBLlevel.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -252,21 +282,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel19)
+                .addComponent(LBLlevel, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel19))
+                .addComponent(LBLlevel))
         );
 
         jPanel10.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel20.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel20.setText("jLabel10");
+        LBLDOB.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLDOB.setForeground(new java.awt.Color(217, 217, 217));
+        LBLDOB.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -274,21 +304,21 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel20)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(LBLDOB, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel20))
+                .addComponent(LBLDOB))
         );
 
         jPanel11.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel21.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(217, 217, 217));
-        jLabel21.setText("jLabel10");
+        LBLaddress.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        LBLaddress.setForeground(new java.awt.Color(217, 217, 217));
+        LBLaddress.setText("jLabel10");
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -296,15 +326,15 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21)
+                .addComponent(LBLaddress, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21)
-                .addContainerGap(53, Short.MAX_VALUE))
+                .addComponent(LBLaddress, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -584,24 +614,24 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel LBLDOB;
+    private javax.swing.JLabel LBLaddress;
+    private javax.swing.JLabel LBLemail;
+    private javax.swing.JLabel LBLgender;
+    private javax.swing.JLabel LBLlevel;
+    private javax.swing.JLabel LBLname;
+    private javax.swing.JLabel LBLperemail;
+    private javax.swing.JLabel LBLphone;
+    private javax.swing.JLabel LBLstid;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

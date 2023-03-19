@@ -4,7 +4,17 @@
  */
 package Lecturer;
 
+import Alerts.Failed_Alert;
+import Auth.Auth;
+import DBConn.DB;
+import Student.Dashboard;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -18,6 +28,52 @@ public class lecturer_show_medical extends javax.swing.JFrame {
     public lecturer_show_medical() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        Auth auth = Auth.getInstance();
+        String user = auth.getUsername();
+        System.out.println(user);
+        
+        
+        try {
+            String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+user+"'";
+            ResultSet rs = db.stm.executeQuery(sql);
+            
+            System.out.println(rs);
+            System.out.println(sql);
+            if(rs.next()){
+                  //datelbl.setText(rs.getString("user_id"));
+                  subidlbl.setText(rs.getString("sub_id"));
+                  typelbl.setText(rs.getString("type"));
+                  datelbl.setText(rs.getString("date"));
+                 
+//            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
+//            model.setRowCount(0);
+            
+//            while(rs.next()){
+//                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
+            }
+             
+        } catch(SQLException e) {
+            System.out.println(e);
+           // JOptionPane.showMessageDialog(null, e);
+           
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                lecturer_view_StudentProfile db = new lecturer_view_StudentProfile();
+                db.show();
+                dispose();
+            }
+            });
+        }
+        
     }
 
     /**
@@ -35,9 +91,9 @@ public class lecturer_show_medical extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        subidlbl = new javax.swing.JLabel();
+        typelbl = new javax.swing.JLabel();
+        datelbl = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,11 +113,11 @@ public class lecturer_show_medical extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jLabel3.setText("Subject Type");
 
-        jLabel4.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel4.setText("ICT1212");
+        subidlbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        subidlbl.setText("ICT1212");
 
-        jLabel5.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel5.setText("Theory");
+        typelbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        typelbl.setText("Theory");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -71,11 +127,11 @@ public class lecturer_show_medical extends javax.swing.JFrame {
                 .addContainerGap(91, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel4))
+                    .addComponent(subidlbl))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
+                    .addComponent(typelbl))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -87,13 +143,13 @@ public class lecturer_show_medical extends javax.swing.JFrame {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
+                    .addComponent(subidlbl)
+                    .addComponent(typelbl))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
 
-        jLabel7.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jLabel7.setText("February 08, 2023");
+        datelbl.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        datelbl.setText("February 08, 2023");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -105,14 +161,14 @@ public class lecturer_show_medical extends javax.swing.JFrame {
                 .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel7)
+                .addComponent(datelbl)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(26, 26, 26)
-                .addComponent(jLabel7)
+                .addComponent(datelbl)
                 .addGap(26, 26, 26)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -210,15 +266,15 @@ public class lecturer_show_medical extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel datelbl;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel subidlbl;
+    private javax.swing.JLabel typelbl;
     // End of variables declaration//GEN-END:variables
 }

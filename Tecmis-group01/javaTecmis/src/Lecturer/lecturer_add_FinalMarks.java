@@ -57,15 +57,19 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         jLabel1.setText("Add Final Marks");
 
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Subject ID ");
 
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
         jLabel4.setText("Refill Student ID ");
 
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Theory ");
 
         jLabel6.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
         jLabel6.setText("Practical ");
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
@@ -80,7 +84,6 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         });
 
         jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(217, 217, 217));
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -88,13 +91,10 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         });
 
         jTextField3.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField3.setForeground(new java.awt.Color(217, 217, 217));
 
         jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(217, 217, 217));
 
         jTextField5.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField5.setForeground(new java.awt.Color(217, 217, 217));
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -110,10 +110,10 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(35, 35, 35)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel6))
                         .addGap(32, 32, 32)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
@@ -128,10 +128,10 @@ public class lecturer_add_FinalMarks extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(36, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
