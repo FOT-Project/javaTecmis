@@ -4,11 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  *
  * @author Rashmika
@@ -40,7 +35,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        subId = new javax.swing.JTextField();
+        courseId = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,7 +84,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
         jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField1.setText("Subject ID");
+        jTextField1.setText("Course ID");
         jTextField1.setBorder(null);
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
@@ -124,7 +119,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(courseId, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -133,7 +128,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(courseId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(67, 67, 67)
                 .addComponent(jButton1)
                 .addContainerGap(82, Short.MAX_VALUE))
@@ -197,33 +192,17 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        String SubjectId = subId.getText();
+
+        String CourseId = courseId.getText();
         
-        DB db = new DB();
-        db.getconnect();
-        
-        try{
-            String sql = "select * from timetable where s_id = '"+SubjectId;
-            System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
-            
-        }catch(SQLException ex){
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-        }
-        
-        
-        
-     
-        Officer_Timetable Timetable = new Officer_Timetable();
+        Officer_Timetable Timetable = new Officer_Timetable(CourseId);
         Timetable.show();
         dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Timetable_Dashboard TimetableDashboard = new Officer_Timetable_Dashboard();
         TimetableDashboard.show();
         dispose();
@@ -265,6 +244,7 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField courseId;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -273,6 +253,5 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField subId;
     // End of variables declaration//GEN-END:variables
 }

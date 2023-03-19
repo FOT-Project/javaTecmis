@@ -4,10 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 /**
  *
@@ -208,34 +204,17 @@ public class Officer_Search_Medical extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
 
         String StudentId = stuId.getText();
         
-        DB db = new DB();
-        db.getconnect();
-        
-        try{
-            String sql = "select * from Medical where s_id = '"+StudentId;
-            System.out.println(sql);
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
-            
-        }catch(SQLException ex){
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-        }
-        
-        
-
-
-        Officer_Show_Medical ShowMedical = new Officer_Show_Medical();
+        Officer_Show_Medical ShowMedical = new  Officer_Show_Medical(StudentId);
         ShowMedical.show();
         dispose();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        // TODO add your handling code here:
+
         Officer_Medical MedicalDashboard = new Officer_Medical();
         MedicalDashboard.show();
         dispose();

@@ -4,11 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  *
  * @author Rashmika
@@ -39,7 +34,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        subId = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         stuId = new javax.swing.JTextField();
         date = new javax.swing.JTextField();
@@ -94,13 +89,13 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField2.setText("Date");
-        jTextField2.setBorder(null);
-        jTextField2.setSelectedTextColor(new java.awt.Color(153, 153, 153));
-        jTextField2.setSelectionColor(new java.awt.Color(255, 255, 255));
+        subId.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        subId.setForeground(new java.awt.Color(153, 153, 153));
+        subId.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        subId.setText("Subject ID");
+        subId.setBorder(null);
+        subId.setSelectedTextColor(new java.awt.Color(153, 153, 153));
+        subId.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
@@ -124,7 +119,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(stuId)
                             .addComponent(date, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)))
@@ -141,7 +136,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(stuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
@@ -201,60 +196,18 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
         String StudentId = stuId.getText();
-        String Date = date.getText();
+        String SubjectId = subId.getText();
         
-        DB db = new DB();
-        db.getconnect();
-        
-        try{
-            String sql1 = "select * from attendanec_2023_L01S01_ICT001 where s_id = '"+StudentId+"'and Date = '"+Date;
-            System.out.println(sql1);
-            
-            String sql2 = "select * from attendanec_2023_L01S01_ICT002 where s_id = '"+StudentId+"'and Date = '"+Date;
-            System.out.println(sql2);
-            
-            String sql3 = "select * from attendanec_2023_L01S01_ICT003 where s_id = '"+StudentId+"'and Date = '"+Date;
-            System.out.println(sql3);
-            
-            String sql4 = "select * from attendanec_2023_L01S01_ICT004 where s_id = '"+StudentId+"'and Date = '"+Date;
-            System.out.println(sql4);
-            
-            String sql5 = "select * from attendanec_2023_L01S01_ICT005 where s_id = '"+StudentId+"'and Date = '"+Date;
-            System.out.println(sql5);
-            
-            String sql6 = "select * from attendanec_2023_L01S01_ICT006 where s_id = '"+StudentId+"'and Date = '"+Date;
-            System.out.println(sql6);
-            
-            ResultSet result1 = db.stm.executeQuery(sql1);
-            ResultSet result2 = db.stm.executeQuery(sql2);
-            ResultSet result3 = db.stm.executeQuery(sql3);
-            ResultSet result4 = db.stm.executeQuery(sql4);
-            ResultSet result5 = db.stm.executeQuery(sql5);
-            ResultSet result6 = db.stm.executeQuery(sql6);
-            
-            System.out.println(result1);
-            System.out.println(result2);
-            System.out.println(result3);
-            System.out.println(result4);
-            System.out.println(result5);
-            System.out.println(result6);
-            
-        }catch(SQLException ex){
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-        }
-        
-        
-        
-        Attendance Attendance = new Attendance();
+        Attendance Attendance = new Attendance(StudentId,SubjectId);
         Attendance.show();
         dispose();
+      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Attendance_Dashboard AttendanceDashboard = new Officer_Attendance_Dashboard();
         AttendanceDashboard.show();
         dispose();
@@ -305,7 +258,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField stuId;
+    private javax.swing.JTextField subId;
     // End of variables declaration//GEN-END:variables
 }
