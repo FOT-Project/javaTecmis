@@ -159,8 +159,8 @@ public class Admin_Add_Lecturer extends javax.swing.JFrame {
             }
         });
 
-        cmbGender.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
-        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        cmbGender.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        cmbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
