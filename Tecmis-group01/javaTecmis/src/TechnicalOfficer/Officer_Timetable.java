@@ -20,42 +20,9 @@ public class Officer_Timetable extends javax.swing.JFrame {
     /**
      * Creates new form Officer_Timetable
      */
-//    public Officer_Timetable() {
-//        initComponents();
-//        setExtendedState(MAXIMIZED_BOTH);
-//    }
-    
-    String CourseId;
-
-    Officer_Timetable(String CourseId) {
+    public Officer_Timetable() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        
-        DB db = new DB();
-        db.getconnect();
-        
-        String CId = CourseId;
-        String sql = "select tt_pdf from timetable where c_id = '"+CId+"'";
-        
-        
-        try{
-            ResultSet result = db.stm.executeQuery(sql);
-            System.out.println(result);
-            
-            
-            
-            Done_Alert done = new Done_Alert();
-            done.show();
-            
-            
-        }catch(SQLException ex){
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-        }
-    }
-
-    private Officer_Timetable() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -224,16 +191,6 @@ public class Officer_Timetable extends javax.swing.JFrame {
 
     private void btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActionPerformed
 
-            //Runtime.getRuntime().exec("rund1132 url.dll FileProtocolHandler " +sql);
-            
-            JFileChooser file_upload = new JFileChooser();
-            int res = file_upload.showOpenDialog(null);
-
-//                if (res == JFileChooser.APPROVE_OPTION) {
-//                    filename = file_upload.getSelectedFile();
-//                    btn.setText(filename.getName());
-//
-//                }
     }//GEN-LAST:event_btnActionPerformed
 
     /**
