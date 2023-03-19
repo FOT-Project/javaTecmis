@@ -57,10 +57,10 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
         jLabel3.setText("Eligibility");
 
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("ICT1113");
 
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Eligible");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
