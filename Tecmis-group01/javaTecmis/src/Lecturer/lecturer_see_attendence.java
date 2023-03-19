@@ -4,7 +4,11 @@
  */
 package Lecturer;
 
+import Alerts.Failed_Alert;
+import Auth.Auth;
+import DBConn.DB;
 import javax.swing.JFrame;
+import java.sql.ResultSet;
 
 /**
  *
@@ -18,6 +22,9 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
     public lecturer_see_attendence() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        
+        
+       
     }
 
     /**
@@ -29,6 +36,7 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel8 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -37,7 +45,14 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        subid = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
+
+        jLabel8.setText("jLabel8");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -57,38 +72,96 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
         jLabel3.setText("Percentage");
 
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel4.setText("ICT2121");
 
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel5.setText("85%");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(91, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 200, Short.MAX_VALUE)
+                .addContainerGap(128, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel5))
-                .addContainerGap(93, Short.MAX_VALUE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(32, 32, 32)
+                        .addComponent(jLabel5)))
+                .addContainerGap(128, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addGap(11, 11, 11)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addContainerGap(184, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel7.setFont(new java.awt.Font("Iskoola Pota", 0, 18)); // NOI18N
+        jLabel7.setText("(Eg = ICT113T)");
+
+        subid.setBackground(new java.awt.Color(217, 217, 217));
+        subid.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+
+        jLabel9.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        jLabel9.setText("Enter Subject ID");
+
+        jButton1.setBackground(new java.awt.Color(76, 159, 255));
+        jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Search");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(53, 53, 53)
+                .addComponent(jLabel7)
+                .addGap(94, 94, 94)
+                .addComponent(subid, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(31, 31, 31)
+                    .addComponent(jLabel9)
+                    .addContainerGap(405, Short.MAX_VALUE)))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addComponent(jLabel7)
+                .addContainerGap(30, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38))
+            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGap(49, 49, 49)
+                    .addComponent(jLabel9)
+                    .addContainerGap(53, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -97,18 +170,28 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
+                .addGap(45, 45, 45)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,9 +203,9 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 3, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,9 +213,9 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -148,6 +231,128 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        lecturer_view_StudentProfile Attenview = new lecturer_view_StudentProfile();
+        Attenview.show();
+        dispose();
+    }//GEN-LAST:event_jLabel6MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        DB db = new DB();
+        db.getconnect();
+        
+        Auth auth = Auth.getInstance();
+        String user = auth.getUsername();
+        System.out.println(user);
+        
+        String subjectid = subid.getText();
+        
+        try {
+            if(subjectid.equals("ICT1113T")){
+            String sql="Select attendance from attendance_2023_ICT1113 where s_id='"+user+"' AND type='Theory'";
+                System.out.println(sql);
+            ResultSet res1T = db.stm.executeQuery(sql);
+            while(res1T.next()){
+                Double att1T = res1T.getDouble("attendance");
+                
+                Double att1Tfinal = ((att1T/15)*100);
+                System.out.println("sub1T"+att1Tfinal);
+                String s1T = String.format("%.2f%%",att1Tfinal);
+                jLabel5.setText(s1T);
+                jLabel4.setText("ICT1113T");
+            }
+            }
+            else if(subjectid.equals("ICT1113P")){
+            String sub1P="Select attendance from attendance_2023_ICT1113 where s_id='"+user+"' AND type='Practical'";
+            ResultSet res1P = db.stm.executeQuery(sub1P);
+            while(res1P.next()){
+                Double att1P = res1P.getDouble("attendance");
+                
+                Double att1Pfinal = ((att1P/15)*100);
+                System.out.println("sub1T"+att1Pfinal);
+                String s1P = String.format("%.2f%%",att1Pfinal);
+                jLabel5.setText(s1P);
+            }
+            }
+            else if(subjectid.equals("ICT1123")){
+            String sub2 ="Select attendance from attendance_2023_ICT1123 where s_id='"+user+"' ";
+            ResultSet res2 = db.stm.executeQuery(sub2);
+             while(res2.next()){
+                Double att2 = res2.getDouble("attendance");
+                
+                Double att2final = ((att2/15)*100);
+                System.out.println("sub1T"+att2final);
+                String s2 = String.format("%.2f%%",att2final);
+                jLabel5.setText(s2);
+            }
+            }
+            else if(subjectid.equals("ICT1123T")){
+            String sub3T="Select attendance from attendance_2023_ICT113 where s_id='"+user+"' AND type='Theory'";
+            ResultSet res3T = db.stm.executeQuery(sub3T);
+            while(res3T.next()){
+                Double att3T = res3T.getDouble("attendance");
+                
+                Double att3Tfinal = ((att3T/15)*100);
+                System.out.println("sub1T"+att3Tfinal);
+                String s3T = String.format("%.2f%%",att3Tfinal);
+                jLabel5.setText(s3T);
+            }
+            }
+            
+            else if(subjectid.equals("ICT1123P")){
+            String sub3P="Select attendance from attendance_2023_ICT1133 where s_id='"+user+"' AND type='Practical'";
+            ResultSet res3P = db.stm.executeQuery(sub3P);
+            while(res3P.next()){
+                Double att3P = res3P.getDouble("attendance");
+                
+                Double att3Pfinal = ((att3P/15)*100);
+                System.out.println("sub1T"+att3Pfinal);
+                String s3P = String.format("%.2f%%",att3Pfinal);
+                jLabel5.setText(s3P);
+            }
+            }
+            
+            else if(subjectid.equals("ICT1123T")){
+            String sub4T="Select attendance from attendance_2023_ICT143 where s_id='"+user+"' AND type='Theory'";
+            ResultSet res4T = db.stm.executeQuery(sub4T);
+            while(res4T.next()){
+                Double att4T = res4T.getDouble("attendance");
+                
+                Double att4Tfinal = ((att4T/15)*100);
+                System.out.println("sub1T"+att4Tfinal);
+                String s4T = String.format("%.2f%%",att4Tfinal);
+                jLabel5.setText(s4T);
+            }
+            }
+            
+            else if(subjectid.equals("ICT1123P")){
+            String sub4P="Select attendance from attendance_2023_ICT1433 where s_id='"+user+"' AND type='Practical'";
+            ResultSet res4P = db.stm.executeQuery(sub4P);
+            while(res4P.next()){
+                Double att4P = res4P.getDouble("attendance");
+                
+                Double att4Pfinal = ((att4P/15)*100);
+                System.out.println("sub1T"+att4Pfinal);
+                String s4P = String.format("%.2f%%",att4Pfinal);
+                jLabel5.setText(s4P);
+            }
+            }
+            else {
+                Failed_Alert failed = new Failed_Alert();
+                failed.show();
+            
+            }
+         
+            
+        } catch (Exception e) {
+            //Failed_Alert failed = new Failed_Alert();
+            //failed.show();
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,14 +390,20 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JTextField subid;
     // End of variables declaration//GEN-END:variables
 }

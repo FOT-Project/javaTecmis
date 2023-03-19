@@ -1,23 +1,19 @@
 
 package Student;
 
-import java.sql.Connection;
-import DBConn.DBconn;
-//import javax.swing.JOptionPane;
-import java.sql.PreparedStatement;
+
 /**
  *
  * @author Hiru
  */
 public class CourseDetails extends javax.swing.JFrame {
-    Connection conn = null;
-    PreparedStatement pst = null;
+
   
     public CourseDetails() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         
-        conn = DBconn.connect();
+
     }
 
     /**
@@ -35,11 +31,11 @@ public class CourseDetails extends javax.swing.JFrame {
         bgImgLBL = new javax.swing.JLabel();
         framePNL = new javax.swing.JPanel();
         cIdLBL = new javax.swing.JLabel();
-        cidTXT = new javax.swing.JTextField();
         depIdLBL = new javax.swing.JLabel();
-        depIdTXT = new javax.swing.JTextField();
         cNameLBL = new javax.swing.JLabel();
-        cNameTXT = new javax.swing.JTextField();
+        cidTxtLBL = new javax.swing.JLabel();
+        depidTxtLBL = new javax.swing.JLabel();
+        cnameTxtLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -65,19 +61,28 @@ public class CourseDetails extends javax.swing.JFrame {
         cIdLBL.setForeground(new java.awt.Color(153, 153, 153));
         cIdLBL.setText("Course ID");
 
-        cidTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-
         depIdLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         depIdLBL.setForeground(new java.awt.Color(153, 153, 153));
         depIdLBL.setText("Department ID");
-
-        depIdTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
 
         cNameLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         cNameLBL.setForeground(new java.awt.Color(153, 153, 153));
         cNameLBL.setText("Course Name");
 
-        cNameTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        cidTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        cidTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        cidTxtLBL.setOpaque(true);
+        cidTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+
+        depidTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        depidTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        depidTxtLBL.setOpaque(true);
+        depidTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+
+        cnameTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        cnameTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        cnameTxtLBL.setOpaque(true);
+        cnameTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
 
         javax.swing.GroupLayout framePNLLayout = new javax.swing.GroupLayout(framePNL);
         framePNL.setLayout(framePNLLayout);
@@ -91,27 +96,27 @@ public class CourseDetails extends javax.swing.JFrame {
                     .addComponent(cNameLBL))
                 .addGap(43, 43, 43)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cidTXT)
-                    .addComponent(depIdTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
-                    .addComponent(cNameTXT))
+                    .addComponent(cidTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE)
+                    .addComponent(depidTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cnameTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(110, Short.MAX_VALUE))
         );
         framePNLLayout.setVerticalGroup(
             framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(framePNLLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cIdLBL)
-                    .addComponent(cidTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cidTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(depIdLBL)
-                    .addComponent(depIdTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(depidTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cNameLBL)
-                    .addComponent(cNameTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(40, Short.MAX_VALUE))
+                    .addComponent(cnameTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -149,7 +154,7 @@ public class CourseDetails extends javax.swing.JFrame {
                         .addComponent(bgImgLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 264, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31)
                 .addComponent(framePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(150, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,7 +176,7 @@ public class CourseDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard cdDb = new Dashboard();
+        Dashboard cdDb = new Dashboard(username);
         cdDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -216,11 +221,11 @@ public class CourseDetails extends javax.swing.JFrame {
     private javax.swing.JLabel bgImgLBL;
     private javax.swing.JLabel cIdLBL;
     private javax.swing.JLabel cNameLBL;
-    private javax.swing.JTextField cNameTXT;
-    private javax.swing.JTextField cidTXT;
+    private javax.swing.JLabel cidTxtLBL;
+    private javax.swing.JLabel cnameTxtLBL;
     private javax.swing.JLabel courseDetailsLBL;
     private javax.swing.JLabel depIdLBL;
-    private javax.swing.JTextField depIdTXT;
+    private javax.swing.JLabel depidTxtLBL;
     private javax.swing.JPanel framePNL;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

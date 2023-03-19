@@ -4,6 +4,12 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
 /**
  *
  * @author Rashmika
@@ -36,14 +42,16 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        suuuuuuuuu = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        StuId = new javax.swing.JTextField();
+        subId = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
+        typeBox = new javax.swing.JComboBox<>();
+        jTextField2 = new javax.swing.JTextField();
+        hours = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
 
@@ -73,6 +81,11 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         jLabel2.setText("jLabel2");
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel2MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -102,13 +115,13 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
 
-        jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField2.setText("Course ID");
-        jTextField2.setBorder(null);
-        jTextField2.setSelectedTextColor(new java.awt.Color(153, 153, 153));
-        jTextField2.setSelectionColor(new java.awt.Color(255, 255, 255));
+        suuuuuuuuu.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        suuuuuuuuu.setForeground(new java.awt.Color(153, 153, 153));
+        suuuuuuuuu.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        suuuuuuuuu.setText("Subject ID");
+        suuuuuuuuu.setBorder(null);
+        suuuuuuuuu.setSelectedTextColor(new java.awt.Color(153, 153, 153));
+        suuuuuuuuu.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         jTextField3.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(153, 153, 153));
@@ -120,7 +133,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         jTextField3.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField4.setForeground(new java.awt.Color(153, 153, 150));
+        jTextField4.setForeground(new java.awt.Color(153, 153, 153));
         jTextField4.setText("Type");
         jTextField4.setBorder(null);
         jTextField4.setDisabledTextColor(new java.awt.Color(255, 255, 255));
@@ -132,50 +145,91 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Upload");
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        StuId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StuIdActionPerformed(evt);
+            }
+        });
+
+        subId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subIdActionPerformed(evt);
+            }
+        });
+
+        typeBox.setForeground(new java.awt.Color(153, 153, 153));
+        typeBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Theory", "Practical" }));
+        typeBox.setPreferredSize(new java.awt.Dimension(64, 22));
+        typeBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                typeBoxActionPerformed(evt);
+            }
+        });
+
+        jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(153, 153, 153));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField2.setText("Hours");
+        jTextField2.setBorder(null);
+        jTextField2.setSelectedTextColor(new java.awt.Color(153, 153, 153));
+        jTextField2.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(172, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(132, 132, 132))
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(66, 66, 66)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(typeBox, 0, 330, Short.MAX_VALUE)
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(suuuuuuuuu, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StuId, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
+                            .addComponent(subId)
+                            .addComponent(date)
+                            .addComponent(hours)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(100, 100, 100)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(6, 6, 6)
+                .addComponent(StuId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(suuuuuuuuu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(subId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27)
+                .addGap(6, 6, 6)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(hours, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(6, 6, 6)
+                .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(39, 39, 39))
+                .addContainerGap())
         );
 
         jPanel4.setAlignmentX(52.0F);
@@ -250,6 +304,67 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+
+        Officer_Medical MedicalDashboard = new Officer_Medical();
+        MedicalDashboard.show();
+        dispose();
+    }//GEN-LAST:event_jLabel2MouseClicked
+
+    private void StuIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StuIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_StuIdActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        String StudentId = StuId.getText();
+        String SubjectId = subId.getText();
+        String Date = date.getText();
+        String Hours = hours.getText();
+        String Type = typeBox.getSelectedItem().toString();
+
+        DB db = new DB();
+        db.getconnect();
+        
+        try{
+            String sql = "Insert into medical(s_id,sub_id,date,type,hours) Values ('"+StudentId+"','"+SubjectId+"','"+Date+"','"+Type+"','"+Hours+"')";
+            System.out.println(sql);
+            db.stm.executeUpdate(sql);
+            
+            StuId.setText("");
+            subId.setText("");
+            date.setText("");
+            hours.setText("");
+            typeBox.setSelectedItem("select");
+            
+            Done_Alert done = new Done_Alert();
+            done.addWindowListener(new WindowAdapter(){
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    Officer_Upload_Medical UploadMedical = new  Officer_Upload_Medical();
+                    UploadMedical.show();
+                    dispose();
+                }
+            });
+            done.show();
+            
+        }catch(SQLException ex){
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            System.out.println(ex);
+        } 
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void subIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_subIdActionPerformed
+
+    private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_typeBoxActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -286,6 +401,9 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField StuId;
+    private javax.swing.JTextField date;
+    private javax.swing.JTextField hours;
     private javax.swing.JButton jButton1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JLabel jLabel1;
@@ -301,9 +419,8 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField subId;
+    private javax.swing.JTextField suuuuuuuuu;
+    private javax.swing.JComboBox<String> typeBox;
     // End of variables declaration//GEN-END:variables
 }

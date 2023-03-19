@@ -1,28 +1,13 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Student;
 
-import java.sql.Connection;
-import DBConn.DBconn;
-import java.sql.PreparedStatement;
 
 /**
  *
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
-    Connection conn = null;
-    PreparedStatement pst = null;
-    /**
-     * Creates new form GPA
-     */
-    public GPA() {
-        initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-        
-        conn = DBconn.connect();
+
     }
 
     /**
@@ -40,15 +25,15 @@ public class GPA extends javax.swing.JFrame {
         gpaIconLBL = new javax.swing.JLabel();
         framePNL = new javax.swing.JPanel();
         stuIdLBL = new javax.swing.JLabel();
-        stuIdTXT = new javax.swing.JTextField();
         depLBL = new javax.swing.JLabel();
-        depTXT = new javax.swing.JTextField();
         courseLBL = new javax.swing.JLabel();
-        courseTXT = new javax.swing.JTextField();
         gpaValLBL = new javax.swing.JLabel();
-        gpaValTXT = new javax.swing.JTextField();
         clsLBL = new javax.swing.JLabel();
-        clsTXT = new javax.swing.JTextField();
+        sidTxtLBL = new javax.swing.JLabel();
+        depidtxtLBL = new javax.swing.JLabel();
+        cnameTxtLBL = new javax.swing.JLabel();
+        gpaTxtLBL = new javax.swing.JLabel();
+        classTxtLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,31 +59,46 @@ public class GPA extends javax.swing.JFrame {
         stuIdLBL.setForeground(new java.awt.Color(153, 153, 153));
         stuIdLBL.setText("Student ID");
 
-        stuIdTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-
         depLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         depLBL.setForeground(new java.awt.Color(153, 153, 153));
         depLBL.setText("Department");
-
-        depTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
 
         courseLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         courseLBL.setForeground(new java.awt.Color(153, 153, 153));
         courseLBL.setText("Course Name");
 
-        courseTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-
         gpaValLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         gpaValLBL.setForeground(new java.awt.Color(153, 153, 153));
         gpaValLBL.setText("GPA Value");
-
-        gpaValTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
 
         clsLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         clsLBL.setForeground(new java.awt.Color(153, 153, 153));
         clsLBL.setText("Class");
 
-        clsTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        sidTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        sidTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        sidTxtLBL.setOpaque(true);
+        sidTxtLBL.setPreferredSize(new java.awt.Dimension(200, 25));
+
+        depidtxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        depidtxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        depidtxtLBL.setOpaque(true);
+        depidtxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+
+        cnameTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        cnameTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        cnameTxtLBL.setOpaque(true);
+        cnameTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+
+        gpaTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        gpaTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        gpaTxtLBL.setOpaque(true);
+        gpaTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+
+        classTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
+        classTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        classTxtLBL.setOpaque(true);
+        classTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
 
         javax.swing.GroupLayout framePNLLayout = new javax.swing.GroupLayout(framePNL);
         framePNL.setLayout(framePNLLayout);
@@ -114,11 +114,11 @@ public class GPA extends javax.swing.JFrame {
                     .addComponent(clsLBL))
                 .addGap(66, 66, 66)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(stuIdTXT)
-                    .addComponent(depTXT)
-                    .addComponent(courseTXT)
-                    .addComponent(gpaValTXT)
-                    .addComponent(clsTXT, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
+                    .addComponent(sidTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                    .addComponent(depidtxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cnameTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gpaTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(classTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(107, 107, 107))
         );
         framePNLLayout.setVerticalGroup(
@@ -127,24 +127,24 @@ public class GPA extends javax.swing.JFrame {
                 .addGap(49, 49, 49)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(stuIdLBL)
-                    .addComponent(stuIdTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(sidTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(depLBL)
-                    .addComponent(depTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(depidtxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(courseLBL)
-                    .addComponent(courseTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cnameTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(gpaValLBL)
-                    .addComponent(gpaValTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(gpaTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(clsLBL)
-                    .addComponent(clsTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                    .addComponent(classTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -181,7 +181,7 @@ public class GPA extends javax.swing.JFrame {
                 .addComponent(gpaIconLBL, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(framePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -205,7 +205,7 @@ public class GPA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard gpaDb = new Dashboard();
+        Dashboard gpaDb = new Dashboard(username);
         gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -213,53 +213,53 @@ public class GPA extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GPA().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(GPA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new GPA().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
+    private javax.swing.JLabel classTxtLBL;
     private javax.swing.JLabel clsLBL;
-    private javax.swing.JTextField clsTXT;
+    private javax.swing.JLabel cnameTxtLBL;
     private javax.swing.JLabel courseLBL;
-    private javax.swing.JTextField courseTXT;
     private javax.swing.JLabel depLBL;
-    private javax.swing.JTextField depTXT;
+    private javax.swing.JLabel depidtxtLBL;
     private javax.swing.JPanel framePNL;
     private javax.swing.JLabel gpaIconLBL;
     private javax.swing.JLabel gpaLBL;
+    private javax.swing.JLabel gpaTxtLBL;
     private javax.swing.JLabel gpaValLBL;
-    private javax.swing.JTextField gpaValTXT;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel sidTxtLBL;
     private javax.swing.JLabel stuIdLBL;
-    private javax.swing.JTextField stuIdTXT;
     // End of variables declaration//GEN-END:variables
 }

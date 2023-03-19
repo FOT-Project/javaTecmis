@@ -4,6 +4,11 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Rashmika
@@ -13,9 +18,149 @@ public class Attendance extends javax.swing.JFrame {
     /**
      * Creates new form Attendance
      */
-    public Attendance() {
+//    public Attendance() {
+//        initComponents();
+//        setExtendedState(MAXIMIZED_BOTH);
+//    }
+    
+    String StudentId;
+    String SubjectId;
+
+    Attendance(String StudentId, String SubjectId) {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        this.StudentId = StudentId;
+        this.SubjectId = SubjectId;
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        try{
+    
+             if (SubjectId.equals("ICT1143")){
+                String sql = "select subject.sub_id, attendance_2023_ICT1143.attendance from subject JOIN attendance_2023_ICT1143 where subject.sub_id = 'ICT1143' and attendance_2023_ICT1143.s_id = '"+StudentId+"'";
+                System.out.println(sql);
+                
+                ResultSet result = db.stm.executeQuery(sql);
+                System.out.println(result);
+                
+                if(result.next()){
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
+                
+                    subId.setText(SubjectId);
+                    attend.setText(Attendance);
+                
+                }
+                
+            }
+             
+            else if(SubjectId.equals("ENG1114")){
+                String sql = "select subject.sub_id, attendance_2023_ENG1114.attendance from subject JOIN attendance_2023_ENG1114 where subject.sub_id = 'ENG1114' and attendance_2023_ENG1114.s_id = '"+StudentId+"'";
+                System.out.println(sql);
+                
+                ResultSet result = db.stm.executeQuery(sql);
+                System.out.println(result);
+                
+                if(result.next()){
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
+                
+                    subId.setText(SubjectId);
+                    attend.setText(Attendance);
+                
+                }
+                
+            }
+             
+            else if(SubjectId.equals("ICT1113")){
+                String sql = "select subject.sub_id, attendance_2023_ICT1113.attendance from subject JOIN attendance_2023_ICT1113 where subject.sub_id = 'ICT1113' and attendance_2023_ICT1113.s_id = '"+StudentId+"'";
+                System.out.println(sql);
+                
+                ResultSet result = db.stm.executeQuery(sql);
+                System.out.println(result);
+                
+                if(result.next()){
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
+                
+                    subId.setText(SubjectId);
+                    attend.setText(Attendance);
+                
+                }
+                
+            }
+             
+            else if(SubjectId.equals("ICT1123")){
+                String sql = "select subject.sub_id, attendance_2023_ICT1123.attendance from subject JOIN attendance_2023_ICT1123 where subject.sub_id = 'ICT1123' and attendance_2023_ICT1123.s_id = '"+StudentId+"'";
+                System.out.println(sql);
+                
+                ResultSet result = db.stm.executeQuery(sql);
+                System.out.println(result);
+                
+                if(result.next()){
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
+                
+                    subId.setText(SubjectId);
+                    attend.setText(Attendance);
+                
+                }
+                
+            }
+            
+            else if(SubjectId.equals("ICT1133")){
+                String sql = "select subject.sub_id, attendance_2023_ICT1133.attendance from subject JOIN attendance_2023_ICT1133 where subject.sub_id = 'ICT1133' and attendance_2023_ICT1133.s_id = '"+StudentId+"'";
+                System.out.println(sql);
+                
+                ResultSet result = db.stm.executeQuery(sql);
+                System.out.println(result);
+                
+                if(result.next()){
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
+                
+                    subId.setText(SubjectId);
+                    attend.setText(Attendance);
+                
+                }
+                
+            }
+             
+            else if(SubjectId.equals("TMS1113")){
+                String sql = "select subject.sub_id, attendance_2023_TMS1113.attendance from subject JOIN attendance_2023_TMS1113 where subject.sub_id = 'TMS1113' and attendance_2023_TMS1113.s_id = '"+StudentId+"'";
+                System.out.println(sql);
+                
+                ResultSet result = db.stm.executeQuery(sql);
+                System.out.println(result);
+                
+                if(result.next()){
+                    SubjectId = result.getString("sub_id");
+                    String Attendance = result.getString("attendance");
+                
+                    subId.setText(SubjectId);
+                    attend.setText(Attendance);
+                
+                }
+                
+            }
+            
+            else{
+                Failed_Alert failed = new Failed_Alert();
+                failed.show();
+            }
+            
+        }catch(SQLException ex){
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            System.out.println(ex);
+        }
+    }
+
+    private Attendance() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -33,8 +178,8 @@ public class Attendance extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        subId = new javax.swing.JLabel();
+        attend = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -66,20 +211,20 @@ public class Attendance extends javax.swing.JFrame {
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 1, 18)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Attended/Not");
+        jLabel4.setText("Attendance");
         jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Iskoola Pota", 0, 16)); // NOI18N
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("ICT1212");
-        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        subId.setBackground(new java.awt.Color(255, 255, 255));
+        subId.setFont(new java.awt.Font("Iskoola Pota", 0, 16)); // NOI18N
+        subId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        subId.setText("ICT1212");
+        subId.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Iskoola Pota", 0, 16)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Attended");
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        attend.setBackground(new java.awt.Color(255, 255, 255));
+        attend.setFont(new java.awt.Font("Iskoola Pota", 0, 16)); // NOI18N
+        attend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        attend.setText("15");
+        attend.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -88,12 +233,12 @@ public class Attendance extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addGap(75, 75, 75)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(subId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 106, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(attend, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(75, 75, 75))
         );
         jPanel4Layout.setVerticalGroup(
@@ -105,8 +250,8 @@ public class Attendance extends javax.swing.JFrame {
                     .addComponent(jLabel4))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(subId)
+                    .addComponent(attend))
                 .addContainerGap(165, Short.MAX_VALUE))
         );
 
@@ -115,7 +260,7 @@ public class Attendance extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(80, Short.MAX_VALUE)
+                .addContainerGap(90, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(75, 75, 75))
         );
@@ -128,6 +273,11 @@ public class Attendance extends javax.swing.JFrame {
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -172,6 +322,13 @@ public class Attendance extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+
+        Officer_Find_Attendance FindAttendance = new Officer_Find_Attendance();
+        FindAttendance.show();
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -208,14 +365,14 @@ public class Attendance extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel attend;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel subId;
     // End of variables declaration//GEN-END:variables
 }

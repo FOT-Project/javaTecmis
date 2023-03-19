@@ -57,10 +57,10 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
         jLabel3.setText("Eligibility");
 
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel4.setText("jLabel4");
+        jLabel4.setText("ICT1113");
 
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        jLabel5.setText("jLabel5");
+        jLabel5.setText("Eligible");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -109,6 +109,12 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
         );
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel6MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -148,6 +154,14 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
+        // TODO add your handling code here:
+        lecturer_view_StudentProfile ViewSprofile = new lecturer_view_StudentProfile();
+        ViewSprofile.show();
+        dispose();
+        
+    }//GEN-LAST:event_jLabel6MouseClicked
 
     /**
      * @param args the command line arguments

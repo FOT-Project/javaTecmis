@@ -4,6 +4,12 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import Auth.Auth;
+import DBConn.DB;
+import java.sql.SQLException;
+
 /**
  *
  * @author Rashmika
@@ -13,9 +19,16 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
     /**
      * Creates new form Officer_Update_Profile
      */
+    
+    String username;
+    
     public Officer_Update_Profile() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+    }
+    Officer_Update_Profile(String username) {
+        this.username = username;
+        
     }
 
     /**
@@ -37,12 +50,14 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextArea3 = new javax.swing.JTextArea();
+        address = new javax.swing.JTextArea();
         jTextField4 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        name = new javax.swing.JTextField();
+        email = new javax.swing.JTextField();
+        phoneNo = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,6 +66,11 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -104,9 +124,13 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         jTextField3.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField3.setSelectionColor(new java.awt.Color(255, 255, 255));
 
-        jTextArea3.setColumns(20);
-        jTextArea3.setRows(5);
-        jScrollPane3.setViewportView(jTextArea3);
+        address.setColumns(20);
+        address.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
+        address.setRows(5);
+        address.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        address.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        address.setSelectionColor(new java.awt.Color(255, 255, 255));
+        jScrollPane3.setViewportView(address);
 
         jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(153, 153, 153));
@@ -123,6 +147,46 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         jButton1.setBorder(null);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        name.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
+        name.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        name.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        name.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        name.setSelectionColor(new java.awt.Color(255, 255, 255));
+        name.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameActionPerformed(evt);
+            }
+        });
+
+        email.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
+        email.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        email.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        email.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        email.setSelectionColor(new java.awt.Color(255, 255, 255));
+
+        phoneNo.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
+        phoneNo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        phoneNo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        phoneNo.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        phoneNo.setSelectionColor(new java.awt.Color(255, 255, 255));
+
+        jLabel4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel4.setText("User ID");
+        jLabel4.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        jTextField5.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        jTextField5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        jTextField5.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        jTextField5.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -131,39 +195,45 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(59, 59, 59)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel4)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField5)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
+                    .addComponent(name)
+                    .addComponent(email)
+                    .addComponent(phoneNo)
+                    .addComponent(jTextField5))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(22, 22, 22)
+                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
                 .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addGap(22, 22, 22)
                 .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(phoneNo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -214,6 +284,67 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+
+//        Officer_User_Profile UserProfleDashboard = new Officer_User_Profile(username);
+//        UserProfleDashboard.show();
+//        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Auth auth = Auth.getInstance();
+        String username = auth.getUsername();
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        //String uname = username;   //String IDNumber = IdNum.getText();
+        
+        String Name = name.getText();
+        String Email = email.getText();
+        String Address = address.getText();
+        String PhoneNo = phoneNo.getText();
+        
+        String uname = username;
+        System.out.println(username);
+        
+
+        try{
+            String sql = "Update users set name = '"+Name+"',email = '"+Email+"',address = '"+Address+"',phone_no = '"+PhoneNo+"' where user_id = '"+uname+"'";
+            System.out.println(sql);
+            db.stm.executeUpdate(sql);
+            
+            
+            Done_Alert done = new Done_Alert();
+            done.show();
+//            done.addWindowListener(new WindowAdapter(){
+//                @Override
+//                public void windowClosed(WindowEvent e) {
+//                    Officer_User_Profile UserProfile = new  Officer_User_Profile(username);
+//                    UserProfile.show();
+//                    dispose();
+//                }
+//            });
+
+            name.setText("");
+            email.setText("");
+            address.setText("");
+            phoneNo.setText("");
+              
+        }catch(SQLException ex){
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            System.out.println(ex);
+        } 
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameActionPerformed
+        // TODO add your handling code here:
+         
+    }//GEN-LAST:event_nameActionPerformed
+                                
+
     /**
      * @param args the command line arguments
      */
@@ -250,21 +381,23 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea address;
+    private javax.swing.JTextField email;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField name;
+    private javax.swing.JTextField phoneNo;
     // End of variables declaration//GEN-END:variables
 }
