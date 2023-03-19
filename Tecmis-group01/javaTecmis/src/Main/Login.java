@@ -173,11 +173,19 @@ public class Login extends javax.swing.JFrame {
         db.getconnect();
         
         try {
+<<<<<<< HEAD
+              String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
+              System.out.println(sql);
+              ResultSet result = db.stm.executeQuery(sql);
+              System.out.println(result);
+            
+=======
             String sql = "select * from users where user_id = '"+username+"' and password = '"+password+"'";
             //System.out.println(sql);
             ResultSet result = db.stm.executeQuery(sql);
 
            // System.out.println(result);
+>>>>>>> 23e2257b850c7f80ba47c0a516729ad1e388c694
             if(result.next()){
                dispose();
                int position = result.getInt("position");
@@ -185,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                    Admin_Dashboard admin = new Admin_Dashboard();
                    admin.show();
                }else if(position == 2){
-                   Officer_Dashboard officer = new Officer_Dashboard();
+                   Officer_Dashboard officer = new Officer_Dashboard(username);
                    officer.show();
                }else if(position == 3){
                    lecturer_Dashboard lecturer = new lecturer_Dashboard();

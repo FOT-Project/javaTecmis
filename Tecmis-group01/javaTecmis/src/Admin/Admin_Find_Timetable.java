@@ -4,6 +4,16 @@
  */
 package Admin;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import com.mysql.cj.jdbc.Blob;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.sql.ResultSet;
 import javax.swing.JFrame;
 
 /**
@@ -33,16 +43,18 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtcourse = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        levelbox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
-        jLabel1.setText("Find Time Table");
+        jLabel1.setText("Download Time Table");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/find-time-table.jpg"))); // NOI18N
 
@@ -50,17 +62,22 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
         jLabel3.setText("Subject Id");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtcourse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtcourseActionPerformed(evt);
             }
         });
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Search");
+        jButton1.setText("Download");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         jLabel4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -70,21 +87,37 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(153, 153, 153));
+        jLabel5.setText("Level");
+
+        levelbox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4" }));
+        levelbox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                levelboxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(62, Short.MAX_VALUE)
+                .addContainerGap(48, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(76, 76, 76)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(89, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtcourse, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel5)
+                            .addComponent(levelbox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 119, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(141, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -106,8 +139,12 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
                         .addGap(143, 143, 143)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtcourse, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(levelbox, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43)
                         .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -126,9 +163,9 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtcourseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcourseActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtcourseActionPerformed
 
     private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
         // TODO add your handling code here:
@@ -136,6 +173,59 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
         time.show();
         dispose();
     }//GEN-LAST:event_jLabel4MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String courseId = txtcourse.getText();
+        String level = levelbox.getSelectedItem().toString();
+//        String level = txtlevel.getText();
+
+        DB db = new DB();
+        db.getconnect();
+
+        try {
+
+            String sql = "SELECT tt_pdf FROM u812963415_javag1.timetable where c_id = '" + courseId + "' and level = '" + level + "';";
+
+            ResultSet result = db.stm.executeQuery(sql);
+
+            if (result.next()) {
+                Done_Alert done = new Done_Alert();
+
+                txtcourse.setText("");
+                levelbox.setSelectedItem(1);
+
+                Blob pdfBlob = (Blob) result.getBlob("tt_pdf");
+                byte[] pdfBytes = pdfBlob.getBytes(1, (int) pdfBlob.length());
+                OutputStream outputStream = new FileOutputStream("downloaded_file.pdf");
+                outputStream.write(pdfBytes);
+                outputStream.close();
+                System.out.println("PDF file downloaded successfully.");
+
+                done.addWindowListener(new WindowAdapter() {
+                    @Override
+                    public void windowClosed(WindowEvent e) {
+                        Admin_Time_Table_Dashboard dashboard = new Admin_Time_Table_Dashboard();
+                        dashboard.show();
+                    }
+                });
+                done.show();
+            } else {
+                Failed_Alert failed = new Failed_Alert();
+                failed.show();
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void levelboxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_levelboxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_levelboxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -178,7 +268,9 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JComboBox<String> levelbox;
+    private javax.swing.JTextField txtcourse;
     // End of variables declaration//GEN-END:variables
 }

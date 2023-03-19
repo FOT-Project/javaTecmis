@@ -4,14 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Done_Alert;
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-//import java.sql.ResultSet;
-import java.sql.SQLException;
-
 /**
  *
  * @author Rashmika
@@ -164,35 +156,14 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
-        // TODO add your handling code here: 
-        DB db = new DB();
-        db.getconnect();
+        Officer_Notice Notice = new Officer_Notice();
+        Notice.show();
+        dispose();
         
-        try{
-            String sql = "select * from Notice";
-            db.stm.executeQuery(sql);
-            
-            
-            Done_Alert done = new Done_Alert();
-            done.addWindowListener(new WindowAdapter(){
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    Officer_Notice Notice = new Officer_Notice();
-                    Notice.show();
-                    dispose();
-                }
-            });
-            done.show();
-            
-
-        }catch(SQLException ex){
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Dashboard Dashboard = new Officer_Dashboard();
         Dashboard.show();
         dispose();

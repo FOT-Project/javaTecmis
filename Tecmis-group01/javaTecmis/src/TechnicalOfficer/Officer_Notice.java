@@ -4,6 +4,11 @@
  */
 package TechnicalOfficer;
 
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Rashmika
@@ -16,6 +21,34 @@ public class Officer_Notice extends javax.swing.JFrame {
     public Officer_Notice() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        String sql = "select topic, subject, date from notice";
+        System.out.println(sql);
+        
+        try{
+            ResultSet result = db.stm.executeQuery(sql);
+            System.out.println(result);
+            
+            if(result.next()){
+                String Subject = result.getString("subject");
+                String Date = result.getString("date");
+                String Topic = result.getString("topic");
+                
+                subject.setText(Subject);
+                date.setText(Date);
+                topic.setText(Topic);
+                
+            }
+            
+        }catch(SQLException ex){
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            System.out.println(ex);
+        }
     }
 
     /**
@@ -32,19 +65,15 @@ public class Officer_Notice extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        date = new javax.swing.JTextField();
+        topic = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jTextField8 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField10 = new javax.swing.JTextField();
+        subject = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
         jTextField11 = new javax.swing.JTextField();
         jTextField12 = new javax.swing.JTextField();
         jPanel8 = new javax.swing.JPanel();
-        jTextField13 = new javax.swing.JTextField();
         jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,66 +118,46 @@ public class Officer_Notice extends javax.swing.JFrame {
         jPanel5.setAlignmentY(148.0F);
         jPanel5.setPreferredSize(new java.awt.Dimension(824, 196));
 
-        jTextField6.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField6.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField6.setText("February 8, 2023");
-        jTextField6.setBorder(null);
-        jTextField6.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField6.setSelectionColor(new java.awt.Color(245, 245, 245));
+        date.setBackground(new java.awt.Color(245, 245, 245));
+        date.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
+        date.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        date.setText("2023-02-08");
+        date.setBorder(null);
+        date.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        date.setSelectionColor(new java.awt.Color(245, 245, 245));
 
-        jTextField7.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField7.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.setText("TO ALL REPEATERS AND STUDENTS OF ENGLISH SEMESTER 1");
-        jTextField7.setBorder(null);
-        jTextField7.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField7.setSelectionColor(new java.awt.Color(245, 245, 245));
+        topic.setBackground(new java.awt.Color(245, 245, 245));
+        topic.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        topic.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        topic.setText("STUDENTS OF ENGLISH SEMESTER 1");
+        topic.setBorder(null);
+        topic.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        topic.setSelectionColor(new java.awt.Color(245, 245, 245));
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField8.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
-        jTextField8.setText("Please be advised that CA 02 for this course will be an online quiz which will be held on 11th Saturday at 8am. \n");
-        jTextField8.setBorder(null);
-        jTextField8.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField8.setSelectionColor(new java.awt.Color(255, 255, 255));
-
-        jTextField9.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
-        jTextField9.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField9.setText("This will be open for two hours. 10 minutes are allocated per attempt. The quiz will close at 10am. Make sure you do the quiz on time.\n");
-        jTextField9.setBorder(null);
-        jTextField9.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField9.setSelectionColor(new java.awt.Color(255, 255, 255));
-
-        jTextField10.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
-        jTextField10.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField10.setText("If you have any questions or concerns, please do not hesitate to contact me on 0766391036 or email on\nnaveend@fot.ruh.ac.lk");
-        jTextField10.setBorder(null);
-        jTextField10.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField10.setSelectionColor(new java.awt.Color(255, 255, 255));
+        subject.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
+        subject.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        subject.setText("Please be advised that CA 02 for this course will be an online quiz which will be held on 11th Saturday at 8am. \n");
+        subject.setBorder(null);
+        subject.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        subject.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(50, 50, 50)
+                .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, 684, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(subject, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -156,24 +165,20 @@ public class Officer_Notice extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(topic, javax.swing.GroupLayout.PREFERRED_SIZE, 784, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(date, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(topic, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -187,8 +192,8 @@ public class Officer_Notice extends javax.swing.JFrame {
 
         jTextField11.setBackground(new java.awt.Color(245, 245, 245));
         jTextField11.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
-        jTextField11.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField11.setText("February 8, 2023");
+        jTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField11.setText("2023-02-02");
         jTextField11.setBorder(null);
         jTextField11.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         jTextField11.setSelectionColor(new java.awt.Color(245, 245, 245));
@@ -196,55 +201,34 @@ public class Officer_Notice extends javax.swing.JFrame {
         jTextField12.setBackground(new java.awt.Color(245, 245, 245));
         jTextField12.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField12.setText("TO ALL REPEATERS AND STUDENTS OF ENGLISH SEMESTER 1");
+        jTextField12.setText("Data Structures");
         jTextField12.setBorder(null);
         jTextField12.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         jTextField12.setSelectionColor(new java.awt.Color(245, 245, 245));
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
-        jTextField13.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
-        jTextField13.setText("Please be advised that CA 02 for this course will be an online quiz which will be held on 11th Saturday at 8am. \n");
-        jTextField13.setBorder(null);
-        jTextField13.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField13.setSelectionColor(new java.awt.Color(255, 255, 255));
-
         jTextField14.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
-        jTextField14.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField14.setText("This will be open for two hours. 10 minutes are allocated per attempt. The quiz will close at 10am. Make sure you do the quiz on time.\n");
+        jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField14.setText("This will be open for two hours. 10 minutes are allocated per attempt.");
         jTextField14.setBorder(null);
         jTextField14.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         jTextField14.setSelectionColor(new java.awt.Color(255, 255, 255));
-
-        jTextField15.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
-        jTextField15.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        jTextField15.setText("If you have any questions or concerns, please do not hesitate to contact me on 0766391036 or email on\nnaveend@fot.ruh.ac.lk");
-        jTextField15.setBorder(null);
-        jTextField15.setSelectedTextColor(new java.awt.Color(0, 0, 0));
-        jTextField15.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 771, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -252,16 +236,15 @@ public class Officer_Notice extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextField12, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(22, Short.MAX_VALUE))
+                            .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 779, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,16 +263,12 @@ public class Officer_Notice extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(475, 475, 475)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(300, 300, 300)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(194, 194, 194)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(284, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -324,7 +303,7 @@ public class Officer_Notice extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
-        // TODO add your handling code here:
+
         Officer_Notice_Dashboard NoticeDashboard = new Officer_Notice_Dashboard();
         NoticeDashboard.show();
         dispose();
@@ -366,6 +345,7 @@ public class Officer_Notice extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField date;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
@@ -374,15 +354,10 @@ public class Officer_Notice extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
-    private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField subject;
+    private javax.swing.JTextField topic;
     // End of variables declaration//GEN-END:variables
 }
