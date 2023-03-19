@@ -1,13 +1,18 @@
 
 package Student;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
 import DBConn.DB;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -68,13 +73,12 @@ public class UpdateProfile extends javax.swing.JFrame {
             }
         });
 
-
         updateProLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         updateProLBL.setText("Update Profile");
 
         idNoLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         idNoLBL.setForeground(new java.awt.Color(153, 153, 153));
-        idNoLBL.setText("ID Number");
+        idNoLBL.setText("Student ID Number");
 
         idNoTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
         idNoTXT.setPreferredSize(new java.awt.Dimension(71, 25));
@@ -219,7 +223,10 @@ public class UpdateProfile extends javax.swing.JFrame {
         String mail;
         String newperMail;
         int newPhone;
-        byte[] img;
+
+        
+//        file = img.getSelectedFile();
+//        FileInputStream propic = new FileInputStream(file);
        
        id = idNoTXT.getText();
        mail = emailTXT.getText();
@@ -228,26 +235,62 @@ public class UpdateProfile extends javax.swing.JFrame {
  
        
        try {
-           String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"'";
+           String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"' AND email = '"+mail+"'";
        
             db.stm.executeUpdate(sql);
-           
-            JOptionPane.showMessageDialog(null, "User Profile Updated Succesfully...!");
-            UserProfile upl = new UserProfile(username);
-            upl.show();
-            dispose();
+            Done_Alert done = new Done_Alert();
+            done.show();
+             
+            idNoTXT.setText("");
+            emailTXT.setText("");
+            newperMailTXT.setText("");
+            newPhoneTXT.setText("");
+            
+            done.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    Dashboard upl = new Dashboard();
+                    upl.show();
+                    dispose();
+                    
+//                    Dashboard db = new Dashboard(username);
+//                    db.show();
+//                    dispose();
+                }
+            }); 
        }
         catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e); 
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+            
             System.out.println(e);
-       } catch (SQLException ex) {
-            Logger.getLogger(UpdateProfile.class.getName()).log(Level.SEVERE, null, ex);
+         }
+       catch (SQLException ex) {
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+            
+            System.out.println(ex);
         }
-         idNoTXT.setText("");
-         emailTXT.setText("");
-         newperMailTXT.setText("");
-         newPhoneTXT.setText("");
-         
     }//GEN-LAST:event_updateProBTNActionPerformed
 
     private void imgBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgBTNActionPerformed
@@ -262,7 +305,25 @@ public class UpdateProfile extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             String path = selectedFile.getAbsolutePath();
             imgLBL.setIcon(ResizeImage(path));
+            
+            try{
+                File image = new File(path);
+                FileInputStream input = new FileInputStream(image);
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                byte[] btimg = new byte[65535];
+                    for(int readNum; (readNum = input.read(btimg)) != 1;)
+                    {
+                        output.write(btimg, 0, readNum);
+                    }
+                byte[] propic = output.toByteArray();
+
+            }catch(IOException ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null,ex);
+            }
         }
+        
+       
     }//GEN-LAST:event_imgBTNActionPerformed
 
     /**
@@ -325,5 +386,5 @@ public class UpdateProfile extends javax.swing.JFrame {
         Image newImage = img.getScaledInstance(imgLBL.getWidth(), imgLBL.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImage);
         return image;
-    }
+    }    
 }

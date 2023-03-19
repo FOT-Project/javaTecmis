@@ -3,9 +3,10 @@ package Student;
 
 import Alerts.Failed_Alert;
 import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Hiru
@@ -48,7 +49,19 @@ public class CourseDetails extends javax.swing.JFrame {
             }
         }
         catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex); 
+            System.out.println(ex);
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
         }
         
     }
