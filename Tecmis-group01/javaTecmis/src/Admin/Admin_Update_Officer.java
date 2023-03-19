@@ -56,30 +56,42 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         jLabel2.setText("Update Technical Officer");
 
         jPanel2.setBackground(new java.awt.Color(245, 245, 245));
 
+        jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel3.setText("Officer Id");
 
+        jLabel4.setBackground(new java.awt.Color(153, 153, 153));
         jLabel4.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel4.setText("Name");
 
+        jLabel5.setBackground(new java.awt.Color(153, 153, 153));
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel5.setText("Password");
 
+        jLabel6.setBackground(new java.awt.Color(153, 153, 153));
         jLabel6.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel6.setText("Email");
 
+        jLabel7.setBackground(new java.awt.Color(153, 153, 153));
         jLabel7.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel7.setText("Phone No");
 
+        jLabel8.setBackground(new java.awt.Color(153, 153, 153));
         jLabel8.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel8.setText("Separtment Id");
 
+        jLabel9.setBackground(new java.awt.Color(153, 153, 153));
         jLabel9.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel9.setText("Address");
 
@@ -226,6 +238,13 @@ public class Admin_Update_Officer extends javax.swing.JFrame {
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField4ActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        Admin_Update_User user = new Admin_Update_User();
+        user.show();
+        dispose();
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
