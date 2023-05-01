@@ -8,17 +8,14 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 /**
  *
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
-
     private String username;
-
-    /**
-     * Creates new form GPA
-     */
+    
     public GPA(String username) {
         this.username = username;
         initComponents();
@@ -71,6 +68,8 @@ public class GPA extends javax.swing.JFrame {
             });
         }
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.

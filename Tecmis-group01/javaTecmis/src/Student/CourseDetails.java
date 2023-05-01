@@ -13,14 +13,13 @@ import java.sql.SQLException;
  */
 public class CourseDetails extends javax.swing.JFrame {
 
-    private String username;
+  private String username;
   
     public CourseDetails() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-        
-       // conn = DBconn.connect();
+        setExtendedState(MAXIMIZED_BOTH);      
     }
+
     public CourseDetails(String username) {
         String uname = username;
         initComponents();
@@ -65,7 +64,6 @@ public class CourseDetails extends javax.swing.JFrame {
         }
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
