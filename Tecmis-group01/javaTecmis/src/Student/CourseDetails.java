@@ -1,21 +1,69 @@
 
 package Student;
 
-
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
  * @author Hiru
  */
 public class CourseDetails extends javax.swing.JFrame {
 
+  private String username;
   
     public CourseDetails() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-        
-
+        setExtendedState(MAXIMIZED_BOTH);      
     }
 
+    public CourseDetails(String username) {
+        String uname = username;
+        initComponents();
+         
+        DB db = new DB();
+        db.getconnect();
+        
+       
+        String cdsql = "select users.user_id, users.c_id, users.dep_id, course.c_name from (users inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
+        try {
+            ResultSet res = db.stm.executeQuery(cdsql);
+           
+            if(res.next()){         
+                 String cid = res.getString("c_id");
+                String depid = res.getString("dep_id");
+               String cname = res.getString("c_name");
+                
+                cidTxtLBL.setText(cid);
+                depidTxtLBL.setText(depid);
+                cnameTxtLBL.setText(cname);
+               
+
+            }else{
+               Failed_Alert failed = new Failed_Alert();
+               failed.show();
+            }
+        }
+        catch (SQLException ex) {
+            System.out.println(ex);
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

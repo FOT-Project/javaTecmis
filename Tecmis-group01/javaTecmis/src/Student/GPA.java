@@ -1,14 +1,75 @@
 
 package Student;
 
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import calculateGPA.CalcGPA;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
+    private String username;
+    
+    public GPA(String username) {
+        this.username = username;
+        initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+        
+        DB db = new DB();
+        db.getconnect();
+                
+        sidTxtLBL.setText(username);
+        
+        String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
+        //System.out.println(mysql);
+        try {
 
+           ResultSet res = db.stm.executeQuery(mysql);
+           
+            if(res.next()){            
+                String depname = res.getString("dep_name");
+                String cname = res.getString("c_name");
+                //String class = res.getString();
+               
+                depidtxtLBL.setText(depname);
+                cnameTxtLBL.setText(cname);
+                
+              CalcGPA cal = new CalcGPA(username);
+//              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
+       
+//                classTxtLBL.setText();
+             
+
+            }else{
+               Failed_Alert failed = new Failed_Alert();
+               failed.show();
+            }
+            
+        } catch (SQLException e) {
+           System.out.println(e);
+           
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+        }
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
