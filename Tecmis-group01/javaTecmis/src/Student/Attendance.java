@@ -25,46 +25,34 @@ public class Attendance extends javax.swing.JFrame {
         this.username = username;
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);   
-       
+  
         DB db = new DB();
         db.getconnect();
  
         try {
+            
             String sub1T = "SELECT attendance FROM attendance_2023_ICT1113 WHERE s_id = '"+username+"' AND type = 'Theory'";
             ResultSet res1T = db.stm.executeQuery(sub1T);
-            while(res1T.next()){
-                Double att1T = res1T.getDouble("attendance");
-             //   System.out.println(att1);
-                
-                Double att1Tfinal = ((att1T/15)*100);
-                System.out.println("sub1T "+att1Tfinal);
-                String s1T =  String.format("%.2f%%",att1Tfinal);
-                perLBL1.setText(s1T);
-            } 
+            int attendance1T = 0;
+            if (res1T.next()) {
+            attendance1T = res1T.getInt("attendanc");
+            }
+            System.out.println(attendance1T);
             
             String sub1P = "SELECT attendance FROM attendance_2023_ICT1113 WHERE s_id = '"+username+"' AND type = 'Practical'";
             ResultSet res1P = db.stm.executeQuery(sub1P);
-            while(res1P.next()){
-                Double att1P = res1P.getDouble("attendance");
-             //   System.out.println(att1);
-                
-                Double att1Pfinal = ((att1P/15)*100);
-                System.out.println("sub1P "+att1Pfinal);
-                String s1P =  String.format("%.2f%%",att1Pfinal);
-                perLBL2.setText(s1P);
-            } 
+            int attendance1P = 0;
+            if (res1P.next()) {
+            attendance1P = res1P.getInt("attendance");
+}
+            System.out.println(attendance1P);
+
+               Double sumAtt1 = (double)attendance1T + (double)attendance1P;
+               Double att1Tfinal = ((sumAtt1/30)*100);
+               String s1 =  String.format("%.2f%%",att1Tfinal);
+               s1LBL.setText(s1);
+               System.out.println(s1);
             
-//            String sub1 = "SELECT attendance FROM attendance_2023_ICT1113 WHERE s_id = '"+username+"'";
-//            ResultSet res1 = db.stm.executeQuery(sub1);
-//            while(res1.next()){
-//                Double att1 = res1.getDouble("attendance");
-//              //  System.out.println(att2);
-//                
-//                Double att1final = ((att1/30)*100);
-//                String s1 =  String.format("%.2f%%",att1final);
-//                perLBL3.setText(s1);
-//            } 
-      
         
             String sub2 = "SELECT attendance FROM attendance_2023_ICT1123 WHERE s_id = '"+username+"'";
             ResultSet res2 = db.stm.executeQuery(sub2);
@@ -75,58 +63,56 @@ public class Attendance extends javax.swing.JFrame {
                 Double att2final = ((att2/15)*100);
                 System.out.println("sub2 "+att2final);
                 String s2 =  String.format("%.2f%%",att2final);
-                perLBL3.setText(s2);
+                s2LBL.setText(s2);
             } 
             
             
             String sub3T = "SELECT attendance FROM attendance_2023_ICT1133 WHERE s_id = '"+username+"' AND type = 'Theory'";
             ResultSet res3T = db.stm.executeQuery(sub3T);
-            while(res3T.next()){
-                Double att3T = res3T.getDouble("attendance");
-            //    System.out.println(att3);
-                
-                Double att3Tfinal = ((att3T/15)*100);
-                System.out.println("sub3T "+att3Tfinal);
-                String s3T =  String.format("%.2f%%",att3Tfinal);
-                perLBL4.setText(s3T);
+            int attendance3T = 0;
+            if (res3T.next()) {
+            attendance3T = res3T.getInt("attendance");
             }
+            System.out.println(attendance3T);
             
             String sub3P = "SELECT attendance FROM attendance_2023_ICT1133 WHERE s_id = '"+username+"' AND type = 'Practical'";
             ResultSet res3P = db.stm.executeQuery(sub3P);
-            while(res3P.next()){
-                Double att3P = res3P.getDouble("attendance");
-             //   System.out.println(att1);
-                
-                Double att3Pfinal = ((att3P/15)*100);
-                System.out.println("sub3P "+att3Pfinal);
-                String s3P =  String.format("%.2f%%",att3Pfinal);
-                perLBL5.setText(s3P);
-            } 
-            
+            int attendance3P = 0;
+            if (res3P.next()) {
+            attendance3P = res3P.getInt("attendance");
+}
+            System.out.println(attendance3P);
+
+               Double sumAtt3 = (double)attendance3T + (double)attendance3P;
+               Double att3Tfinal = ((sumAtt3/30)*100);
+               String s3 =  String.format("%.2f%%",att3Tfinal);
+               s3LBL.setText(s3);
+               System.out.println(s3);
+
+              
             String sub4T = "SELECT attendance FROM attendance_2023_ICT1143 WHERE s_id = '"+username+"' AND type = 'Theory'";
             ResultSet res4T = db.stm.executeQuery(sub4T);
-            while(res4T.next()){
-                Double att4T = res4T.getDouble("attendance");
-             //   System.out.println(att4);
-                
-                Double att4Tfinal = ((att4T/15)*100);
-                System.out.println("sub4T "+att4Tfinal);;
-                String s4T =  String.format("%.2f%%",att4Tfinal);
-                perLBL6.setText(s4T);
+            int attendance4T = 0;
+            if (res4T.next()) {
+            attendance4T = res4T.getInt("attendance");
             }
+            System.out.println(attendance4T);
             
             String sub4P = "SELECT attendance FROM attendance_2023_ICT1143 WHERE s_id = '"+username+"' AND type = 'Practical'";
             ResultSet res4P = db.stm.executeQuery(sub4P);
-            while(res4P.next()){
-                Double att4P = res4P.getDouble("attendance");
-             //   System.out.println(att1);
-                
-                Double att4Pfinal = ((att4P/15)*100);
-                System.out.println("sub4P "+att4Pfinal);
-                String s4P =  String.format("%.2f%%",att4Pfinal);
-                perLBL7.setText(s4P);
-            } 
+            int attendance4P = 0;
+            if (res4P.next()) {
+            attendance4P = res4P.getInt("attendance");
+}
+            System.out.println(attendance4P);
+
+               Double sumAtt4 = (double)attendance4T + (double)attendance4P;
+               Double att4Tfinal = ((sumAtt4/30)*100);
+               String s4 =  String.format("%.2f%%",att4Tfinal);
+               s4LBL.setText(s4);
+               System.out.println(s4);
             
+               
             String sub5 = "SELECT attendance FROM attendance_2023_TMS1113 WHERE s_id = '"+username+"'";
             ResultSet res5 = db.stm.executeQuery(sub5);
             while(res5.next()){
@@ -136,7 +122,7 @@ public class Attendance extends javax.swing.JFrame {
                 Double att5final = ((att5/15)*100);
                 System.out.println("sub5 "+att5final);
                 String s5 =  String.format("%.2f%%",att5final);
-                perLBL9.setText(s5);
+                s5LBL.setText(s5);
             }
             
             String sub6 = "SELECT attendance FROM attendance_2023_ENG1114 WHERE s_id = '"+username+"'";
@@ -148,7 +134,7 @@ public class Attendance extends javax.swing.JFrame {
                 Double att6final = ((att6/15)*100);
                 System.out.println("sub6 "+att6final);
                 String s6 =  String.format("%.2f%%",att6final);
-                perLBL10.setText(s6);
+                s6LBL.setText(s6);
             }
          } catch(SQLException ex){
              Failed_Alert failed = new Failed_Alert();
@@ -164,7 +150,6 @@ public class Attendance extends javax.swing.JFrame {
             }
             });
             
-//             System.out.println(ex);
          }
          
         
@@ -186,27 +171,18 @@ public class Attendance extends javax.swing.JFrame {
         subIDLBL = new javax.swing.JLabel();
         percentageLBL = new javax.swing.JLabel();
         ICT1113TLbl = new javax.swing.JLabel();
-        perLBL1 = new javax.swing.JLabel();
-        ICT1113PLbl = new javax.swing.JLabel();
+        s1LBL = new javax.swing.JLabel();
         ICT1123TLbl = new javax.swing.JLabel();
         ICT1133TLbl = new javax.swing.JLabel();
         ICT1143TLbl = new javax.swing.JLabel();
-        ICT1143PLbl = new javax.swing.JLabel();
-        percent3LBL = new javax.swing.JLabel();
-        percent4LBL = new javax.swing.JLabel();
-        percent5LBL = new javax.swing.JLabel();
-        percent6LBL = new javax.swing.JLabel();
-        ICT1133PLbl = new javax.swing.JLabel();
         TMS1113TLbl = new javax.swing.JLabel();
         ENG1114TLbl = new javax.swing.JLabel();
-        perLBL2 = new javax.swing.JLabel();
-        perLBL3 = new javax.swing.JLabel();
-        perLBL4 = new javax.swing.JLabel();
-        perLBL5 = new javax.swing.JLabel();
-        perLBL6 = new javax.swing.JLabel();
-        perLBL7 = new javax.swing.JLabel();
-        perLBL9 = new javax.swing.JLabel();
-        perLBL10 = new javax.swing.JLabel();
+        s2LBL = new javax.swing.JLabel();
+        s3LBL = new javax.swing.JLabel();
+        s6LBL = new javax.swing.JLabel();
+        s5LBL = new javax.swing.JLabel();
+        s4LBL = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -236,52 +212,28 @@ public class Attendance extends javax.swing.JFrame {
         percentageLBL.setText("Percentage");
 
         ICT1113TLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1113TLbl.setText("ICT1113 - T");
+        ICT1113TLbl.setText("ICT1113 ");
         ICT1113TLbl.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        perLBL1.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL1.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL1.setOpaque(true);
-        perLBL1.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        ICT1113PLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1113PLbl.setText("ICT1113 - P");
-        ICT1113PLbl.setPreferredSize(new java.awt.Dimension(100, 25));
+        s1LBL.setBackground(new java.awt.Color(255, 255, 255));
+        s1LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        s1LBL.setOpaque(true);
+        s1LBL.setPreferredSize(new java.awt.Dimension(45, 25));
 
         ICT1123TLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1123TLbl.setText("ICT1123 - T");
+        ICT1123TLbl.setText("ICT1123");
         ICT1123TLbl.setPreferredSize(new java.awt.Dimension(100, 25));
 
         ICT1133TLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1133TLbl.setText("ICT1133 - T");
+        ICT1133TLbl.setText("ICT1133");
         ICT1133TLbl.setPreferredSize(new java.awt.Dimension(100, 25));
 
         ICT1143TLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1143TLbl.setText("ICT1143 - T");
+        ICT1143TLbl.setText("ICT1143");
         ICT1143TLbl.setPreferredSize(new java.awt.Dimension(100, 25));
 
-        ICT1143PLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1143PLbl.setText("ICT1143 - P");
-        ICT1143PLbl.setPreferredSize(new java.awt.Dimension(100, 25));
-
-        percent3LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        percent3LBL.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        percent4LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        percent4LBL.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        percent5LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        percent5LBL.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        percent6LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        percent6LBL.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        ICT1133PLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ICT1133PLbl.setText("ICT1133 - P");
-        ICT1133PLbl.setPreferredSize(new java.awt.Dimension(37, 25));
-
         TMS1113TLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        TMS1113TLbl.setText("TMS1113 - T");
+        TMS1113TLbl.setText("TMS1113");
         TMS1113TLbl.setPreferredSize(new java.awt.Dimension(100, 25));
         TMS1113TLbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -290,62 +242,37 @@ public class Attendance extends javax.swing.JFrame {
         });
 
         ENG1114TLbl.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        ENG1114TLbl.setText("ENG1134 - T");
+        ENG1114TLbl.setText("ENG1134");
 
-        perLBL2.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL2.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL2.setOpaque(true);
-        perLBL2.setPreferredSize(new java.awt.Dimension(45, 25));
+        s2LBL.setBackground(new java.awt.Color(255, 255, 255));
+        s2LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        s2LBL.setOpaque(true);
+        s2LBL.setPreferredSize(new java.awt.Dimension(45, 25));
 
-        perLBL3.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL3.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL3.setOpaque(true);
-        perLBL3.setPreferredSize(new java.awt.Dimension(45, 25));
+        s3LBL.setBackground(new java.awt.Color(255, 255, 255));
+        s3LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        s3LBL.setOpaque(true);
+        s3LBL.setPreferredSize(new java.awt.Dimension(45, 25));
 
-        perLBL4.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL4.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL4.setOpaque(true);
-        perLBL4.setPreferredSize(new java.awt.Dimension(45, 25));
+        s6LBL.setBackground(new java.awt.Color(255, 255, 255));
+        s6LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        s6LBL.setOpaque(true);
+        s6LBL.setPreferredSize(new java.awt.Dimension(45, 25));
 
-        perLBL5.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL5.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL5.setOpaque(true);
-        perLBL5.setPreferredSize(new java.awt.Dimension(45, 25));
+        s5LBL.setBackground(new java.awt.Color(255, 255, 255));
+        s5LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        s5LBL.setOpaque(true);
+        s5LBL.setPreferredSize(new java.awt.Dimension(45, 25));
 
-        perLBL6.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL6.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL6.setOpaque(true);
-        perLBL6.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        perLBL7.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL7.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL7.setOpaque(true);
-        perLBL7.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        perLBL9.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL9.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL9.setOpaque(true);
-        perLBL9.setPreferredSize(new java.awt.Dimension(45, 25));
-
-        perLBL10.setBackground(new java.awt.Color(255, 255, 255));
-        perLBL10.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perLBL10.setOpaque(true);
-        perLBL10.setPreferredSize(new java.awt.Dimension(45, 25));
+        s4LBL.setBackground(new java.awt.Color(255, 255, 255));
+        s4LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        s4LBL.setOpaque(true);
+        s4LBL.setPreferredSize(new java.awt.Dimension(45, 25));
 
         javax.swing.GroupLayout innerFramePNLLayout = new javax.swing.GroupLayout(innerFramePNL);
         innerFramePNL.setLayout(innerFramePNLLayout);
         innerFramePNLLayout.setHorizontalGroup(
             innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(percent3LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(percent4LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(percent5LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(percent6LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(141, 141, 141))
             .addGroup(innerFramePNLLayout.createSequentialGroup()
                 .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(innerFramePNLLayout.createSequentialGroup()
@@ -356,80 +283,65 @@ public class Attendance extends javax.swing.JFrame {
                         .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(ENG1114TLbl)
                             .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ICT1113PLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ICT1113TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ICT1123TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(ICT1133TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ICT1133PLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(ICT1143TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(TMS1113TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(ICT1143PLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(ICT1143TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(TMS1113TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(120, 120, 120)
                 .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(percentageLBL)
-                    .addComponent(perLBL4, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL5, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL6, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL9, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL10, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL7, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(182, Short.MAX_VALUE))
+                    .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(percentageLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(s3LBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(s2LBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(s1LBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(innerFramePNLLayout.createSequentialGroup()
+                                    .addGap(102, 102, 102)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(innerFramePNLLayout.createSequentialGroup()
+                                .addGap(0, 0, 0)
+                                .addComponent(s4LBL, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(s5LBL, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(s6LBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
         innerFramePNLLayout.setVerticalGroup(
             innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(innerFramePNLLayout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subIDLBL)
-                    .addComponent(percentageLBL))
-                .addGap(21, 21, 21)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ICT1113TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
                 .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(ICT1113PLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addComponent(perLBL3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(subIDLBL)
+                            .addComponent(percentageLBL))
                         .addGap(21, 21, 21)
-                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(percent3LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(perLBL4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addComponent(ICT1123TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(ICT1133TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ICT1113TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(s1LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ICT1123TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(s2LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ICT1133TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(s3LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(21, 21, 21)
+                        .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(ICT1143TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(s4LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(24, 24, 24)
                 .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(percent4LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ICT1133PLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(percent5LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ICT1143TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(percent6LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(ICT1143PLbl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(perLBL7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(TMS1113TLbl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(perLBL9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(24, 24, 24)
+                    .addComponent(s5LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(perLBL10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ENG1114TLbl))
-                .addContainerGap(120, Short.MAX_VALUE))
+                    .addComponent(ENG1114TLbl)
+                    .addComponent(s6LBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(328, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout outerFramePNLLayout = new javax.swing.GroupLayout(outerFramePNL);
@@ -437,7 +349,7 @@ public class Attendance extends javax.swing.JFrame {
         outerFramePNLLayout.setHorizontalGroup(
             outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outerFramePNLLayout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(61, Short.MAX_VALUE)
                 .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42))
         );
@@ -475,7 +387,7 @@ public class Attendance extends javax.swing.JFrame {
                         .addGap(34, 34, 34)
                         .addComponent(attendanceLBL)))
                 .addGap(18, 18, 18)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
+                .addComponent(outerFramePNL, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
                 .addGap(34, 34, 34))
         );
 
@@ -544,33 +456,24 @@ public class Attendance extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ENG1114TLbl;
-    private javax.swing.JLabel ICT1113PLbl;
     private javax.swing.JLabel ICT1113TLbl;
     private javax.swing.JLabel ICT1123TLbl;
-    private javax.swing.JLabel ICT1133PLbl;
     private javax.swing.JLabel ICT1133TLbl;
-    private javax.swing.JLabel ICT1143PLbl;
     private javax.swing.JLabel ICT1143TLbl;
     private javax.swing.JLabel TMS1113TLbl;
     private javax.swing.JLabel attendanceLBL;
     private javax.swing.JLabel backLBL;
     private javax.swing.JPanel innerFramePNL;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel outerFramePNL;
-    private javax.swing.JLabel perLBL1;
-    private javax.swing.JLabel perLBL10;
-    private javax.swing.JLabel perLBL2;
-    private javax.swing.JLabel perLBL3;
-    private javax.swing.JLabel perLBL4;
-    private javax.swing.JLabel perLBL5;
-    private javax.swing.JLabel perLBL6;
-    private javax.swing.JLabel perLBL7;
-    private javax.swing.JLabel perLBL9;
-    private javax.swing.JLabel percent3LBL;
-    private javax.swing.JLabel percent4LBL;
-    private javax.swing.JLabel percent5LBL;
-    private javax.swing.JLabel percent6LBL;
     private javax.swing.JLabel percentageLBL;
+    private javax.swing.JLabel s1LBL;
+    private javax.swing.JLabel s2LBL;
+    private javax.swing.JLabel s3LBL;
+    private javax.swing.JLabel s4LBL;
+    private javax.swing.JLabel s5LBL;
+    private javax.swing.JLabel s6LBL;
     private javax.swing.JLabel subIDLBL;
     // End of variables declaration//GEN-END:variables
 }
