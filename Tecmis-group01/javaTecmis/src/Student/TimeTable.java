@@ -4,6 +4,19 @@
  */
 package Student;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import com.mysql.cj.jdbc.Blob;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Hiru
@@ -13,9 +26,14 @@ public class TimeTable extends javax.swing.JFrame {
     /**
      * Creates new form TimeTable
      */
-    public TimeTable() {
+//    public TimeTable() {
+//        
+//    }
+    private String username;
+    TimeTable(String username){
+        this.username = username;
         initComponents();
-         setExtendedState(MAXIMIZED_BOTH);
+        setExtendedState(MAXIMIZED_BOTH);
     }
 
     /**
@@ -30,16 +48,8 @@ public class TimeTable extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         backLBL = new javax.swing.JLabel();
         timetableLBL = new javax.swing.JLabel();
-        outerFramePNL = new javax.swing.JPanel();
-        innerFramePNL = new javax.swing.JPanel();
-        subIdLBL = new javax.swing.JLabel();
-        dayLBL = new javax.swing.JLabel();
-        timeLBL = new javax.swing.JLabel();
-        hrsLBL = new javax.swing.JLabel();
-        subidLBL = new javax.swing.JLabel();
-        day1LBL = new javax.swing.JLabel();
-        time1LBL = new javax.swing.JLabel();
-        hrs2LBL = new javax.swing.JLabel();
+        downloadBTN = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1450, 850));
@@ -58,105 +68,18 @@ public class TimeTable extends javax.swing.JFrame {
         timetableLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         timetableLBL.setText("Time Table");
 
-        outerFramePNL.setBackground(new java.awt.Color(245, 245, 245));
+        downloadBTN.setBackground(new java.awt.Color(76, 159, 255));
+        downloadBTN.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        downloadBTN.setForeground(new java.awt.Color(255, 255, 255));
+        downloadBTN.setText("Download Time Table");
+        downloadBTN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        downloadBTN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                downloadBTNActionPerformed(evt);
+            }
+        });
 
-        innerFramePNL.setBackground(new java.awt.Color(255, 255, 255));
-
-        subIdLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        subIdLBL.setText("Subject ID");
-
-        dayLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        dayLBL.setText("Day");
-
-        timeLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        timeLBL.setText("Time");
-
-        hrsLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        hrsLBL.setText("Hours");
-
-        subidLBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        subidLBL.setText("ICT01");
-
-        day1LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        day1LBL.setText("Monday");
-
-        time1LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        time1LBL.setText("08.00 A.M");
-
-        hrs2LBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        hrs2LBL.setText("2");
-
-        javax.swing.GroupLayout innerFramePNLLayout = new javax.swing.GroupLayout(innerFramePNL);
-        innerFramePNL.setLayout(innerFramePNLLayout);
-        innerFramePNLLayout.setHorizontalGroup(
-            innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(innerFramePNLLayout.createSequentialGroup()
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addGap(120, 120, 120)
-                        .addComponent(subIdLBL))
-                    .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(subidLBL)))
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addGap(156, 156, 156)
-                        .addComponent(dayLBL)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(day1LBL)
-                        .addGap(1, 1, 1)))
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addGap(138, 138, 138)
-                        .addComponent(timeLBL))
-                    .addGroup(innerFramePNLLayout.createSequentialGroup()
-                        .addGap(117, 117, 117)
-                        .addComponent(time1LBL)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
-                        .addComponent(hrsLBL)
-                        .addGap(120, 120, 120))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
-                        .addComponent(hrs2LBL)
-                        .addGap(145, 145, 145))))
-        );
-        innerFramePNLLayout.setVerticalGroup(
-            innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(innerFramePNLLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subIdLBL)
-                    .addComponent(dayLBL)
-                    .addComponent(timeLBL)
-                    .addComponent(hrsLBL))
-                .addGap(20, 20, 20)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subidLBL)
-                    .addComponent(day1LBL)
-                    .addComponent(time1LBL)
-                    .addComponent(hrs2LBL))
-                .addContainerGap(241, Short.MAX_VALUE))
-        );
-
-        javax.swing.GroupLayout outerFramePNLLayout = new javax.swing.GroupLayout(outerFramePNL);
-        outerFramePNL.setLayout(outerFramePNLLayout);
-        outerFramePNLLayout.setHorizontalGroup(
-            outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(outerFramePNLLayout.createSequentialGroup()
-                .addGap(55, 55, 55)
-                .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
-        );
-        outerFramePNLLayout.setVerticalGroup(
-            outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(outerFramePNLLayout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-course.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -165,13 +88,15 @@ public class TimeTable extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(backLBL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
                 .addComponent(timetableLBL)
                 .addGap(494, 494, 494))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(95, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(downloadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
+                .addComponent(jLabel1)
+                .addGap(176, 176, 176))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -183,9 +108,14 @@ public class TimeTable extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(timetableLBL)))
-                .addGap(44, 44, 44)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(167, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(237, 237, 237)
+                        .addComponent(downloadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(47, 47, 47)
+                        .addComponent(jLabel1)))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -195,7 +125,7 @@ public class TimeTable extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,6 +142,85 @@ public class TimeTable extends javax.swing.JFrame {
         ttDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
+
+    private void downloadBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downloadBTNActionPerformed
+        try {
+            DB db = new DB();
+            db.getconnect();
+          
+            String sql = "SELECT U.user_id, U.c_id, U.level, T.c_id, T.level, T.tt_pdf FROM (users U inner join timetable T on U.c_id = T.c_id AND U.level = T.level)  WHERE U.user_id = '"+username+"'";
+        
+            ResultSet result = db.stm.executeQuery(sql);
+            
+            if(result.next()){
+            
+                Blob pdfBlob = (Blob) result.getBlob("tt_pdf");
+                byte[] pdfBytes = pdfBlob.getBytes(1, (int) pdfBlob.length());
+                OutputStream outputStream = new FileOutputStream("downloaded_file.pdf");
+                outputStream.write(pdfBytes);
+                outputStream.close();
+                System.out.println("PDF file downloaded successfully.");
+                
+                Done_Alert done = new Done_Alert();
+                done.show();
+            
+                done.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    Dashboard db = new Dashboard(username);
+                    db.show();
+                    dispose();
+                }
+            });
+                
+            } 
+        }
+        catch (SQLException ex) {
+           System.out.println("failed.");
+           Failed_Alert failed = new Failed_Alert();
+           failed.show();
+           
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+            
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+        }
+        catch (FileNotFoundException ex) {
+           System.out.println("failed.");
+           Failed_Alert failed = new Failed_Alert();
+           failed.show();
+           
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+            
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+        }
+        catch (IOException ex) {
+            System.out.println("failed.");
+           Failed_Alert failed = new Failed_Alert();
+           failed.show();
+           
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+            
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+        }
+    }//GEN-LAST:event_downloadBTNActionPerformed
 
     /**
      * @param args the command line arguments
@@ -243,24 +252,16 @@ public class TimeTable extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TimeTable().setVisible(true);
+ 
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
-    private javax.swing.JLabel day1LBL;
-    private javax.swing.JLabel dayLBL;
-    private javax.swing.JLabel hrs2LBL;
-    private javax.swing.JLabel hrsLBL;
-    private javax.swing.JPanel innerFramePNL;
+    private javax.swing.JButton downloadBTN;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel outerFramePNL;
-    private javax.swing.JLabel subIdLBL;
-    private javax.swing.JLabel subidLBL;
-    private javax.swing.JLabel time1LBL;
-    private javax.swing.JLabel timeLBL;
     private javax.swing.JLabel timetableLBL;
     // End of variables declaration//GEN-END:variables
 }

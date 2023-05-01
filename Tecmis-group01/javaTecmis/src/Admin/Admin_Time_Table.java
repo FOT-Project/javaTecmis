@@ -5,6 +5,21 @@
 package Admin;
 
 import javax.swing.JFrame;
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
+import DBConn.DB;
+import Student.Dashboard;
+import com.mysql.cj.jdbc.Blob;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -90,9 +105,9 @@ public class Admin_Time_Table extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addGap(44, 44, 44)
+                .addGap(47, 47, 47)
                 .addComponent(jButton1)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -118,6 +133,49 @@ public class Admin_Time_Table extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+//            try {
+//                DB db = new DB();
+//                db.getconnect();
+//
+//                String sql = "SELECT tt_pdf FROM timetable where ";
+//
+//                ResultSet result = db.stm.executeQuery(sql);
+//
+//                if(result.next()){
+//
+//                    Blob pdfBlob = (Blob) result.getBlob("tt_pdf");
+//                    byte[] pdfBytes = pdfBlob.getBytes(1, (int) pdfBlob.length());
+//                    OutputStream outputStream = new FileOutputStream("downloaded_file.pdf");
+//                    outputStream.write(pdfBytes);
+//                    outputStream.close();
+//                    System.out.println("PDF file downloaded successfully.");
+//
+//                    Done_Alert done = new Done_Alert();
+//                    done.show();
+//
+//                    done.addWindowListener(new WindowAdapter() {
+//                    @Override
+//                    public void windowClosed(WindowEvent e) {
+//                        Admin_Find_Timetable table = new Admin_Find_Timetable();
+//                        table.show();
+//                        dispose();
+//                    }
+//                });
+//
+//                } 
+//            }
+//            catch (SQLException ex) {
+//               System.out.println("failed.");
+//               Failed_Alert failed = new Failed_Alert();
+//               failed.show();
+//
+//            } catch (FileNotFoundException ex) {
+//            Logger.getLogger(Admin_Time_Table.class.getName()).log(Level.SEVERE, null, ex);
+//        } catch (IOException ex) {
+//            Logger.getLogger(Admin_Time_Table.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+
         
     }//GEN-LAST:event_jButton1ActionPerformed
 

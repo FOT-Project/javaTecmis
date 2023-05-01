@@ -3,29 +3,27 @@ package Student;
 
 import Alerts.Failed_Alert;
 import DBConn.DB;
+import calculateGPA.CalcGPA;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
+
 /**
  *
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
-
     private String username;
-
-    /**
-     * Creates new form GPA
-     */
+    
     public GPA(String username) {
+        this.username = username;
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         
         DB db = new DB();
         db.getconnect();
-        
-        String gpa_username = username;
-        
+                
         sidTxtLBL.setText(username);
         
         String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
@@ -37,13 +35,15 @@ public class GPA extends javax.swing.JFrame {
             if(res.next()){            
                 String depname = res.getString("dep_name");
                 String cname = res.getString("c_name");
-                float gpa = res.getFloat("gpa");
                 //String class = res.getString();
                
                 depidtxtLBL.setText(depname);
                 cnameTxtLBL.setText(cname);
-                gpaTxtLBL.setText(String.valueOf(gpa));
-                //classTxtLBL.setText();
+                
+              CalcGPA cal = new CalcGPA(username);
+//              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
+       
+//                classTxtLBL.setText();
              
 
             }else{
@@ -52,10 +52,24 @@ public class GPA extends javax.swing.JFrame {
             }
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e); 
-            //System.out.println(e);
+           System.out.println(e);
+           
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
         }
     }
+
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
