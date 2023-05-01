@@ -23,11 +23,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class UpdateProfile extends javax.swing.JFrame {
 
-    private String username;
-    /**
-     * Creates new form UpdateProfile
-     */
-   
     public UpdateProfile() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); 
@@ -67,11 +62,16 @@ public class UpdateProfile extends javax.swing.JFrame {
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
         backLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backLBLMouseClicked(evt);
             }
         });
+
+
+        bgImgLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/update-profile.png"))); // NOI18N
+
 
         updateProLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         updateProLBL.setText("Update Profile");
@@ -208,123 +208,7 @@ public class UpdateProfile extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        UserProfile up = new UserProfile(username);
-        up.show();
-        dispose();
-    }//GEN-LAST:event_backLBLMouseClicked
 
-    private void updateProBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateProBTNActionPerformed
-        
-        DB db = new DB();
-        db.getconnect();
-        
-        String id;
-        String mail;
-        String newperMail;
-        int newPhone;
-
-        
-//        file = img.getSelectedFile();
-//        FileInputStream propic = new FileInputStream(file);
-       
-       id = idNoTXT.getText();
-       mail = emailTXT.getText();
-       newperMail = newperMailTXT.getText();
-       newPhone = Integer.parseInt(newPhoneTXT.getText());
- 
-       
-       try {
-           String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"' AND email = '"+mail+"'";
-       
-            db.stm.executeUpdate(sql);
-            Done_Alert done = new Done_Alert();
-            done.show();
-             
-            idNoTXT.setText("");
-            emailTXT.setText("");
-            newperMailTXT.setText("");
-            newPhoneTXT.setText("");
-            
-            done.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    Dashboard upl = new Dashboard();
-                    upl.show();
-                    dispose();
-                    
-//                    Dashboard db = new Dashboard(username);
-//                    db.show();
-//                    dispose();
-                }
-            }); 
-       }
-        catch (HeadlessException e) {
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-            
-            failed.addWindowListener(new WindowAdapter() {
-            @Override
-                
-            public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
-                db.show();
-                dispose();
-            }
-            });
-            
-            System.out.println(e);
-         }
-       catch (SQLException ex) {
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-            
-            failed.addWindowListener(new WindowAdapter() {
-            @Override
-                
-            public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
-                db.show();
-                dispose();
-            }
-            });
-            
-            System.out.println(ex);
-        }
-    }//GEN-LAST:event_updateProBTNActionPerformed
-
-    private void imgBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgBTNActionPerformed
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.IMAGE", "jpg","gif","png");
-        fileChooser.addChoosableFileFilter(filter);
-        
-        int result = fileChooser.showSaveDialog(null);
-        
-        if(result == JFileChooser.APPROVE_OPTION){
-            File selectedFile = fileChooser.getSelectedFile();
-            String path = selectedFile.getAbsolutePath();
-            imgLBL.setIcon(ResizeImage(path));
-            
-            try{
-                File image = new File(path);
-                FileInputStream input = new FileInputStream(image);
-                ByteArrayOutputStream output = new ByteArrayOutputStream();
-                byte[] btimg = new byte[65535];
-                    for(int readNum; (readNum = input.read(btimg)) != 1;)
-                    {
-                        output.write(btimg, 0, readNum);
-                    }
-                byte[] propic = output.toByteArray();
-
-            }catch(IOException ex){
-                System.out.println(ex);
-                JOptionPane.showMessageDialog(null,ex);
-            }
-        }
-        
-       
-    }//GEN-LAST:event_imgBTNActionPerformed
 
     /**
      * @param args the command line arguments
