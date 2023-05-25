@@ -3,7 +3,7 @@ package Student;
 
 import Alerts.Failed_Alert;
 import DBConn.DB;
-import calculateGPA.CalcGPA;
+import calculateGPA.CalGPA;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
@@ -40,7 +40,7 @@ public class GPA extends javax.swing.JFrame {
                 depidtxtLBL.setText(depname);
                 cnameTxtLBL.setText(cname);
                 
-              CalcGPA cal = new CalcGPA(username);
+              GPA gpa = new GPA(username);
 //              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
        
 //                classTxtLBL.setText();
