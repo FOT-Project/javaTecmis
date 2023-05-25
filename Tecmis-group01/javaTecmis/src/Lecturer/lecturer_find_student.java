@@ -5,7 +5,7 @@
 package Lecturer;
 
 import Alerts.Failed_Alert;
-import Auth.Auth;
+import Auth.StudentInstance;
 import DBConn.DB;
 import Student.Dashboard;
 import java.lang.System.Logger;
@@ -55,9 +55,14 @@ public class lecturer_find_student extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("Subject ID");
+        jLabel3.setText("Student ID");
 
         jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(76, 159, 255));
         jButton1.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
@@ -140,8 +145,8 @@ public class lecturer_find_student extends javax.swing.JFrame {
         // TODO add your handling code here:
         String username = jTextField1.getText();
        
-        Auth auth = Auth.getInstance();
-        auth.setUsername(username);
+        StudentInstance studentinstance = StudentInstance.getInstance();
+        studentinstance.setUsername(username);
         
         
         DB db=new DB();
@@ -168,6 +173,10 @@ public class lecturer_find_student extends javax.swing.JFrame {
         }
     
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
