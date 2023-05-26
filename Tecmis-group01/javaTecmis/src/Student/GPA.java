@@ -74,6 +74,7 @@ public class GPA extends javax.swing.JFrame {
                 
                 depidtxtLBL.setText(depname);
                 cnameTxtLBL.setText(cname);
+
             }else{
                Failed_Alert failed = new Failed_Alert();
                failed.show();
