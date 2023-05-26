@@ -6,6 +6,7 @@ package Lecturer;
 
 import Alerts.Failed_Alert;
 import Auth.Auth;
+import Auth.StudentInstance;
 import DBConn.DB;
 import Student.Dashboard;
 import java.awt.event.WindowAdapter;
@@ -32,8 +33,9 @@ public class lecturer_show_medical extends javax.swing.JFrame {
         DB db = new DB();
         db.getconnect();
         
-        Auth auth = Auth.getInstance();
-        String user = auth.getUsername();
+        StudentInstance studentusername = StudentInstance.getInstance();
+//        String user = studentusername.getUsername();
+        String user = "TG/2020/001";
         System.out.println(user);
         
         
@@ -43,11 +45,16 @@ public class lecturer_show_medical extends javax.swing.JFrame {
             
             System.out.println(rs);
             System.out.println(sql);
-            if(rs.next()){
+            String htmlftextsub = "<html>";
+            String htmlftextdate = "<html>";
+
+            while(rs.next()){
                   //datelbl.setText(rs.getString("user_id"));
-                  subidlbl.setText(rs.getString("sub_id"));
-                  typelbl.setText(rs.getString("type"));
-                  datelbl.setText(rs.getString("date"));
+                htmlftextsub = htmlftextsub + rs.getString("sub_id") + "<br>"; 
+                htmlftextdate = htmlftextdate + rs.getString("date") + "<br>"; 
+
+
+//                  datelbl.setText(rs.getString("date"));
                  
 //            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
 //            model.setRowCount(0);
@@ -55,6 +62,11 @@ public class lecturer_show_medical extends javax.swing.JFrame {
 //            while(rs.next()){
 //                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
             }
+            htmlftextdate = htmlftextdate + "</html>";
+            htmlftextsub = htmlftextsub + "</html>";
+             subidlbl.setText(htmlftextsub);
+             typelbl.setText(htmlftextdate);
+
              
         } catch(SQLException e) {
             System.out.println(e);
@@ -141,10 +153,10 @@ public class lecturer_show_medical extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subidlbl)
-                    .addComponent(typelbl))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(subidlbl, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+                    .addComponent(typelbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(184, Short.MAX_VALUE))
         );
 
