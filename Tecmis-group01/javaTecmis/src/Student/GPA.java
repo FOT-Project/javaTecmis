@@ -3,12 +3,11 @@ package Student;
 
 import Alerts.Failed_Alert;
 import DBConn.DB;
-import calculateGPA.CalcGPA;
+import calculateGPA.CalGPA;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 /**
  *
  * @author Hiru
@@ -20,36 +19,66 @@ public class GPA extends javax.swing.JFrame {
         this.username = username;
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+               
+        sidTxtLBL.setText(username);
+        
+        CalGPA newcal = new CalGPA();
+        double sub1gpv = newcal.firstSub();
+        double sub2gpv = newcal.secondSub();
+        double sub3gpv = newcal.thirdSub();
+        double sub4gpv = newcal.fourthSub();
+        double sub5gpv = newcal.fifthSub();
+        double sub6gpv = newcal.sixthSub();
+        
+        double finalGPA = (sub1gpv + sub2gpv+ sub3gpv + sub4gpv + sub5gpv + sub6gpv)/6;
+        gpaTxtLBL.setText(String.valueOf(finalGPA));
+        
+        String grade;
+        if (finalGPA >= 4.0){
+            grade = "A+";
+        }else if (finalGPA >= 3.7){
+            grade = "A";
+        }else if (finalGPA >= 3.3){
+            grade = "A-";
+        }else if (finalGPA >= 3.0){
+            grade = "B+";
+        }else if (finalGPA >= 2.7){
+            grade = "B";
+        }else if (finalGPA >= 2.3){
+            grade = "B-";
+        }else if (finalGPA >= 2.0){
+            grade = "C+";
+        }else if (finalGPA >= 1.7){
+            grade = "C";
+        }else if (finalGPA >= 1.3){
+            grade = "C-";
+        }else if (finalGPA >= 1.0){
+            grade = "D";
+        }else{
+            grade = "F";
+        }
+        
+        classTxtLBL.setText(grade);
         
         DB db = new DB();
         db.getconnect();
-                
-        sidTxtLBL.setText(username);
         
         String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
         //System.out.println(mysql);
         try {
-
            ResultSet res = db.stm.executeQuery(mysql);
            
             if(res.next()){            
                 String depname = res.getString("dep_name");
                 String cname = res.getString("c_name");
-                //String class = res.getString();
-               
+                
                 depidtxtLBL.setText(depname);
                 cnameTxtLBL.setText(cname);
-                
-              CalcGPA cal = new CalcGPA(username);
-//              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
-       
-//                classTxtLBL.setText();
-             
-
             }else{
                Failed_Alert failed = new Failed_Alert();
                failed.show();
             }
+            
             
         } catch (SQLException e) {
            System.out.println(e);
@@ -68,9 +97,6 @@ public class GPA extends javax.swing.JFrame {
             });
         }
     }
-
-   
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

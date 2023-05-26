@@ -149,7 +149,6 @@ public class Attendance extends javax.swing.JFrame {
                 dispose();
             }
             });
-            
          }
          
         
