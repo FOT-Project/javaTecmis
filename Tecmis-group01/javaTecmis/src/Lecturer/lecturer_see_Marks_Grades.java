@@ -6,6 +6,7 @@ package Lecturer;
 
 import Alerts.Failed_Alert;
 import Auth.Auth;
+import Auth.StudentInstance;
 import DBConn.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -235,7 +236,6 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(22, 22, 22)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -283,7 +283,7 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Prize.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel2.setText("Enter Course ID ");
+        jLabel2.setText("Enter Subject ID ");
 
         jPanel9.setBackground(new java.awt.Color(217, 217, 217));
         jPanel9.setForeground(new java.awt.Color(217, 217, 217));
@@ -405,19 +405,19 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String courseid = cid.getText();
+        String subid = cid.getText();
         
         DB db = new DB();
         db.getconnect();
                                 
-        Auth auth = Auth.getInstance();
-        String user = auth.getUsername();
-        System.out.println(user);
+        StudentInstance studentusername = StudentInstance.getInstance();
+        String user = studentusername.getUsername();
+        System.out.println(studentusername);
         
         
         
-        String mysql = "select department.dep_name, course.c_name from (users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where course.c_id = '"+courseid+"' ";
-         //String mysql = "SELECT department.dep_id, course.c_id FROM department INNER JOIN Course c ON d.dept_id = c.dept_id INNER JOIN User u ON u.user_id = :user_id WHERE users.user_id = '"user"'";
+        String mysql = "select department.dep_name, course.c_name from (users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where course.c_id = '"+subid+"' ";
+        //String mysql = "SELECT department.dep_id, course.c_id FROM department INNER JOIN Course c ON d.dept_id = c.dept_id INNER JOIN User u ON u.user_id = :user_id WHERE users.user_id = '"user"'";
 
         
         try {
