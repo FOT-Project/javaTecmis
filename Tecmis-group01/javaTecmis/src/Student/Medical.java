@@ -4,6 +4,12 @@
  */
 package Student;
 
+import Alerts.Failed_Alert;
+import Auth.Auth;
+import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Hiru
@@ -13,44 +19,44 @@ public class Medical extends javax.swing.JFrame {
     /**
      * Creates new form Medical
      */
-    public Medical() {
-        initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-<<<<<<< OURS
-=======
-        
-        DB db = new DB();
-        db.getconnect();
-        
-        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
-         try {
-            ResultSet rs = db.stm.executeQuery(sql);
-            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
-            model.setRowCount(0);
-            
-            while(rs.next()){
-                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
-            }
-             
-        } catch (SQLException e) {
-            System.out.println(e);
-           
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-            
-            failed.addWindowListener(new WindowAdapter() {
-            @Override
-                
-            public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
-                db.show();
-                dispose();
-            }
-            });
-        }
-        
->>>>>>> THEIRS
-    }
+//    String username;
+//    public Medical() {
+//        initComponents();
+//        setExtendedState(MAXIMIZED_BOTH);
+//
+//        Auth auth = Auth.getInstance();
+//        username = auth.getUsername();
+//        
+//        DB db = new DB();
+//        db.getconnect();
+//        
+//        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
+//         try {
+//            ResultSet rs = db.stm.executeQuery(sql);
+//            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
+//            model.setRowCount(0);
+//            
+//            while(rs.next()){
+//                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
+//            }
+//             
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//           
+//            Failed_Alert failed = new Failed_Alert();
+//            failed.show();
+//            
+//            failed.addWindowListener(new WindowAdapter() {
+//            @Override
+//                
+//            public void windowClosed(WindowEvent e) {
+//                Dashboard db = new Dashboard(username);
+//                db.show();
+//                dispose();
+//            }
+//            });
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

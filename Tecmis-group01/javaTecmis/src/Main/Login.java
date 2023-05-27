@@ -5,7 +5,6 @@
 package Main;
 
 import Admin.Admin_Dashboard;
-import Alerts.Failed_Alert;
 import Auth.Auth;
 import Lecturer.lecturer_Dashboard;
 import Student.Dashboard;
@@ -200,7 +199,7 @@ public class Login extends javax.swing.JFrame {
                    lecturer.show();
                }else if(position == 4){
                    //System.out.println(username);
-                   Dashboard student = new Dashboard(username);
+                   Dashboard student = new Dashboard();
                    student.show();
                }
            }else{

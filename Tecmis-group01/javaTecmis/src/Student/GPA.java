@@ -2,6 +2,7 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.StudentInstance;
 import DBConn.DB;
 import calculateGPA.CalcGPA;
 import java.awt.event.WindowAdapter;
@@ -14,16 +15,17 @@ import java.sql.SQLException;
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
-    private String username;
     
     public GPA(String username) {
-        this.username = username;
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         
+        StudentInstance studentinstance = StudentInstance.getInstance();
+        studentinstance.setUsername(username);
+        
         DB db = new DB();
         db.getconnect();
-                
+        
         sidTxtLBL.setText(username);
         
         String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
@@ -39,15 +41,12 @@ public class GPA extends javax.swing.JFrame {
                
                 depidtxtLBL.setText(depname);
                 cnameTxtLBL.setText(cname);
-<<<<<<< OURS
-=======
                 
               CalcGPA cal = new CalcGPA(username);
 //              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
        
 //                classTxtLBL.setText();
              
->>>>>>> THEIRS
 
             }else{
                Failed_Alert failed = new Failed_Alert();
@@ -64,7 +63,7 @@ public class GPA extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }
@@ -269,7 +268,7 @@ public class GPA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard gpaDb = new Dashboard(username);
+        Dashboard gpaDb = new Dashboard();
         gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
