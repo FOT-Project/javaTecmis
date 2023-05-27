@@ -2,6 +2,8 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
+import Auth.StudentInstance;
 import DBConn.DB;
 import Main.Welcome;
 import java.awt.event.WindowAdapter;
@@ -14,12 +16,14 @@ import java.sql.ResultSet;
  * @author Hiru
  */
 public class UserProfile extends javax.swing.JFrame {
-     private String username;
-    
-    public UserProfile(String username){
-//       System.out.println("UserProfile" +username);
+    String username;
+    public UserProfile(){
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+        
        
         DB db = new DB();
         db.getconnect();
@@ -310,7 +314,7 @@ public class UserProfile extends javax.swing.JFrame {
 
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard userDb = new Dashboard(username);
+        Dashboard userDb = new Dashboard();
         userDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
