@@ -291,10 +291,12 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                 System.out.println(attendence1);                     
                           
                 Double att1Tfinal = ((attendence1/15.0)*100.0);
-                System.out.println("sub1T"+att1Tfinal);
+                System.out.println(subjectid + att1Tfinal);
                 String s1T = String.format("%.2f%%",att1Tfinal);
                 perout.setText(s1T);
                 subout.setText(subjectid);
+                System.out.println(s1T);
+                System.out.println(subjectid);
             }
             }
             
@@ -311,8 +313,8 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                    subout.setText(subjectid);
                }
             }
-            else if(subjectid.equals("ICT1114")){
-            String sub3="Select attendance from attendance_2023_ENG1114 where s_id='"+user+"' +";
+            else if(subjectid.equals("ENG1114")){
+            String sub3="Select attendance from attendance_2023_ENG1114 where s_id= '"+user+"' ";
             ResultSet res3 = db.stm.executeQuery(sub3);
                 while(res3.next()){
                     Double att3 = res3.getDouble("attendance");
@@ -326,7 +328,7 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
             }
             
             else if(subjectid.equals("TMS1113")){
-            String sub4="Select attendance from attendance_2023_TMS1133 where s_id='"+user+"' ";
+            String sub4="Select attendance from attendance_2023_TMS1113 where s_id='"+user+"' ";
             ResultSet res4 = db.stm.executeQuery(sub4);
                 while(res4.next()){
                     Double att4 = res4.getDouble("attendance");
@@ -340,7 +342,7 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
             }
             
             else if(subjectid.equals("ICT1133")){
-            String sub5="Select attendance from attendance_2023_ICT143 where s_id='"+user+"' AND type='Theory'OR 'Practical'";
+            String sub5="Select attendance from attendance_2023_ICT1143 where s_id='"+user+"' AND type='Theory'OR 'Practical'";
             ResultSet res5 = db.stm.executeQuery(sub5);
                 while(res5.next()){
                     Double att5 = res5.getDouble("attendance");
@@ -354,7 +356,7 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
             }
             
             else if(subjectid.equals("ICT1143")){
-            String sub6="Select attendance from attendance_2023_ICT1433 where s_id='"+user+"' AND type='Practical'OR 'Theory'";
+            String sub6="Select attendance from attendance_2023_ICT1143 where s_id='"+user+"' AND type='Practical'OR 'Theory'";
             ResultSet res6 = db.stm.executeQuery(sub6);
                 while(res6.next()){
                     Double att6 = res6.getDouble("attendance");
@@ -362,7 +364,8 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                     Double att6final = ((att6/15.0)*100.0);
                     System.out.println("sub1T"+att6final);
                     String s6 = String.format("%.2f%%",att6final);
-                    jLabel5.setText(s6);
+                    perout.setText(s6);
+                    subout.setText(subjectid);
                 }
             }
             else {
