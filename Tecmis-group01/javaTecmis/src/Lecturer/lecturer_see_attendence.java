@@ -85,10 +85,10 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
 
         perout.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        perout.setText("ICT1113");
+        perout.setText("......");
 
         subout.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        subout.setText("ICT1113");
+        subout.setText("......");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -113,7 +113,7 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addGap(138, 138, 138)
                     .addComponent(subout)
-                    .addContainerGap(474, Short.MAX_VALUE)))
+                    .addContainerGap(524, Short.MAX_VALUE)))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,12 +126,12 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5))
-                .addGap(84, 84, 84)
+                .addGap(61, 61, 61)
                 .addComponent(perout)
-                .addContainerGap(102, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                    .addContainerGap(134, Short.MAX_VALUE)
+                    .addContainerGap(106, Short.MAX_VALUE)
                     .addComponent(subout)
                     .addGap(98, 98, 98)))
         );
@@ -288,23 +288,8 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
             while(res1T.next()){
                 Double attendence1 = res1T.getDouble("attendance");
                 
-                System.out.println(attendence1);
-            
-            
-                
-            //System.out.println("att1T");
-                
-//            String sql2="Select attendance from attendance_2023_ICT1113 where s_id='"+user+"' AND type='Practical'";
-//            System.out.println(sql2);
-//            ResultSet res1P = db.stm.executeQuery(sql2);
-//            
-//            while(res1P.next()){
-//                Double att1P = res1P.getDouble("attendenc");
-//                
-//                System.out.println("att1T");
-              // double check = (15.0/30.0)*100.0;
-               // System.out.println("Attendance is" +attendence1);
-                
+                System.out.println(attendence1);                     
+                          
                 Double att1Tfinal = ((attendence1/15.0)*100.0);
                 System.out.println("sub1T"+att1Tfinal);
                 String s1T = String.format("%.2f%%",att1Tfinal);
@@ -313,18 +298,6 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
             }
             }
             
-//            else if(subjectid.equals("ICT1113P")){
-//            String sub1P="Select attendance from attendance_2023_ICT1113 where s_id='"+user+"' AND type='Practical'";
-//            ResultSet res1P = db.stm.executeQuery(sub1P);
-//            while(res1P.next()){
-//                Double att1P = res1P.getDouble("attendance");
-//                
-//                Double att1Pfinal = ((att1P/15)*100);
-//                System.out.println("sub1T"+att1Pfinal);
-//                String s1P = String.format("%.2f%%",att1Pfinal);
-//                jLabel5.setText(s1P);
-//            }
-//            }
             else if(subjectid.equals("ICT1123")){
             String sub2 ="Select attendance from attendance_2023_ICT1123 where s_id='"+user+"' ";
             ResultSet res2 = db.stm.executeQuery(sub2);
@@ -332,60 +305,64 @@ public class lecturer_see_attendence extends javax.swing.JFrame {
                    Double att2 = res2.getDouble("attendance");
 
                    Double att2final = ((att2/15.0)*100.0);
-                   System.out.println("sub1T"+att2final);
+                   System.out.println(subjectid+att2final);
                    String s2 = String.format("%.2f%%",att2final);
-                   jLabel5.setText(s2);
+                   perout.setText(s2);
+                   subout.setText(subjectid);
                }
             }
-            else if(subjectid.equals("ICT1123T")){
-            String sub3T="Select attendance from attendance_2023_ICT113 where s_id='"+user+"' AND type='Theory'";
-            ResultSet res3T = db.stm.executeQuery(sub3T);
-                while(res3T.next()){
-                    Double att3T = res3T.getDouble("attendance");
+            else if(subjectid.equals("ICT1114")){
+            String sub3="Select attendance from attendance_2023_ENG1114 where s_id='"+user+"' +";
+            ResultSet res3 = db.stm.executeQuery(sub3);
+                while(res3.next()){
+                    Double att3 = res3.getDouble("attendance");
 
-                    Double att3Tfinal = ((att3T/15.0)*100.0);
-                    System.out.println("sub1T"+att3Tfinal);
-                    String s3T = String.format("%.2f%%",att3Tfinal);
-                    jLabel5.setText(s3T);
+                    Double att3final = ((att3/15.0)*100.0);
+                    System.out.println(subjectid+att3final);
+                    String s3 = String.format("%.2f%%",att3final);
+                    perout.setText(s3);
+                    subout.setText(subjectid);
                 }
             }
             
-            else if(subjectid.equals("ICT1123P")){
-            String sub3P="Select attendance from attendance_2023_ICT1133 where s_id='"+user+"' AND type='Practical'";
-            ResultSet res3P = db.stm.executeQuery(sub3P);
-                while(res3P.next()){
-                    Double att3P = res3P.getDouble("attendance");
+            else if(subjectid.equals("TMS1113")){
+            String sub4="Select attendance from attendance_2023_TMS1133 where s_id='"+user+"' ";
+            ResultSet res4 = db.stm.executeQuery(sub4);
+                while(res4.next()){
+                    Double att4 = res4.getDouble("attendance");
 
-                    Double att3Pfinal = ((att3P/15.0)*100.0);
-                    System.out.println("sub1T"+att3Pfinal);
-                    String s3P = String.format("%.2f%%",att3Pfinal);
-                    jLabel5.setText(s3P);
+                    Double att4final = ((att4/15.0)*100.0);
+                    System.out.println("sub1T"+att4final);
+                    String s4 = String.format("%.2f%%",att4final);
+                    perout.setText(s4);
+                    subout.setText(subjectid);
                 }
             }
             
-            else if(subjectid.equals("ICT1123T")){
-            String sub4T="Select attendance from attendance_2023_ICT143 where s_id='"+user+"' AND type='Theory'";
-            ResultSet res4T = db.stm.executeQuery(sub4T);
-                while(res4T.next()){
-                    Double att4T = res4T.getDouble("attendance");
+            else if(subjectid.equals("ICT1133")){
+            String sub5="Select attendance from attendance_2023_ICT143 where s_id='"+user+"' AND type='Theory'OR 'Practical'";
+            ResultSet res5 = db.stm.executeQuery(sub5);
+                while(res5.next()){
+                    Double att5 = res5.getDouble("attendance");
 
-                    Double att4Tfinal = ((att4T/15.0)*100.0);
-                    System.out.println("sub1T"+att4Tfinal);
-                    String s4T = String.format("%.2f%%",att4Tfinal);
-                    jLabel5.setText(s4T);
+                    Double att5final = ((att5/15.0)*100.0);
+                    System.out.println("sub1T"+att5final);
+                    String s5 = String.format("%.2f%%",att5final);
+                    perout.setText(s5);
+                    subout.setText(subjectid);
                 }
             }
             
-            else if(subjectid.equals("ICT1123P")){
-            String sub4P="Select attendance from attendance_2023_ICT1433 where s_id='"+user+"' AND type='Practical'";
-            ResultSet res4P = db.stm.executeQuery(sub4P);
-                while(res4P.next()){
-                    Double att4P = res4P.getDouble("attendance");
+            else if(subjectid.equals("ICT1143")){
+            String sub6="Select attendance from attendance_2023_ICT1433 where s_id='"+user+"' AND type='Practical'OR 'Theory'";
+            ResultSet res6 = db.stm.executeQuery(sub6);
+                while(res6.next()){
+                    Double att6 = res6.getDouble("attendance");
 
-                    Double att4Pfinal = ((att4P/15.0)*100.0);
-                    System.out.println("sub1T"+att4Pfinal);
-                    String s4P = String.format("%.2f%%",att4Pfinal);
-                    jLabel5.setText(s4P);
+                    Double att6final = ((att6/15.0)*100.0);
+                    System.out.println("sub1T"+att6final);
+                    String s6 = String.format("%.2f%%",att6final);
+                    jLabel5.setText(s6);
                 }
             }
             else {
