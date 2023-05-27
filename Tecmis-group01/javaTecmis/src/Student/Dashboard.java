@@ -4,6 +4,7 @@
  */
 package Student;
 
+import Auth.Auth;
 import Main.Welcome;
 
 /**
@@ -21,15 +22,11 @@ public class Dashboard extends javax.swing.JFrame {
 //    }
     
     String username;
-    public Dashboard(String username) {
+    public Dashboard() {
         //System.out.println("Dashboard" +username);
-        this.username = username;
+        Auth auth = Auth.getInstance();
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-    }
-
-    Dashboard() {
-        initComponents();
     }
 
     /**
@@ -442,13 +439,13 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_noticeBTNActionPerformed
 
     private void profileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBTNActionPerformed
-        UserProfile user = new UserProfile(this.username);
+        UserProfile user = new UserProfile();
         user.show();
         dispose();
     }//GEN-LAST:event_profileBTNActionPerformed
 
     private void medicalBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalBTNActionPerformed
-        Medical med = new Medical(this.username);
+        Medical med = new Medical();
         med.show();
         dispose();
     }//GEN-LAST:event_medicalBTNActionPerformed
@@ -460,7 +457,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_courseBTNActionPerformed
 
     private void attendanceBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_attendanceBTNActionPerformed
-        Attendance att = new Attendance(this.username);
+        Attendance att = new Attendance();
         att.show();
         dispose();
     }//GEN-LAST:event_attendanceBTNActionPerformed
@@ -472,7 +469,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_timetableBTNActionPerformed
 
     private void gpaBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpaBTNActionPerformed
-        GPA grade = new GPA(this.username);
+        GPA grade = new GPA();
         grade.show();
         dispose();
     }//GEN-LAST:event_gpaBTNActionPerformed

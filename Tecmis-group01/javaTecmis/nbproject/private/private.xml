@@ -3,9 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/F:/javaTecmis/Tecmis-group01/javaTecmis/src/Lecturer/lecturer_see_Marks_Grades.java</file>
             <file>file:/F:/javaTecmis/Tecmis-group01/javaTecmis/src/Lecturer/lecturer_see_GPA.java</file>
             <file>file:/F:/javaTecmis/Tecmis-group01/javaTecmis/src/Lecturer/lecturer_show_notices.java</file>
+=======
+            <file>file:/F:/javaTecmis/Tecmis-group01/javaTecmis/src/Lecturer/lecturer_see_eligibility.java</file>
+>>>>>>> cd2e5aec5a015ec814e5a0961f4e170c117b3ccc
         </group>
     </open-files>
 </project-private>

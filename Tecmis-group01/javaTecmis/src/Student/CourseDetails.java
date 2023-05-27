@@ -2,6 +2,7 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -24,6 +25,9 @@ public class CourseDetails extends javax.swing.JFrame {
         String uname = username;
         initComponents();
          
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+        
         DB db = new DB();
         db.getconnect();
         
@@ -56,7 +60,7 @@ public class CourseDetails extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }
@@ -224,7 +228,7 @@ public class CourseDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard cdDb = new Dashboard(username);
+        Dashboard cdDb = new Dashboard();
         cdDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked

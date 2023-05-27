@@ -9,7 +9,7 @@ package Auth;
  * @author USER
  */
 public class Auth {
-     private static Auth instance;
+    private static Auth instance;
     private String username;
 
     private Auth() {}
