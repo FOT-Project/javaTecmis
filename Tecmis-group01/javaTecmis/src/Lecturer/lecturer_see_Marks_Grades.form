@@ -477,7 +477,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Iskoola Pota" size="24" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Enter Course ID "/>
+            <Property name="text" type="java.lang.String" value="Enter Subject ID "/>
           </Properties>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel9">
