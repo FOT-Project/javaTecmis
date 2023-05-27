@@ -445,9 +445,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_profileBTNActionPerformed
 
     private void medicalBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_medicalBTNActionPerformed
-//        Medical med = new Medical(this.username);
-//        med.show();
-//        dispose();
+        Medical med = new Medical();
+        med.show();
+        dispose();
     }//GEN-LAST:event_medicalBTNActionPerformed
 
     private void courseBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_courseBTNActionPerformed
@@ -469,7 +469,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_timetableBTNActionPerformed
 
     private void gpaBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpaBTNActionPerformed
-        GPA grade = new GPA(this.username);
+        GPA grade = new GPA();
         grade.show();
         dispose();
     }//GEN-LAST:event_gpaBTNActionPerformed

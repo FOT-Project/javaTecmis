@@ -10,53 +10,56 @@ import DBConn.DB;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.table.DefaultTableModel;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 /**
  *
- * @author Hiru
+ * @author WW
  */
 public class Medical extends javax.swing.JFrame {
 
     /**
      * Creates new form Medical
      */
-//    String username;
-//    public Medical() {
-//        initComponents();
-//        setExtendedState(MAXIMIZED_BOTH);
-//
-//        Auth auth = Auth.getInstance();
-//        username = auth.getUsername();
-//        
-//        DB db = new DB();
-//        db.getconnect();
-//        
-//        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
-//         try {
-//            ResultSet rs = db.stm.executeQuery(sql);
-//            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
-//            model.setRowCount(0);
-//            
-//            while(rs.next()){
-//                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
-//            }
-//             
-//        } catch (SQLException e) {
-//            System.out.println(e);
-//           
-//            Failed_Alert failed = new Failed_Alert();
-//            failed.show();
-//            
-//            failed.addWindowListener(new WindowAdapter() {
-//            @Override
-//                
-//            public void windowClosed(WindowEvent e) {
-//                Dashboard db = new Dashboard(username);
-//                db.show();
-//                dispose();
-//            }
-//            });
-//        }
-//    }
+    String username;
+    public Medical() {
+        initComponents();
+        setExtendedState(MAXIMIZED_BOTH);
+
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
+         try {
+            ResultSet rs = db.stm.executeQuery(sql);
+            DefaultTableModel model = (DefaultTableModel) medTBL.getModel(); 
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
+            }
+             
+        } catch (SQLException e) {
+            System.out.println(e);
+           
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard();
+                db.show();
+                dispose();
+            }
+            });
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -68,27 +71,52 @@ public class Medical extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        backLBL = new javax.swing.JLabel();
-        medicalLBL = new javax.swing.JLabel();
-        outerFramePNL = new javax.swing.JPanel();
-<<<<<<< OURS
-        innerFramePNL = new javax.swing.JPanel();
-        subnameLBL = new javax.swing.JLabel();
-        subIDLBL = new javax.swing.JLabel();
-        subTypeLBL = new javax.swing.JLabel();
-        subidLBL = new javax.swing.JLabel();
-        subtypeLBL = new javax.swing.JLabel();
-        dateLBL = new javax.swing.JLabel();
-=======
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        medTable = new javax.swing.JTable();
->>>>>>> THEIRS
+        medTBL = new javax.swing.JTable();
+        backLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(1450, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setPreferredSize(new java.awt.Dimension(1350, 750));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1450, 850));
+
+        jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
+        jLabel1.setText("Medical");
+
+        medTBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Sub_ID", "Type", "Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        medTBL.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(medTBL);
+        if (medTBL.getColumnModel().getColumnCount() > 0) {
+            medTBL.getColumnModel().getColumn(0).setResizable(false);
+        }
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -98,162 +126,34 @@ public class Medical extends javax.swing.JFrame {
             }
         });
 
-        medicalLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
-        medicalLBL.setText("Medical");
-
-        outerFramePNL.setBackground(new java.awt.Color(245, 245, 245));
-        outerFramePNL.setPreferredSize(new java.awt.Dimension(600, 250));
-
-<<<<<<< OURS
-        innerFramePNL.setBackground(new java.awt.Color(255, 255, 255));
-=======
-        medTable.setFont(new java.awt.Font("Iskoola Pota", 0, 18)); // NOI18N
-        medTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Subject ID", "Subject Type", "Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
->>>>>>> THEIRS
-
-        subnameLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        subnameLBL.setText("Data Structures and Algorithms");
-
-<<<<<<< OURS
-        subIDLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        subIDLBL.setText("Subject Id");
-
-        subTypeLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        subTypeLBL.setText("Subject Type");
-
-        subidLBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        subidLBL.setText("ICT01");
-
-        subtypeLBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
-        subtypeLBL.setText("Theory");
-
-        javax.swing.GroupLayout innerFramePNLLayout = new javax.swing.GroupLayout(innerFramePNL);
-        innerFramePNL.setLayout(innerFramePNLLayout);
-        innerFramePNLLayout.setHorizontalGroup(
-            innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(subIDLBL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
-                .addComponent(subTypeLBL)
-                .addGap(140, 140, 140))
-            .addGroup(innerFramePNLLayout.createSequentialGroup()
-                .addGap(163, 163, 163)
-                .addComponent(subidLBL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(subtypeLBL)
-                .addGap(189, 189, 189))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(subnameLBL)
-                .addGap(210, 210, 210))
-        );
-        innerFramePNLLayout.setVerticalGroup(
-            innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(innerFramePNLLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(subnameLBL)
-                .addGap(27, 27, 27)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subIDLBL)
-                    .addComponent(subTypeLBL))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(subidLBL)
-                    .addComponent(subtypeLBL))
-                .addContainerGap(80, Short.MAX_VALUE))
-        );
-
-        dateLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        dateLBL.setText("February 8, 2023");
-=======
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        medTable.setRowHeight(50);
-        medTable.setSelectionBackground(new java.awt.Color(0, 102, 153));
-        medTable.getTableHeader().setResizingAllowed(false);
-        medTable.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(medTable);
->>>>>>> THEIRS
-
-        javax.swing.GroupLayout outerFramePNLLayout = new javax.swing.GroupLayout(outerFramePNL);
-        outerFramePNL.setLayout(outerFramePNLLayout);
-        outerFramePNLLayout.setHorizontalGroup(
-            outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-<<<<<<< OURS
-            .addGroup(outerFramePNLLayout.createSequentialGroup()
-                .addGroup(outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(outerFramePNLLayout.createSequentialGroup()
-                        .addGap(477, 477, 477)
-                        .addComponent(dateLBL))
-                    .addGroup(outerFramePNLLayout.createSequentialGroup()
-                        .addGap(180, 180, 180)
-                        .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(181, Short.MAX_VALUE))
-=======
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outerFramePNLLayout.createSequentialGroup()
-                .addContainerGap(180, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(123, 123, 123))
->>>>>>> THEIRS
-        );
-        outerFramePNLLayout.setVerticalGroup(
-            outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(outerFramePNLLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(dateLBL)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(backLBL)
-                .addGap(482, 482, 482)
-                .addComponent(medicalLBL)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(137, Short.MAX_VALUE)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, 1079, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(134, 134, 134))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(627, 627, 627)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(backLBL))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addComponent(medicalLBL)))
-                .addGap(65, 65, 65)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(265, Short.MAX_VALUE))
+                        .addGap(281, 281, 281)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(341, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(backLBL)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(208, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -261,9 +161,8 @@ public class Medical extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,8 +176,9 @@ public class Medical extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard medDb = new Dashboard();
-        medDb.show();
+        // TODO add your handling code here:
+        Dashboard gpaDb = new Dashboard();
+        gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
 
@@ -319,20 +219,9 @@ public class Medical extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
-    private javax.swing.JLabel dateLBL;
-    private javax.swing.JPanel innerFramePNL;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-<<<<<<< OURS
-=======
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable medTable;
->>>>>>> THEIRS
-    private javax.swing.JLabel medicalLBL;
-    private javax.swing.JPanel outerFramePNL;
-    private javax.swing.JLabel subIDLBL;
-    private javax.swing.JLabel subTypeLBL;
-    private javax.swing.JLabel subidLBL;
-    private javax.swing.JLabel subnameLBL;
-    private javax.swing.JLabel subtypeLBL;
+    private javax.swing.JTable medTBL;
     // End of variables declaration//GEN-END:variables
 }
