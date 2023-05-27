@@ -311,9 +311,9 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
         float Quiz1 = Float.parseFloat(jTextField2.getText());
         float Quiz2 = Float.parseFloat(jTextField3.getText());
         float Quiz3 = Float.parseFloat(jTextField4.getText());
-        //float Quiz4 = Float.parseFloat(jTextField5.getText());
-        //float Assign1 = Float.parseFloat(jTextField6.getText());
-        //float Assign2 = Float.parseFloat(jTextField7.getText());
+        float Quiz4 = Float.parseFloat(jTextField5.getText());
+        float Assign1 = Float.parseFloat(jTextField6.getText());
+        float Assign2 = Float.parseFloat(jTextField7.getText());
         float Mid = Float.parseFloat(jTextField8.getText());
         String stuid = txtstname.getText();
 //        
