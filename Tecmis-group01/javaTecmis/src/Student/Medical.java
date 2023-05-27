@@ -16,6 +16,40 @@ public class Medical extends javax.swing.JFrame {
     public Medical() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+<<<<<<< OURS
+=======
+        
+        DB db = new DB();
+        db.getconnect();
+        
+        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
+         try {
+            ResultSet rs = db.stm.executeQuery(sql);
+            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
+            model.setRowCount(0);
+            
+            while(rs.next()){
+                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
+            }
+             
+        } catch (SQLException e) {
+            System.out.println(e);
+           
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard(username);
+                db.show();
+                dispose();
+            }
+            });
+        }
+        
+>>>>>>> THEIRS
     }
 
     /**
@@ -31,6 +65,7 @@ public class Medical extends javax.swing.JFrame {
         backLBL = new javax.swing.JLabel();
         medicalLBL = new javax.swing.JLabel();
         outerFramePNL = new javax.swing.JPanel();
+<<<<<<< OURS
         innerFramePNL = new javax.swing.JPanel();
         subnameLBL = new javax.swing.JLabel();
         subIDLBL = new javax.swing.JLabel();
@@ -38,6 +73,10 @@ public class Medical extends javax.swing.JFrame {
         subidLBL = new javax.swing.JLabel();
         subtypeLBL = new javax.swing.JLabel();
         dateLBL = new javax.swing.JLabel();
+=======
+        jScrollPane1 = new javax.swing.JScrollPane();
+        medTable = new javax.swing.JTable();
+>>>>>>> THEIRS
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1450, 800));
@@ -59,11 +98,34 @@ public class Medical extends javax.swing.JFrame {
         outerFramePNL.setBackground(new java.awt.Color(245, 245, 245));
         outerFramePNL.setPreferredSize(new java.awt.Dimension(600, 250));
 
+<<<<<<< OURS
         innerFramePNL.setBackground(new java.awt.Color(255, 255, 255));
+=======
+        medTable.setFont(new java.awt.Font("Iskoola Pota", 0, 18)); // NOI18N
+        medTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Subject ID", "Subject Type", "Date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+>>>>>>> THEIRS
 
         subnameLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         subnameLBL.setText("Data Structures and Algorithms");
 
+<<<<<<< OURS
         subIDLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         subIDLBL.setText("Subject Id");
 
@@ -115,11 +177,23 @@ public class Medical extends javax.swing.JFrame {
 
         dateLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
         dateLBL.setText("February 8, 2023");
+=======
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        medTable.setRowHeight(50);
+        medTable.setSelectionBackground(new java.awt.Color(0, 102, 153));
+        medTable.getTableHeader().setResizingAllowed(false);
+        medTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(medTable);
+>>>>>>> THEIRS
 
         javax.swing.GroupLayout outerFramePNLLayout = new javax.swing.GroupLayout(outerFramePNL);
         outerFramePNL.setLayout(outerFramePNLLayout);
         outerFramePNLLayout.setHorizontalGroup(
             outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< OURS
             .addGroup(outerFramePNLLayout.createSequentialGroup()
                 .addGroup(outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(outerFramePNLLayout.createSequentialGroup()
@@ -129,6 +203,12 @@ public class Medical extends javax.swing.JFrame {
                         .addGap(180, 180, 180)
                         .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(181, Short.MAX_VALUE))
+=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outerFramePNLLayout.createSequentialGroup()
+                .addContainerGap(180, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123))
+>>>>>>> THEIRS
         );
         outerFramePNLLayout.setVerticalGroup(
             outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,6 +316,11 @@ public class Medical extends javax.swing.JFrame {
     private javax.swing.JLabel dateLBL;
     private javax.swing.JPanel innerFramePNL;
     private javax.swing.JPanel jPanel1;
+<<<<<<< OURS
+=======
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable medTable;
+>>>>>>> THEIRS
     private javax.swing.JLabel medicalLBL;
     private javax.swing.JPanel outerFramePNL;
     private javax.swing.JLabel subIDLBL;

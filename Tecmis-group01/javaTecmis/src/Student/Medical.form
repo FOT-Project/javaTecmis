@@ -126,6 +126,7 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< OURS
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
@@ -138,6 +139,12 @@
                           </Group>
                       </Group>
                       <EmptySpace pref="181" max="32767" attributes="0"/>
+=======
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace pref="180" max="32767" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="776" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="123" max="-2" attributes="0"/>
+>>>>>>> THEIRS
                   </Group>
               </Group>
             </DimensionLayout>
@@ -206,11 +213,16 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
+<<<<<<< OURS
                 <Component class="javax.swing.JLabel" name="subnameLBL">
+=======
+                <Component class="javax.swing.JTable" name="medTable">
+>>>>>>> THEIRS
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Iskoola Pota" size="20" style="1"/>
                     </Property>
+<<<<<<< OURS
                     <Property name="text" type="java.lang.String" value="Data Structures and Algorithms"/>
                   </Properties>
                 </Component>
@@ -218,7 +230,16 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Iskoola Pota" size="24" style="1"/>
+=======
+                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                      <Table columnCount="3" rowCount="5">
+                        <Column editable="false" title="Subject ID" type="java.lang.String"/>
+                        <Column editable="false" title="Subject Type" type="java.lang.String"/>
+                        <Column editable="false" title="Date" type="java.lang.Object"/>
+                      </Table>
+>>>>>>> THEIRS
                     </Property>
+<<<<<<< OURS
                     <Property name="text" type="java.lang.String" value="Subject Id"/>
                   </Properties>
                 </Component>
@@ -226,6 +247,21 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Iskoola Pota" size="24" style="1"/>
+=======
+                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                      <TableColumnModel selectionModel="0">
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                          <Title/>
+                          <Editor/>
+                          <Renderer/>
+                        </Column>
+                      </TableColumnModel>
+>>>>>>> THEIRS
                     </Property>
                     <Property name="text" type="java.lang.String" value="Subject Type"/>
                   </Properties>
