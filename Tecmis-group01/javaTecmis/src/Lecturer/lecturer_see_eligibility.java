@@ -56,7 +56,6 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
         finalout.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        finalout.setText("Eligible ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -90,6 +89,7 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
             }
         });
 
+        subid.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
         subid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subidActionPerformed(evt);
@@ -169,7 +169,7 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -207,7 +207,7 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
         System.out.println(user);
 
         String subjectid = subid.getText();
-
+        System.out.println(subjectid);
         try {
 
             if(subjectid.equals("ICT1113")){
@@ -220,20 +220,7 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
                 while(res1T.next()){
                     Double attendence1 = res1T.getDouble("attendance");
 
-                    System.out.println(attendence1);
-
-                    //System.out.println("att1T");
-
-                    //            String sql2="Select attendance from attendance_2023_ICT1113 where s_id='"+user+"' AND type='Practical'";
-                    //            System.out.println(sql2);
-                    //            ResultSet res1P = db.stm.executeQuery(sql2);
-                    //
-                    //            while(res1P.next()){
-                        //                Double att1P = res1P.getDouble("attendenc");
-                        //
-                        //                System.out.println("att1T");
-                        // double check = (15.0/30.0)*100.0;
-                        // System.out.println("Attendance is" +attendence1);
+                    System.out.println(attendence1);                   
 
                         Double att1Tfinal = ((attendence1/15.0)*100.0);
                         System.out.println("sub1T"+att1Tfinal);
@@ -242,88 +229,104 @@ public class lecturer_see_eligibility extends javax.swing.JFrame {
                         }
                         else{
                             finalout.setText("NOT ELIGIBLE");
-                        }
-                 
-                            
-                        
-                        //String s1T = String.format("%.2f%%",att1Tfinal);
-                        
-                       
+                        }                                                                          
+                                              
                     }
                 }
-
-                //            else if(subjectid.equals("ICT1113P")){
-                    //            String sub1P="Select attendance from attendance_2023_ICT1113 where s_id='"+user+"' AND type='Practical'";
-                    //            ResultSet res1P = db.stm.executeQuery(sub1P);
-                    //            while(res1P.next()){
-                        //                Double att1P = res1P.getDouble("attendance");
-                        //
-                        //                Double att1Pfinal = ((att1P/15)*100);
-                        //                System.out.println("sub1T"+att1Pfinal);
-                        //                String s1P = String.format("%.2f%%",att1Pfinal);
-                        //                jLabel5.setText(s1P);
-                        //            }
-                    //            }
+              
                 else if(subjectid.equals("ICT1123")){
                     String sub2 ="Select attendance from attendance_2023_ICT1123 where s_id='"+user+"' ";
                     ResultSet res2 = db.stm.executeQuery(sub2);
+                    double attendence2=0;
+                    
                     while(res2.next()){
                         Double att2 = res2.getDouble("attendance");
 
                         Double att2final = ((att2/15.0)*100.0);
                         System.out.println("sub1T"+att2final);
                         String s2 = String.format("%.2f%%",att2final);
-                       // jLabel5.setText(s2);
+                        if (att2final>80.0){
+                            finalout.setText("ELIGIBLE");
+                        }
+                        else{
+                            finalout.setText("NOT ELIGIBLE");
+                        }
+                       
                     }
                 }
-                else if(subjectid.equals("ICT1123T")){
-                    String sub3T="Select attendance from attendance_2023_ICT113 where s_id='"+user+"' AND type='Theory'";
-                    ResultSet res3T = db.stm.executeQuery(sub3T);
-                    while(res3T.next()){
-                        Double att3T = res3T.getDouble("attendance");
+                else if(subjectid.equals("ICT1133")){
+                    String sub3="Select attendance from attendance_2023_ICT1133 where s_id='"+user+"' AND type='Theory'OR 'Practical'";
+                    ResultSet res3 = db.stm.executeQuery(sub3);
+                    while(res3.next()){
+                        Double att3 = res3.getDouble("attendance");
 
-                        Double att3Tfinal = ((att3T/15.0)*100.0);
-                        System.out.println("sub1T"+att3Tfinal);
-                        String s3T = String.format("%.2f%%",att3Tfinal);
-                        //jLabel5.setText(s3T);
+                        Double att3final = ((att3/15.0)*100.0);
+                        System.out.println("sub1T"+att3final);
+                        if (att3final>80.0){
+                            finalout.setText("ELIGIBLE");
+                        }
+                        else{
+                            finalout.setText("NOT ELIGIBLE");
+                        }                                           
                     }
                 }
 
-                else if(subjectid.equals("ICT1123P")){
-                    String sub3P="Select attendance from attendance_2023_ICT1133 where s_id='"+user+"' AND type='Practical'";
-                    ResultSet res3P = db.stm.executeQuery(sub3P);
-                    while(res3P.next()){
-                        Double att3P = res3P.getDouble("attendance");
+                else if(subjectid.equals("ICT1143")){
+                    String sub4="Select attendance from attendance_2023_ICT1143 where s_id='"+user+"' AND type='Practical' OR 'Theory'";
+                    ResultSet res4 = db.stm.executeQuery(sub4);
+                    while(res4.next()){
+                        Double att4 = res4.getDouble("attendance");
 
-                        Double att3Pfinal = ((att3P/15.0)*100.0);
-                        System.out.println("sub1T"+att3Pfinal);
-                        String s3P = String.format("%.2f%%",att3Pfinal);
+                        Double att4final = ((att4/15.0)*100.0);
+                        System.out.println("sub1T"+att4final);
+                        if (att4final>80.0){
+                            finalout.setText("ELIGIBLE");
+                        }
+                        else{
+                            finalout.setText("NOT ELIGIBLE");
+                        }    
+                        
+                        //String s4 = String.format("%.2f%%",att4final);
                         //jLabel5.setText(s3P);
                     }
                 }
 
-                else if(subjectid.equals("ICT1123T")){
-                    String sub4T="Select attendance from attendance_2023_ICT143 where s_id='"+user+"' AND type='Theory'";
-                    ResultSet res4T = db.stm.executeQuery(sub4T);
-                    while(res4T.next()){
-                        Double att4T = res4T.getDouble("attendance");
+                else if(subjectid.equals("ENG1114")){
+                    String sub5="Select attendance from attendance_2023_ENG1114 where s_id='"+user+"'";
+                    ResultSet res5 = db.stm.executeQuery(sub5);
+                    double atte5=0;
+                    
+                    while(res5.next()){
+                        Double att5 = res5.getDouble("attendance");
 
-                        Double att4Tfinal = ((att4T/15.0)*100.0);
-                        System.out.println("sub1T"+att4Tfinal);
-                        String s4T = String.format("%.2f%%",att4Tfinal);
+                        Double att5final = ((att5/15.0)*100.0);
+                        System.out.println("sub1T"+att5final);
+                        String s5 = String.format("%.2f%%",att5final);
+                        if (att5final>80.0){
+                            finalout.setText("ELIGIBLE");
+                        }
+                        else{
+                            finalout.setText("NOT ELIGIBLE");
+                        }    
                         //jLabel5.setText(s4T);
                     }
                 }
 
-                else if(subjectid.equals("ICT1123P")){
-                    String sub4P="Select attendance from attendance_2023_ICT1433 where s_id='"+user+"' AND type='Practical'";
-                    ResultSet res4P = db.stm.executeQuery(sub4P);
-                    while(res4P.next()){
-                        Double att4P = res4P.getDouble("attendance");
+                else if(subjectid.equals("TMS1113")){
+                    String sub6="Select attendance from attendance_2023_TMS1113 where s_id='"+user+"'";
+                    ResultSet res6 = db.stm.executeQuery(sub6);
+                    while(res6.next()){
+                        Double att6 = res6.getDouble("attendance");
 
-                        Double att4Pfinal = ((att4P/15.0)*100.0);
-                        System.out.println("sub1T"+att4Pfinal);
-                        String s4P = String.format("%.2f%%",att4Pfinal);
+                        Double att6final = ((att6/15.0)*100.0);
+                        System.out.println("sub1T"+att6final);
+                        String s6 = String.format("%.2f%%",att6final);
+                        if (att6final>80.0){
+                            finalout.setText("ELIGIBLE");
+                        }
+                        else{
+                            finalout.setText("NOT ELIGIBLE");
+                        }    
                         //jLabel5.setText(s4P);
                     }
                 }
