@@ -18,6 +18,7 @@ import java.sql.SQLException;
  */
 public class Medical extends javax.swing.JFrame {
 
+    
     /**
      * Creates new form Medical
      */
