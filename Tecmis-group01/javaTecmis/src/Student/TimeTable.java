@@ -29,11 +29,13 @@ public class TimeTable extends javax.swing.JFrame {
 //    public TimeTable() {
 //        
 //    }
-    private String username;
+String username;
+    
     TimeTable(String username){
-        this.username = username;
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+
+        
     }
 
     /**
@@ -167,7 +169,7 @@ public class TimeTable extends javax.swing.JFrame {
                 done.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
-                    Dashboard db = new Dashboard(username);
+                    Dashboard db = new Dashboard();
                     db.show();
                     dispose();
                 }
@@ -184,7 +186,7 @@ public class TimeTable extends javax.swing.JFrame {
             @Override
             
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }
@@ -199,7 +201,7 @@ public class TimeTable extends javax.swing.JFrame {
             @Override
             
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }
@@ -214,7 +216,7 @@ public class TimeTable extends javax.swing.JFrame {
             @Override
             
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }

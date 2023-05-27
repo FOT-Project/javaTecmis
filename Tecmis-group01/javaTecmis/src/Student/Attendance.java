@@ -5,6 +5,7 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -21,11 +22,13 @@ public class Attendance extends javax.swing.JFrame {
      */
     
     private String username;
-     Attendance(String username) {
-        this.username = username;
+     Attendance() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);   
-  
+        setExtendedState(MAXIMIZED_BOTH); 
+        
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+        
         DB db = new DB();
         db.getconnect();
  
@@ -144,11 +147,12 @@ public class Attendance extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }
             });
+            
          }
          
         

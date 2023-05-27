@@ -5,65 +5,58 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
-import java.awt.PopupMenu;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Hiru
  */
 public class Medical extends javax.swing.JFrame {
-    private String username;
-    private ResultSet resultSet;
-    private JTable table;
-    private PopupMenu ScrollPane;
+
     /**
      * Creates new form Medical
      */
-    public Medical() {
-    }
-
-    Medical(String username) {
-        initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-        
-        DB db = new DB();
-        db.getconnect();
-        
-        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
-         try {
-            ResultSet rs = db.stm.executeQuery(sql);
-            DefaultTableModel model = (DefaultTableModel) medTBL.getModel(); 
-            model.setRowCount(0);
-            
-            while(rs.next()){
-                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
-            }
-             
-        } catch (SQLException e) {
-            System.out.println(e);
-           
-            Failed_Alert failed = new Failed_Alert();
-            failed.show();
-            
-            failed.addWindowListener(new WindowAdapter() {
-            @Override
-                
-            public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
-                db.show();
-                dispose();
-            }
-            });
-        }
-        
-    }
+//    String username;
+//    public Medical() {
+//        initComponents();
+//        setExtendedState(MAXIMIZED_BOTH);
+//
+//        Auth auth = Auth.getInstance();
+//        username = auth.getUsername();
+//        
+//        DB db = new DB();
+//        db.getconnect();
+//        
+//        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
+//         try {
+//            ResultSet rs = db.stm.executeQuery(sql);
+//            DefaultTableModel model = (DefaultTableModel) medTable.getModel(); 
+//            model.setRowCount(0);
+//            
+//            while(rs.next()){
+//                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
+//            }
+//             
+//        } catch (SQLException e) {
+//            System.out.println(e);
+//           
+//            Failed_Alert failed = new Failed_Alert();
+//            failed.show();
+//            
+//            failed.addWindowListener(new WindowAdapter() {
+//            @Override
+//                
+//            public void windowClosed(WindowEvent e) {
+//                Dashboard db = new Dashboard(username);
+//                db.show();
+//                dispose();
+//            }
+//            });
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -78,10 +71,21 @@ public class Medical extends javax.swing.JFrame {
         backLBL = new javax.swing.JLabel();
         medicalLBL = new javax.swing.JLabel();
         outerFramePNL = new javax.swing.JPanel();
+<<<<<<< OURS
+        innerFramePNL = new javax.swing.JPanel();
+        subnameLBL = new javax.swing.JLabel();
+        subIDLBL = new javax.swing.JLabel();
+        subTypeLBL = new javax.swing.JLabel();
+        subidLBL = new javax.swing.JLabel();
+        subtypeLBL = new javax.swing.JLabel();
+        dateLBL = new javax.swing.JLabel();
+=======
         jScrollPane1 = new javax.swing.JScrollPane();
-        medTBL = new javax.swing.JTable();
+        medTable = new javax.swing.JTable();
+>>>>>>> THEIRS
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(1450, 800));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1350, 750));
@@ -100,14 +104,12 @@ public class Medical extends javax.swing.JFrame {
         outerFramePNL.setBackground(new java.awt.Color(245, 245, 245));
         outerFramePNL.setPreferredSize(new java.awt.Dimension(600, 250));
 
-        medTBL.setFont(new java.awt.Font("Iskoola Pota", 0, 18)); // NOI18N
-        medTBL.setModel(new javax.swing.table.DefaultTableModel(
+<<<<<<< OURS
+        innerFramePNL.setBackground(new java.awt.Color(255, 255, 255));
+=======
+        medTable.setFont(new java.awt.Font("Iskoola Pota", 0, 18)); // NOI18N
+        medTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null},
@@ -115,49 +117,113 @@ public class Medical extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Sub_ID", "Type", "Date"
+                "Subject ID", "Subject Type", "Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false, false
             };
+>>>>>>> THEIRS
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
+        subnameLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        subnameLBL.setText("Data Structures and Algorithms");
 
+<<<<<<< OURS
+        subIDLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        subIDLBL.setText("Subject Id");
+
+        subTypeLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
+        subTypeLBL.setText("Subject Type");
+
+        subidLBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        subidLBL.setText("ICT01");
+
+        subtypeLBL.setFont(new java.awt.Font("Iskoola Pota", 0, 24)); // NOI18N
+        subtypeLBL.setText("Theory");
+
+        javax.swing.GroupLayout innerFramePNLLayout = new javax.swing.GroupLayout(innerFramePNL);
+        innerFramePNL.setLayout(innerFramePNLLayout);
+        innerFramePNLLayout.setHorizontalGroup(
+            innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
+                .addGap(142, 142, 142)
+                .addComponent(subIDLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                .addComponent(subTypeLBL)
+                .addGap(140, 140, 140))
+            .addGroup(innerFramePNLLayout.createSequentialGroup()
+                .addGap(163, 163, 163)
+                .addComponent(subidLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(subtypeLBL)
+                .addGap(189, 189, 189))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, innerFramePNLLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(subnameLBL)
+                .addGap(210, 210, 210))
+        );
+        innerFramePNLLayout.setVerticalGroup(
+            innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(innerFramePNLLayout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(subnameLBL)
+                .addGap(27, 27, 27)
+                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subIDLBL)
+                    .addComponent(subTypeLBL))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(innerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subidLBL)
+                    .addComponent(subtypeLBL))
+                .addContainerGap(80, Short.MAX_VALUE))
+        );
+
+        dateLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        dateLBL.setText("February 8, 2023");
+=======
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        medTBL.setRowHeight(50);
-        medTBL.setSelectionBackground(new java.awt.Color(0, 102, 153));
-        medTBL.getTableHeader().setResizingAllowed(false);
-        medTBL.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(medTBL);
-        if (medTBL.getColumnModel().getColumnCount() > 0) {
-            medTBL.getColumnModel().getColumn(0).setResizable(false);
-            medTBL.getColumnModel().getColumn(2).setResizable(false);
-        }
+        medTable.setRowHeight(50);
+        medTable.setSelectionBackground(new java.awt.Color(0, 102, 153));
+        medTable.getTableHeader().setResizingAllowed(false);
+        medTable.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(medTable);
+>>>>>>> THEIRS
 
         javax.swing.GroupLayout outerFramePNLLayout = new javax.swing.GroupLayout(outerFramePNL);
         outerFramePNL.setLayout(outerFramePNLLayout);
         outerFramePNLLayout.setHorizontalGroup(
             outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< OURS
+            .addGroup(outerFramePNLLayout.createSequentialGroup()
+                .addGroup(outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(outerFramePNLLayout.createSequentialGroup()
+                        .addGap(477, 477, 477)
+                        .addComponent(dateLBL))
+                    .addGroup(outerFramePNLLayout.createSequentialGroup()
+                        .addGap(180, 180, 180)
+                        .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(181, Short.MAX_VALUE))
+=======
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, outerFramePNLLayout.createSequentialGroup()
-                .addContainerGap(44, Short.MAX_VALUE)
+                .addContainerGap(180, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addGap(123, 123, 123))
+>>>>>>> THEIRS
         );
         outerFramePNLLayout.setVerticalGroup(
             outerFramePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(outerFramePNLLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(dateLBL)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(innerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -169,10 +235,10 @@ public class Medical extends javax.swing.JFrame {
                 .addComponent(backLBL)
                 .addGap(482, 482, 482)
                 .addComponent(medicalLBL)
-                .addContainerGap(587, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, 899, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(137, Short.MAX_VALUE)
+                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, 1079, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(134, 134, 134))
         );
         jPanel1Layout.setVerticalGroup(
@@ -186,8 +252,8 @@ public class Medical extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addComponent(medicalLBL)))
                 .addGap(65, 65, 65)
-                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(66, Short.MAX_VALUE))
+                .addComponent(outerFramePNL, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(265, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,7 +270,7 @@ public class Medical extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -216,38 +282,57 @@ public class Medical extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
 
-    
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Medical().setVisible(true);
+            }
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
+    private javax.swing.JLabel dateLBL;
+    private javax.swing.JPanel innerFramePNL;
     private javax.swing.JPanel jPanel1;
+<<<<<<< OURS
+=======
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable medTBL;
+    private javax.swing.JTable medTable;
+>>>>>>> THEIRS
     private javax.swing.JLabel medicalLBL;
     private javax.swing.JPanel outerFramePNL;
+    private javax.swing.JLabel subIDLBL;
+    private javax.swing.JLabel subTypeLBL;
+    private javax.swing.JLabel subidLBL;
+    private javax.swing.JLabel subnameLBL;
+    private javax.swing.JLabel subtypeLBL;
     // End of variables declaration//GEN-END:variables
 }
