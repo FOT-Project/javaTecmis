@@ -317,7 +317,8 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
         
         try {
             if(subjectid.equals("ENG1114")){
-                String sql = " Insert into ca_2023_ENG1114(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                String sql = " Insert into ca_2023_ENG1114(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+                String sql = " Insert into ca_2023_ENG1114(s_id,q1,q2,q3,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Mid+"')";
                 System.out.println(sql);
                 db.stm.executeUpdate(sql);
                     Done_Alert done = new Done_Alert();
@@ -333,7 +334,8 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
             
             }
             else if(subjectid.equals("ICT1113")){
-                 String sql = " Insert into ca_2023_ICT1113(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 String sql = " Insert into ca_2023_ICT1113(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+                 String sql = " Insert into ca_2023_ICT1113(s_id,q1,q2,q3,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Mid+"')";
                  System.out.println(sql);
                 db.stm.executeUpdate(sql);
                     Done_Alert done = new Done_Alert();
@@ -364,7 +366,8 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                 done.show();
             }
             else if(subjectid.equals("ICT1133")){
-                 String sql = " Insert in to ca_2023_ICT1133(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 String sql = " Insert into ca_2023_ICT1133(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+                 String sql = " Insert in to ca_2023_ICT1133(s_id,q1,q2,q3,ass1,ass2) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Assign1+"','"+Assign2+"')";
                  System.out.println(sql);
                 db.stm.executeUpdate(sql);
                     Done_Alert done = new Done_Alert();
@@ -379,7 +382,8 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                 done.show();
             }
             else if(subjectid.equals("ICT1143")){
-                 String sql = " Insert into ca_2023_ICT1143(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 String sql = " Insert into ca_2023_ICT1143(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+                 String sql = " Insert in to ca_2023_ICT1143(s_id,q1,q2,q3,ass1,ass2) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Assign1+"','"+Assign2+"')";
                  System.out.println(sql);
                 db.stm.executeUpdate(sql);
                     Done_Alert done = new Done_Alert();
@@ -394,7 +398,8 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                 done.show();
             }
             else if(subjectid.equals("TMS1113")){
-                 String sql = " Insert into ca_2023_TMS1113(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 String sql = " Insert into ca_2023_ICT1113(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+                 String sql = " Insert into ca_2023_TMS1113(s_id,q1,q2,q3,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Mid+"')";
                 System.out.println(sql);
                 db.stm.executeUpdate(sql);
                     Done_Alert done = new Done_Alert();
