@@ -20,8 +20,8 @@ public class Attendance extends javax.swing.JFrame {
     /**
      * Creates new form Attendance
      */
-    
     private String username;
+    
      Attendance() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); 
@@ -33,21 +33,24 @@ public class Attendance extends javax.swing.JFrame {
         db.getconnect();
  
         try {
-            
             String sub1T = "SELECT attendance FROM attendance_2023_ICT1113 WHERE s_id = '"+username+"' AND type = 'Theory'";
             ResultSet res1T = db.stm.executeQuery(sub1T);
+            
             int attendance1T = 0;
+            
             if (res1T.next()) {
-            attendance1T = res1T.getInt("attendanc");
+                attendance1T = res1T.getInt("attendance");
             }
             System.out.println(attendance1T);
             
             String sub1P = "SELECT attendance FROM attendance_2023_ICT1113 WHERE s_id = '"+username+"' AND type = 'Practical'";
             ResultSet res1P = db.stm.executeQuery(sub1P);
+            
             int attendance1P = 0;
+            
             if (res1P.next()) {
-            attendance1P = res1P.getInt("attendance");
-}
+                attendance1P = res1P.getInt("attendance");
+            }
             System.out.println(attendance1P);
 
                Double sumAtt1 = (double)attendance1T + (double)attendance1P;
@@ -59,6 +62,7 @@ public class Attendance extends javax.swing.JFrame {
         
             String sub2 = "SELECT attendance FROM attendance_2023_ICT1123 WHERE s_id = '"+username+"'";
             ResultSet res2 = db.stm.executeQuery(sub2);
+            
             while(res2.next()){
                 Double att2 = res2.getDouble("attendance");
               //  System.out.println(att2);
@@ -73,17 +77,20 @@ public class Attendance extends javax.swing.JFrame {
             String sub3T = "SELECT attendance FROM attendance_2023_ICT1133 WHERE s_id = '"+username+"' AND type = 'Theory'";
             ResultSet res3T = db.stm.executeQuery(sub3T);
             int attendance3T = 0;
+            
             if (res3T.next()) {
-            attendance3T = res3T.getInt("attendance");
+                attendance3T = res3T.getInt("attendance");
             }
             System.out.println(attendance3T);
             
             String sub3P = "SELECT attendance FROM attendance_2023_ICT1133 WHERE s_id = '"+username+"' AND type = 'Practical'";
             ResultSet res3P = db.stm.executeQuery(sub3P);
+            
             int attendance3P = 0;
+            
             if (res3P.next()) {
-            attendance3P = res3P.getInt("attendance");
-}
+                attendance3P = res3P.getInt("attendance");
+            }
             System.out.println(attendance3P);
 
                Double sumAtt3 = (double)attendance3T + (double)attendance3P;
@@ -95,18 +102,22 @@ public class Attendance extends javax.swing.JFrame {
               
             String sub4T = "SELECT attendance FROM attendance_2023_ICT1143 WHERE s_id = '"+username+"' AND type = 'Theory'";
             ResultSet res4T = db.stm.executeQuery(sub4T);
+            
             int attendance4T = 0;
+            
             if (res4T.next()) {
-            attendance4T = res4T.getInt("attendance");
+                attendance4T = res4T.getInt("attendance");
             }
             System.out.println(attendance4T);
             
             String sub4P = "SELECT attendance FROM attendance_2023_ICT1143 WHERE s_id = '"+username+"' AND type = 'Practical'";
             ResultSet res4P = db.stm.executeQuery(sub4P);
+            
             int attendance4P = 0;
+            
             if (res4P.next()) {
-            attendance4P = res4P.getInt("attendance");
-}
+                attendance4P = res4P.getInt("attendance");
+            }
             System.out.println(attendance4P);
 
                Double sumAtt4 = (double)attendance4T + (double)attendance4P;
@@ -118,6 +129,7 @@ public class Attendance extends javax.swing.JFrame {
                
             String sub5 = "SELECT attendance FROM attendance_2023_TMS1113 WHERE s_id = '"+username+"'";
             ResultSet res5 = db.stm.executeQuery(sub5);
+            
             while(res5.next()){
                 Double att5 = res5.getDouble("attendance");
             //    System.out.println(att5);
@@ -128,8 +140,10 @@ public class Attendance extends javax.swing.JFrame {
                 s5LBL.setText(s5);
             }
             
+            
             String sub6 = "SELECT attendance FROM attendance_2023_ENG1114 WHERE s_id = '"+username+"'";
             ResultSet res6 = db.stm.executeQuery(sub6);
+            
             while(res6.next()){
                 Double att6 = res6.getDouble("attendance");
              //   System.out.println(att6);
@@ -139,7 +153,9 @@ public class Attendance extends javax.swing.JFrame {
                 String s6 =  String.format("%.2f%%",att6final);
                 s6LBL.setText(s6);
             }
+            
          } catch(SQLException ex){
+             System.out.println(ex);
              Failed_Alert failed = new Failed_Alert();
             failed.show();
             
@@ -152,10 +168,7 @@ public class Attendance extends javax.swing.JFrame {
                 dispose();
             }
             });
-            
-         }
-         
-        
+         }   
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -453,6 +466,7 @@ public class Attendance extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+               new Attendance().setVisible(true);
             }
         });
     }

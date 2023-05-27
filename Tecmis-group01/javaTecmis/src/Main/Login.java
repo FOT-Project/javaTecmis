@@ -5,6 +5,7 @@
 package Main;
 
 import Admin.Admin_Dashboard;
+import Alerts.Failed_Alert;
 import Auth.Auth;
 import Lecturer.lecturer_Dashboard;
 import Student.Dashboard;
