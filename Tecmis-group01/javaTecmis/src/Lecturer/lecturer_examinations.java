@@ -175,10 +175,13 @@ public class lecturer_examinations extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        StudentInstance studentusername = StudentInstance.getInstance();
-        String username = studentusername.getUsername();
-        GPA grade = new GPA();
-        grade.show();
+//        StudentInstance studentusername = StudentInstance.getInstance();
+//        String username = studentusername.getUsername();
+//        GPA grade = new GPA();
+//        grade.show();
+
+            lecturer_see_GPA seegpa = new lecturer_see_GPA();
+            seegpa.show();
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
