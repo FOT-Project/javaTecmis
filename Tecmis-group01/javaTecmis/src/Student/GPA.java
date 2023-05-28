@@ -9,6 +9,11 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 /**
  *
@@ -41,37 +46,11 @@ public class GPA extends javax.swing.JFrame {
         double sub5gpv = cal.fifthSub();
         double sub6gpv = cal.sixthSub();
         
-        double finalGpa = (sub1gpv + sub2gpv + sub3gpv + sub4gpv + sub5gpv + sub6gpv)/6;
+        double finalGpa = ((sub1gpv*3) + (sub2gpv*3) + (sub3gpv*3) + (sub4gpv*3) + (sub5gpv*4) + (sub6gpv*3))/19;
+        DecimalFormat df = new DecimalFormat("0.00");
+        gpaValueLBL.setText(df.format(finalGpa));
         
-        gpaValueLBL.setText(""+finalGpa);
-        
-        String grade;
-        if (finalGpa >= 4.0) {
-            grade =  "A+";
-        } else if (finalGpa >= 3.7) {
-            grade = "A";
-        } else if (finalGpa >= 3.3) {
-            grade = "A-";
-        } else if (finalGpa >= 3.0) {
-            grade = "B+";
-        } else if (finalGpa >= 2.7) {
-            grade = "B";
-        } else if (finalGpa >= 2.3) {
-            grade = "B-";
-        } else if (finalGpa >= 2.0) {
-            grade = "C+";
-        } else if (finalGpa >= 1.7) {
-            grade = "C";
-        } else if (finalGpa >= 1.3) {
-            grade = "C-";
-        } else if (finalGpa >= 1.0) {
-            grade = "D";
-        } else {
-            grade = "F";
-        }
-        classLBL.setText(grade);
-        
-        
+    
         String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
         //System.out.println(mysql);
         try {
@@ -135,12 +114,10 @@ public class GPA extends javax.swing.JFrame {
         depLBL = new javax.swing.JLabel();
         courseLBL = new javax.swing.JLabel();
         gpaValLBL = new javax.swing.JLabel();
-        clsLBL = new javax.swing.JLabel();
         IDLBL = new javax.swing.JLabel();
         departmentLBL = new javax.swing.JLabel();
         cNameLBL = new javax.swing.JLabel();
         gpaValueLBL = new javax.swing.JLabel();
-        classLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -178,10 +155,6 @@ public class GPA extends javax.swing.JFrame {
         gpaValLBL.setForeground(new java.awt.Color(153, 153, 153));
         gpaValLBL.setText("GPA Value");
 
-        clsLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        clsLBL.setForeground(new java.awt.Color(153, 153, 153));
-        clsLBL.setText("Class");
-
         IDLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
         IDLBL.setPreferredSize(new java.awt.Dimension(200, 25));
 
@@ -194,9 +167,6 @@ public class GPA extends javax.swing.JFrame {
         gpaValueLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
         gpaValueLBL.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        classLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        classLBL.setPreferredSize(new java.awt.Dimension(200, 25));
-
         javax.swing.GroupLayout framePNLLayout = new javax.swing.GroupLayout(framePNL);
         framePNL.setLayout(framePNLLayout);
         framePNLLayout.setHorizontalGroup(
@@ -207,15 +177,13 @@ public class GPA extends javax.swing.JFrame {
                     .addComponent(stuIdLBL)
                     .addComponent(depLBL)
                     .addComponent(courseLBL)
-                    .addComponent(gpaValLBL)
-                    .addComponent(clsLBL))
+                    .addComponent(gpaValLBL))
                 .addGap(66, 66, 66)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(IDLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                     .addComponent(departmentLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(cNameLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gpaValueLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(classLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(gpaValueLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(107, Short.MAX_VALUE))
         );
         framePNLLayout.setVerticalGroup(
@@ -238,11 +206,7 @@ public class GPA extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(gpaValLBL))
                     .addComponent(gpaValueLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clsLBL)
-                    .addComponent(classLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -347,8 +311,6 @@ public class GPA extends javax.swing.JFrame {
     private javax.swing.JLabel IDLBL;
     private javax.swing.JLabel backLBL;
     private javax.swing.JLabel cNameLBL;
-    private javax.swing.JLabel classLBL;
-    private javax.swing.JLabel clsLBL;
     private javax.swing.JLabel courseLBL;
     private javax.swing.JLabel depLBL;
     private javax.swing.JLabel departmentLBL;
