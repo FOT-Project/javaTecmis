@@ -7,6 +7,7 @@ package Lecturer;
 import DBConn.DB;
 import javax.swing.JFrame;
 import Main.Welcome;
+import Student.Notice;
 
 /**
  *
@@ -281,8 +282,8 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        lecturer_notice Notice= new lecturer_notice();
-        Notice.setVisible(true);
+        Notice notice= new Notice();
+        notice.setVisible(true);
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
