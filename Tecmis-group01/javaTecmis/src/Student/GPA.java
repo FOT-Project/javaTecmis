@@ -2,84 +2,79 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
-import calculateGPA.CalGPA;
+import calculateGPA.CalGPA;;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 /**
  *
  * @author Hiru
  */
 public class GPA extends javax.swing.JFrame {
-    private String username;
+    String username;
     
-    public GPA(String username) {
-        this.username = username;
+//    String sub1gpv;
+    
+    public GPA() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-               
-        sidTxtLBL.setText(username);
         
-        CalGPA newcal = new CalGPA();
-        double sub1gpv = newcal.firstSub();
-        double sub2gpv = newcal.secondSub();
-        double sub3gpv = newcal.thirdSub();
-        double sub4gpv = newcal.fourthSub();
-        double sub5gpv = newcal.fifthSub();
-        double sub6gpv = newcal.sixthSub();
-        
-        double finalGPA = (sub1gpv + sub2gpv+ sub3gpv + sub4gpv + sub5gpv + sub6gpv)/6;
-        gpaTxtLBL.setText(String.valueOf(finalGPA));
-        
-        String grade;
-        if (finalGPA >= 4.0){
-            grade = "A+";
-        }else if (finalGPA >= 3.7){
-            grade = "A";
-        }else if (finalGPA >= 3.3){
-            grade = "A-";
-        }else if (finalGPA >= 3.0){
-            grade = "B+";
-        }else if (finalGPA >= 2.7){
-            grade = "B";
-        }else if (finalGPA >= 2.3){
-            grade = "B-";
-        }else if (finalGPA >= 2.0){
-            grade = "C+";
-        }else if (finalGPA >= 1.7){
-            grade = "C";
-        }else if (finalGPA >= 1.3){
-            grade = "C-";
-        }else if (finalGPA >= 1.0){
-            grade = "D";
-        }else{
-            grade = "F";
-        }
-        
-        classTxtLBL.setText(grade);
+       Auth auth = Auth.getInstance();
+      username = auth.getUsername();
+//        username = "TG/2020/002";
         
         DB db = new DB();
         db.getconnect();
         
+        IDLBL.setText(username);
+        
+        CalGPA cal = new CalGPA();
+        
+        double sub1gpv = cal.firstSub(); 
+        double sub2gpv = cal.secondSub();
+        double sub3gpv = cal.thirdSub();
+        double sub4gpv = cal.fourthSub();
+        double sub5gpv = cal.fifthSub();
+        double sub6gpv = cal.sixthSub();
+        
+        double finalGpa = ((sub1gpv*3) + (sub2gpv*3) + (sub3gpv*3) + (sub4gpv*3) + (sub5gpv*4) + (sub6gpv*3))/19;
+        DecimalFormat df = new DecimalFormat("0.00");
+        gpaValueLBL.setText(df.format(finalGpa));
+        
+    
         String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+username+"'";
         //System.out.println(mysql);
         try {
+
            ResultSet res = db.stm.executeQuery(mysql);
            
             if(res.next()){            
                 String depname = res.getString("dep_name");
                 String cname = res.getString("c_name");
+                //String class = res.getString();
+               
+                departmentLBL.setText(depname);
+                cNameLBL.setText(cname);
                 
-                depidtxtLBL.setText(depname);
-                cnameTxtLBL.setText(cname);
+              
+//              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
+       
+//                classTxtLBL.setText();
+             
 
             }else{
                Failed_Alert failed = new Failed_Alert();
                failed.show();
             }
-            
             
         } catch (SQLException e) {
            System.out.println(e);
@@ -91,13 +86,16 @@ public class GPA extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard(username);
+                Dashboard db = new Dashboard();
                 db.show();
                 dispose();
             }
             });
         }
     }
+
+   
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -116,12 +114,10 @@ public class GPA extends javax.swing.JFrame {
         depLBL = new javax.swing.JLabel();
         courseLBL = new javax.swing.JLabel();
         gpaValLBL = new javax.swing.JLabel();
-        clsLBL = new javax.swing.JLabel();
-        sidTxtLBL = new javax.swing.JLabel();
-        depidtxtLBL = new javax.swing.JLabel();
-        cnameTxtLBL = new javax.swing.JLabel();
-        gpaTxtLBL = new javax.swing.JLabel();
-        classTxtLBL = new javax.swing.JLabel();
+        IDLBL = new javax.swing.JLabel();
+        departmentLBL = new javax.swing.JLabel();
+        cNameLBL = new javax.swing.JLabel();
+        gpaValueLBL = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -159,34 +155,17 @@ public class GPA extends javax.swing.JFrame {
         gpaValLBL.setForeground(new java.awt.Color(153, 153, 153));
         gpaValLBL.setText("GPA Value");
 
-        clsLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        clsLBL.setForeground(new java.awt.Color(153, 153, 153));
-        clsLBL.setText("Class");
+        IDLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        IDLBL.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        sidTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
-        sidTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        sidTxtLBL.setOpaque(true);
-        sidTxtLBL.setPreferredSize(new java.awt.Dimension(200, 25));
+        departmentLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        departmentLBL.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        depidtxtLBL.setBackground(new java.awt.Color(255, 255, 255));
-        depidtxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        depidtxtLBL.setOpaque(true);
-        depidtxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+        cNameLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        cNameLBL.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        cnameTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
-        cnameTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        cnameTxtLBL.setOpaque(true);
-        cnameTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
-
-        gpaTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
-        gpaTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        gpaTxtLBL.setOpaque(true);
-        gpaTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
-
-        classTxtLBL.setBackground(new java.awt.Color(255, 255, 255));
-        classTxtLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
-        classTxtLBL.setOpaque(true);
-        classTxtLBL.setPreferredSize(new java.awt.Dimension(53, 25));
+        gpaValueLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
+        gpaValueLBL.setPreferredSize(new java.awt.Dimension(200, 25));
 
         javax.swing.GroupLayout framePNLLayout = new javax.swing.GroupLayout(framePNL);
         framePNL.setLayout(framePNLLayout);
@@ -198,41 +177,36 @@ public class GPA extends javax.swing.JFrame {
                     .addComponent(stuIdLBL)
                     .addComponent(depLBL)
                     .addComponent(courseLBL)
-                    .addComponent(gpaValLBL)
-                    .addComponent(clsLBL))
+                    .addComponent(gpaValLBL))
                 .addGap(66, 66, 66)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(sidTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                    .addComponent(depidtxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cnameTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(gpaTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(classTxtLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(107, 107, 107))
+                    .addComponent(IDLBL, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
+                    .addComponent(departmentLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cNameLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(gpaValueLBL, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
         framePNLLayout.setVerticalGroup(
             framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(framePNLLayout.createSequentialGroup()
                 .addGap(49, 49, 49)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(stuIdLBL)
-                    .addComponent(sidTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(depLBL)
-                    .addComponent(depidtxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(courseLBL)
-                    .addComponent(cnameTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(gpaValLBL)
-                    .addComponent(gpaTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(clsLBL)
-                    .addComponent(classTxtLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(51, Short.MAX_VALUE))
+                    .addGroup(framePNLLayout.createSequentialGroup()
+                        .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(IDLBL, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stuIdLBL))
+                        .addGap(18, 18, 18)
+                        .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(depLBL)
+                            .addComponent(departmentLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(framePNLLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(courseLBL)
+                            .addComponent(cNameLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(gpaValLBL))
+                    .addComponent(gpaValueLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -253,7 +227,7 @@ public class GPA extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(284, 284, 284)
                         .addComponent(framePNL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(245, Short.MAX_VALUE))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -293,7 +267,7 @@ public class GPA extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard gpaDb = new Dashboard(username);
+        Dashboard gpaDb = new Dashboard();
         gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -334,20 +308,18 @@ public class GPA extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel IDLBL;
     private javax.swing.JLabel backLBL;
-    private javax.swing.JLabel classTxtLBL;
-    private javax.swing.JLabel clsLBL;
-    private javax.swing.JLabel cnameTxtLBL;
+    private javax.swing.JLabel cNameLBL;
     private javax.swing.JLabel courseLBL;
     private javax.swing.JLabel depLBL;
-    private javax.swing.JLabel depidtxtLBL;
+    private javax.swing.JLabel departmentLBL;
     private javax.swing.JPanel framePNL;
     private javax.swing.JLabel gpaIconLBL;
     private javax.swing.JLabel gpaLBL;
-    private javax.swing.JLabel gpaTxtLBL;
     private javax.swing.JLabel gpaValLBL;
+    private javax.swing.JLabel gpaValueLBL;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel sidTxtLBL;
     private javax.swing.JLabel stuIdLBL;
     // End of variables declaration//GEN-END:variables
 }

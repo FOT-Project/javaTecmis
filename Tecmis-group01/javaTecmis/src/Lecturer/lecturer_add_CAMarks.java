@@ -58,7 +58,7 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jTextField8 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txtstname = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -146,10 +146,10 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(153, 153, 153));
         jLabel11.setText("Refill Student ID ");
 
-        jTextField9.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtstname.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        txtstname.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtstnameActionPerformed(evt);
             }
         });
 
@@ -185,7 +185,7 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                                     .addComponent(jTextField6)
                                     .addComponent(jTextField7)
                                     .addComponent(jTextField8, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
-                                    .addComponent(jTextField9)))
+                                    .addComponent(txtstname)))
                             .addComponent(jLabel3))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -199,7 +199,7 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtstname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -230,7 +230,7 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(jButton1)
-                .addGap(41, 41, 41))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
@@ -284,6 +284,7 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
@@ -303,6 +304,9 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        DB db=new DB();
+        db.getconnect();
+        
         String subjectid = jTextField1.getText();
         float Quiz1 = Float.parseFloat(jTextField2.getText());
         float Quiz2 = Float.parseFloat(jTextField3.getText());
@@ -311,11 +315,19 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
         float Assign1 = Float.parseFloat(jTextField6.getText());
         float Assign2 = Float.parseFloat(jTextField7.getText());
         float Mid = Float.parseFloat(jTextField8.getText());
-        String stuid = jTextField9.getText();
-        DB db=new DB();
-        db.getconnect();
+        String stuid = txtstname.getText();
+//        
+        
+        System.out.println(subjectid);
+        System.out.println(Quiz1);
+        System.out.println(Quiz2);
+        System.out.println(Quiz3);
+        System.out.println(Mid);
+        
+        
         
         try {
+
             if(subjectid.equals("ENG1114")){
 //                String sql = " Insert into ca_2023_ENG1114(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
                 String sql = " Insert into ca_2023_ENG1114(s_id,q1,q2,q3,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Mid+"')";
@@ -413,6 +425,67 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
                     });
                 done.show();
             }
+//            else if(subjectid.equals("ICT1123")){
+//                 String sql = " Insert into ca_2023_ICT1123(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 
+//                 System.out.println(sql);
+//                db.stm.executeUpdate(sql);
+//                    Done_Alert done = new Done_Alert();
+//                done.addWindowListener(new WindowAdapter() {
+//                        @Override
+//                        public void windowClosed(WindowEvent e) {
+//                        lecturer_add_CAMarks CAmark = new  lecturer_add_CAMarks();
+//                        CAmark.show();
+//                        dispose();
+//                        }
+//                    });
+//                done.show();
+//            }
+//            else if(subjectid.equals("ICT1133")){
+//                 String sql = " Insert in to ca_2023_ICT1133(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 System.out.println(sql);
+//                db.stm.executeUpdate(sql);
+//                    Done_Alert done = new Done_Alert();
+//                done.addWindowListener(new WindowAdapter() {
+//                        @Override
+//                        public void windowClosed(WindowEvent e) {
+//                        lecturer_add_CAMarks CAmark = new  lecturer_add_CAMarks();
+//                        CAmark.show();
+//                        dispose();
+//                        }
+//                    });
+//                done.show();
+//            }
+//            else if(subjectid.equals("ICT1143")){
+//                 String sql = " Insert into ca_2023_ICT1143(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                 System.out.println(sql);
+//                db.stm.executeUpdate(sql);
+//                    Done_Alert done = new Done_Alert();
+//                done.addWindowListener(new WindowAdapter() {
+//                        @Override
+//                        public void windowClosed(WindowEvent e) {
+//                        lecturer_add_CAMarks CAmark = new  lecturer_add_CAMarks();
+//                        CAmark.show();
+//                        dispose();
+//                        }
+//                    });
+//                done.show();
+//            }
+//            else if(subjectid.equals("TMS1113")){
+//                 String sql = " Insert into ca_2023_TMS1113(s_id,q1,q2,q3,q4,ass1,ass2,mid) values ('"+stuid+"','"+Quiz1+"','"+Quiz2+"','"+Quiz3+"','"+Quiz4+"','"+Assign1+"','"+Assign2+"','"+Mid+"')";
+//                System.out.println(sql);
+//                db.stm.executeUpdate(sql);
+//                    Done_Alert done = new Done_Alert();
+//                done.addWindowListener(new WindowAdapter() {
+//                        @Override
+//                        public void windowClosed(WindowEvent e) {
+//                        lecturer_add_CAMarks CAmark = new  lecturer_add_CAMarks();
+//                        CAmark.show();
+//                        dispose();
+//                        }
+//                    });
+//                done.show();
+//            }
             
             else {
                 Failed_Alert alert= new Failed_Alert();
@@ -425,9 +498,9 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtstnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtstnameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtstnameActionPerformed
 
     /**
      * @param args the command line arguments
@@ -487,6 +560,6 @@ public class lecturer_add_CAMarks extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField txtstname;
     // End of variables declaration//GEN-END:variables
 }

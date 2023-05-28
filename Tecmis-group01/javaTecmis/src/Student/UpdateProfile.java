@@ -22,14 +22,10 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Hiru
  */
 public class UpdateProfile extends javax.swing.JFrame {
-   // private String username;
     
     public UpdateProfile(String username) {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); 
-        
-    //    this.username = username;
-
     }
 
     /**
@@ -60,7 +56,6 @@ public class UpdateProfile extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1450, 850));
-        getContentPane().setLayout(new java.awt.BorderLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(13350, 750));
