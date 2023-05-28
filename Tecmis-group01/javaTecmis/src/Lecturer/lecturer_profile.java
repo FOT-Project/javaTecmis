@@ -403,6 +403,7 @@ public class lecturer_profile extends javax.swing.JFrame {
         // TODO add your handling code here:
         lecturer_update_profile Updatepro = new lecturer_update_profile();
         Updatepro.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
