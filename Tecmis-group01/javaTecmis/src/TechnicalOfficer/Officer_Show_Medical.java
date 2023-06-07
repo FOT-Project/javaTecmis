@@ -64,10 +64,6 @@ public class Officer_Show_Medical extends javax.swing.JFrame {
     /**
      * Creates new form Officer_Show_Medical
      */
-//    public Officer_Show_Medical() {
-//        initComponents();
-//        setExtendedState(MAXIMIZED_BOTH);
-//    }
 
     /**
      * This method is called from within the constructor to initialize the form.

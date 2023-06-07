@@ -18,17 +18,10 @@ public class Officer_User_Profile extends javax.swing.JFrame {
     /**
      * Creates new form Officer_User_Profile
      */
-//    public Officer_User_Profile() {
-//        initComponents();
-//        setExtendedState(MAXIMIZED_BOTH);
-//    }
 
     String username;
     
     Officer_User_Profile(String username) {
-   
-        //Officer_Update_Profile UpdateProfile = new Officer_Update_Profile(username);
-        //UpdateProfile.show();
         
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
@@ -55,14 +48,12 @@ public class Officer_User_Profile extends javax.swing.JFrame {
                 String Gender = result.getString("gender");
                 String Address = result.getString("address");
             
-                //UserId.setText(username);
                 name.setText(Name);
                 email.setText(Email);
                 phoneNo.setText(PhoneNo);
                 gender.setText(Gender);
                 address.setText(Address);
-                
-                //System.out.println("Name = "+Name+"Email = "+Email+"PhoneNo = "+PhoneNo+"Gender = "+Gender+"Address = "+Address);
+               
                 
             }
         } catch (SQLException ex) {
@@ -405,37 +396,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(Officer_User_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(Officer_User_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(Officer_User_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(Officer_User_Profile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new Officer_User_Profile().setVisible(true);
-//            }
-//        });
-//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel UserId;

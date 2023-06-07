@@ -4,12 +4,6 @@
  */
 package TechnicalOfficer;
 
-import Alerts.Done_Alert;
-import Alerts.Failed_Alert;
-import DBConn.DB;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import javax.swing.JFileChooser;
 
 /**
  *

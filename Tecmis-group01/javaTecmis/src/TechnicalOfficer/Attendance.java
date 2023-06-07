@@ -18,10 +18,6 @@ public class Attendance extends javax.swing.JFrame {
     /**
      * Creates new form Attendance
      */
-//    public Attendance() {
-//        initComponents();
-//        setExtendedState(MAXIMIZED_BOTH);
-//    }
     
     String StudentId;
     String SubjectId;

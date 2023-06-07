@@ -299,8 +299,6 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         DB db = new DB();
         db.getconnect();
         
-        //String uname = username;   //String IDNumber = IdNum.getText();
-        
         String Name = name.getText();
         String Email = email.getText();
         String Address = address.getText();
@@ -318,15 +316,7 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
             
             Done_Alert done = new Done_Alert();
             done.show();
-//            done.addWindowListener(new WindowAdapter(){
-//                @Override
-//                public void windowClosed(WindowEvent e) {
-//                    Officer_User_Profile UserProfile = new  Officer_User_Profile(username);
-//                    UserProfile.show();
-//                    dispose();
-//                }
-//            });
-
+            
             name.setText("");
             email.setText("");
             address.setText("");

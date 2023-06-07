@@ -240,7 +240,6 @@ public class Officer_Find_Timetable extends javax.swing.JFrame {
             }
 
         } catch (Exception e) {
-            //System.out.println(e.getMessage());
             Failed_Alert failed = new Failed_Alert();
             failed.show();
         }  
