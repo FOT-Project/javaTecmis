@@ -52,6 +52,10 @@ String username;
         timetableLBL = new javax.swing.JLabel();
         downloadBTN = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        cIdTXT = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        lvlTXT = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(1450, 850));
@@ -83,6 +87,21 @@ String username;
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add-course.jpg"))); // NOI18N
 
+        jLabel2.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jLabel2.setText("Course ID");
+
+        cIdTXT.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
+        cIdTXT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cIdTXTActionPerformed(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
+        jLabel3.setText("Level");
+
+        lvlTXT.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -94,9 +113,14 @@ String username;
                 .addComponent(timetableLBL)
                 .addGap(494, 494, 494))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addComponent(downloadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
+                .addGap(72, 72, 72)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(downloadBTN, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel3)
+                    .addComponent(cIdTXT)
+                    .addComponent(lvlTXT))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(176, 176, 176))
         );
@@ -110,14 +134,23 @@ String username;
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(timetableLBL)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(237, 237, 237)
-                        .addComponent(downloadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(jLabel1)))
-                .addContainerGap(180, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addContainerGap(180, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(169, 169, 169)
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cIdTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lvlTXT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(downloadBTN, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(202, 202, 202))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -150,11 +183,16 @@ String username;
             DB db = new DB();
             db.getconnect();
           
-            String sql = "SELECT U.user_id, U.c_id, U.level, T.c_id, T.level, T.tt_pdf FROM (users U inner join timetable T on U.c_id = T.c_id AND U.level = T.level)  WHERE U.user_id = '"+username+"'";
+            String courseId = cIdTXT.getText();
+            String level = lvlTXT.getText();
+        
+            String sql = "SELECT tt_pdf FROM tecmis.timetable where c_id = '" + courseId + "' and level = '" + level + "';";
         
             ResultSet result = db.stm.executeQuery(sql);
             
             if(result.next()){
+                cIdTXT.setText("");
+                lvlTXT.setText("");
             
                 Blob pdfBlob = (Blob) result.getBlob("tt_pdf");
                 byte[] pdfBytes = pdfBlob.getBytes(1, (int) pdfBlob.length());
@@ -162,7 +200,7 @@ String username;
                 outputStream.write(pdfBytes);
                 outputStream.close();
                 System.out.println("PDF file downloaded successfully.");
-                
+                                
                 Done_Alert done = new Done_Alert();
                 done.show();
             
@@ -224,6 +262,10 @@ String username;
         }
     }//GEN-LAST:event_downloadBTNActionPerformed
 
+    private void cIdTXTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cIdTXTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cIdTXTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,9 +303,13 @@ String username;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
+    private javax.swing.JTextField cIdTXT;
     private javax.swing.JButton downloadBTN;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField lvlTXT;
     private javax.swing.JLabel timetableLBL;
     // End of variables declaration//GEN-END:variables
 }
