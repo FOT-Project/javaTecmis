@@ -231,16 +231,17 @@ public class UpdateProfile extends javax.swing.JFrame {
        
        try {
            String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"' AND email = '"+mail+"'";
-       
+            System.out.println(sql);
             db.stm.executeUpdate(sql);
+           
             Done_Alert done = new Done_Alert();
             done.show();
-             
+            
             idNoTXT.setText("");
             emailTXT.setText("");
             newperMailTXT.setText("");
             newPhoneTXT.setText("");
-            
+              
             done.addWindowListener(new WindowAdapter() {
                 @Override
                 public void windowClosed(WindowEvent e) {
