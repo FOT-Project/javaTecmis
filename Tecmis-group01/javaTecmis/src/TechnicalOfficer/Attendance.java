@@ -152,10 +152,13 @@ public class Attendance extends javax.swing.JFrame {
             }
             
         }catch(SQLException ex){
+                        System.out.println(ex);
+
             Failed_Alert failed = new Failed_Alert();
             failed.show();
             
-            System.out.println(ex);
+            
+                
         }
     }
 
@@ -273,6 +276,7 @@ public class Attendance extends javax.swing.JFrame {
         );
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
