@@ -1,13 +1,18 @@
 
 package Student;
 
+import Alerts.Done_Alert;
+import Alerts.Failed_Alert;
 import DBConn.DB;
 import java.awt.HeadlessException;
 import java.awt.Image;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -17,13 +22,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Hiru
  */
 public class UpdateProfile extends javax.swing.JFrame {
-
-    private String username;
-    /**
-     * Creates new form UpdateProfile
-     */
-   
-    public UpdateProfile() {
+    
+    public UpdateProfile(String username) {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH); 
     }
@@ -68,13 +68,12 @@ public class UpdateProfile extends javax.swing.JFrame {
             }
         });
 
-
         updateProLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
         updateProLBL.setText("Update Profile");
 
         idNoLBL.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         idNoLBL.setForeground(new java.awt.Color(153, 153, 153));
-        idNoLBL.setText("ID Number");
+        idNoLBL.setText("Student ID Number");
 
         idNoTXT.setFont(new java.awt.Font("Iskoola Pota", 1, 16)); // NOI18N
         idNoTXT.setPreferredSize(new java.awt.Dimension(71, 25));
@@ -205,7 +204,7 @@ public class UpdateProfile extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        UserProfile up = new UserProfile(username);
+        Dashboard up = new Dashboard();
         up.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -219,7 +218,10 @@ public class UpdateProfile extends javax.swing.JFrame {
         String mail;
         String newperMail;
         int newPhone;
-        byte[] img;
+
+        
+//        file = img.getSelectedFile();
+//        FileInputStream propic = new FileInputStream(file);
        
        id = idNoTXT.getText();
        mail = emailTXT.getText();
@@ -228,26 +230,46 @@ public class UpdateProfile extends javax.swing.JFrame {
  
        
        try {
-           String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"'";
+           String sql = "UPDATE users SET per_email = '"+newperMail+"', phone_no = '"+newPhone+"' WHERE user_id = '"+id+"' AND email = '"+mail+"'";
        
             db.stm.executeUpdate(sql);
-           
-            JOptionPane.showMessageDialog(null, "User Profile Updated Succesfully...!");
-            UserProfile upl = new UserProfile(username);
-            upl.show();
-            dispose();
+            Done_Alert done = new Done_Alert();
+            done.show();
+             
+            idNoTXT.setText("");
+            emailTXT.setText("");
+            newperMailTXT.setText("");
+            newPhoneTXT.setText("");
+            
+            done.addWindowListener(new WindowAdapter() {
+                @Override
+                public void windowClosed(WindowEvent e) {
+                    Dashboard upl = new Dashboard();
+                    upl.show();
+                    dispose();
+                    
+//                   UserProfile db = new serProfile(username);
+//                    db.show();
+//                    dispose();
+                }
+            }); 
        }
-        catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(null, e); 
+        catch (HeadlessException | SQLException e) {
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard();
+                db.show();
+                dispose();
+            }
+            });
+            
             System.out.println(e);
-       } catch (SQLException ex) {
-            Logger.getLogger(UpdateProfile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         idNoTXT.setText("");
-         emailTXT.setText("");
-         newperMailTXT.setText("");
-         newPhoneTXT.setText("");
-         
+         }
     }//GEN-LAST:event_updateProBTNActionPerformed
 
     private void imgBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_imgBTNActionPerformed
@@ -262,43 +284,62 @@ public class UpdateProfile extends javax.swing.JFrame {
             File selectedFile = fileChooser.getSelectedFile();
             String path = selectedFile.getAbsolutePath();
             imgLBL.setIcon(ResizeImage(path));
+            
+            try{
+                File image = new File(path);
+                FileInputStream input = new FileInputStream(image);
+                ByteArrayOutputStream output = new ByteArrayOutputStream();
+                byte[] btimg = new byte[65535];
+                    for(int readNum; (readNum = input.read(btimg)) != 1;)
+                    {
+                        output.write(btimg, 0, readNum);
+                    }
+                byte[] propic = output.toByteArray();
+
+            }catch(IOException ex){
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(null,ex);
+            }
         }
+        
+       
     }//GEN-LAST:event_imgBTNActionPerformed
+
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UpdateProfile().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(UpdateProfile.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new UpdateProfile().setVisible(true);
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backLBL;
@@ -325,5 +366,5 @@ public class UpdateProfile extends javax.swing.JFrame {
         Image newImage = img.getScaledInstance(imgLBL.getWidth(), imgLBL.getHeight(),Image.SCALE_SMOOTH);
         ImageIcon image = new ImageIcon(newImage);
         return image;
-    }
+    }    
 }

@@ -2,28 +2,32 @@
 package Student;
 
 import Alerts.Failed_Alert;
+import Auth.Auth;
 import DBConn.DB;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 /**
  *
  * @author Hiru
  */
 public class CourseDetails extends javax.swing.JFrame {
 
-    private String username;
+  private String username;
   
     public CourseDetails() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
-        
-       // conn = DBconn.connect();
+        setExtendedState(MAXIMIZED_BOTH);      
     }
+
     public CourseDetails(String username) {
         String uname = username;
         initComponents();
          
+        Auth auth = Auth.getInstance();
+        username = auth.getUsername();
+        
         DB db = new DB();
         db.getconnect();
         
@@ -48,11 +52,22 @@ public class CourseDetails extends javax.swing.JFrame {
             }
         }
         catch (SQLException ex) {
-           JOptionPane.showMessageDialog(null, ex); 
+            System.out.println(ex);
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard();
+                db.show();
+                dispose();
+            }
+            });
         }
         
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -213,7 +228,7 @@ public class CourseDetails extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
-        Dashboard cdDb = new Dashboard(username);
+        Dashboard cdDb = new Dashboard();
         cdDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked

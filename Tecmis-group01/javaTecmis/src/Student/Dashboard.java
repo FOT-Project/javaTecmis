@@ -4,6 +4,7 @@
  */
 package Student;
 
+import Auth.Auth;
 import Main.Welcome;
 
 /**
@@ -21,15 +22,11 @@ public class Dashboard extends javax.swing.JFrame {
 //    }
     
     String username;
-    public Dashboard(String username) {
+    public Dashboard() {
         //System.out.println("Dashboard" +username);
-        this.username = username;
+        Auth auth = Auth.getInstance();
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-    }
-
-    Dashboard() {
-        initComponents();
     }
 
     /**
@@ -442,7 +439,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_noticeBTNActionPerformed
 
     private void profileBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_profileBTNActionPerformed
-        UserProfile user = new UserProfile(this.username);
+        UserProfile user = new UserProfile();
         user.show();
         dispose();
     }//GEN-LAST:event_profileBTNActionPerformed
@@ -466,13 +463,13 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_attendanceBTNActionPerformed
 
     private void timetableBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_timetableBTNActionPerformed
-       TimeTable tt = new TimeTable();
+       TimeTable tt = new TimeTable(this.username);
        tt.show();
        dispose();
     }//GEN-LAST:event_timetableBTNActionPerformed
 
     private void gpaBTNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpaBTNActionPerformed
-        GPA grade = new GPA(this.username);
+        GPA grade = new GPA();
         grade.show();
         dispose();
     }//GEN-LAST:event_gpaBTNActionPerformed

@@ -6,6 +6,7 @@ package Lecturer;
 
 import Alerts.Failed_Alert;
 import Auth.Auth;
+import Auth.StudentInstance;
 import DBConn.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -24,12 +25,8 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
     public lecturer_see_Marks_Grades() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
+
     }
-        
-        
-        
-        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -50,17 +47,14 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         stuidlbl = new javax.swing.JLabel();
         deptname = new javax.swing.JPanel();
         deptlbl = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         courselbl = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
+        lblca = new javax.swing.JPanel();
         calbl = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        gradelbl = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -93,7 +87,7 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
         jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
-        jLabel1.setText("Marks & Grades");
+        jLabel1.setText("CA Marks");
 
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
@@ -106,10 +100,6 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("CA Marks");
-
-        jLabel6.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setText("Grade");
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -173,45 +163,24 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        lblca.setBackground(new java.awt.Color(255, 255, 255));
 
         calbl.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        javax.swing.GroupLayout lblcaLayout = new javax.swing.GroupLayout(lblca);
+        lblca.setLayout(lblcaLayout);
+        lblcaLayout.setHorizontalGroup(
+            lblcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblcaLayout.createSequentialGroup()
                 .addGap(12, 12, 12)
                 .addComponent(calbl, javax.swing.GroupLayout.PREFERRED_SIZE, 506, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(433, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        lblcaLayout.setVerticalGroup(
+            lblcaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblcaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(calbl)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jPanel7.setBackground(new java.awt.Color(255, 255, 255));
-
-        gradelbl.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(gradelbl, javax.swing.GroupLayout.PREFERRED_SIZE, 518, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(421, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(gradelbl)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -229,16 +198,13 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(jLabel5))
                         .addComponent(jLabel16))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(22, 22, 22)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(deptname, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -264,12 +230,8 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(69, 69, 69))
+                    .addComponent(lblca, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(104, 104, 104))
         );
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
@@ -283,7 +245,7 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Prize.png"))); // NOI18N
 
         jLabel2.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
-        jLabel2.setText("Enter Course ID ");
+        jLabel2.setText("Enter Subject ID ");
 
         jPanel9.setBackground(new java.awt.Color(217, 217, 217));
         jPanel9.setForeground(new java.awt.Color(217, 217, 217));
@@ -405,52 +367,430 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        String courseid = cid.getText();
-        
+        String subid = cid.getText();
+        double finals1ca;
+
         DB db = new DB();
         db.getconnect();
-                                
-        Auth auth = Auth.getInstance();
-        String user = auth.getUsername();
-        System.out.println(user);
-        
-        
-        
-        String mysql = "select department.dep_name, course.c_name from (users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where course.c_id = '"+courseid+"' ";
-         //String mysql = "SELECT department.dep_id, course.c_id FROM department INNER JOIN Course c ON d.dept_id = c.dept_id INNER JOIN User u ON u.user_id = :user_id WHERE users.user_id = '"user"'";
 
-        
+        StudentInstance studentusername = StudentInstance.getInstance();
+        String stuusername = studentusername.getUsername();
+
+        System.out.println(stuusername);
+
+        //String mysql = "select department.dep_name, course.c_name from (users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where course.c_id = '"+subid+"' ";
+        //String mysql = "SELECT department.dep_id, course.c_id FROM department INNER JOIN Course c ON d.dept_id = c.dept_id INNER JOIN User u ON u.user_id = :user_id WHERE users.user_id = '"user"'";
+        System.out.println(subid);
         try {
-            ResultSet res = db.stm.executeQuery(mysql);
-             if(res.next()){            
-                String depname = res.getString("dep_name");
-                String cname = res.getString("c_name");
-                float ca = res.getFloat("");
-                String grade = res.getString("");
-                //String class = res.getString();
-                
-                
-                stuidlbl.setText(user);
-                deptlbl.setText(depname);
-                courselbl.setText(cname);
-                 System.out.println(depname);
-                calbl.setText(String.valueOf(ca)) ;
-                //gradelbl.setText();     
-                //classTxtLBL.setText();
-             
-                
-                }else{
-               Failed_Alert failed = new Failed_Alert();
-               failed.show();
-            }
 
+            if (subid.equals("ICT1113")) {
+
+                String sub1 = "SELECT ca_2023_ICT1113.q1, ca_2023_ICT1113.q2, ca_2023_ICT1113.q3, ca_2023_ICT1113.mid, users.dep_id, course.c_name FROM ca_2023_ICT1113 JOIN users ON ca_2023_ICT1113.s_id = users.user_id JOIN course ON users.c_id = course.c_id WHERE ca_2023_ICT1113.s_id = '" + stuusername + "'";
+
+                ResultSet res1 = db.stm.executeQuery(sub1);
+
+                if (res1.next()) {
+                    int s1q1 = res1.getInt("q1");
+                    int s1q2 = res1.getInt("q2");
+                    int s1q3 = res1.getInt("q3");
+                    int s1mid = res1.getInt("mid");
+                    String dep = res1.getString("dep_id");
+                    String cname = res1.getString("c_name");
+
+                    int max1, max2;
+
+                    if (s1q1 >= s1q2 && s1q1 >= s1q3) {
+                        max1 = s1q1;
+                        if (s1q2 >= s1q3) {
+                            max2 = s1q2;
+                        } else {
+                            max2 = s1q3;
+                        }
+                    } else if (s1q2 >= s1q1 && s1q2 >= s1q3) {
+                        max1 = s1q2;
+                        if (s1q1 >= s1q3) {
+                            max2 = s1q1;
+                        } else {
+                            max2 = s1q3;
+                        }
+                    } else {
+                        max1 = s1q3;
+                        if (s1q1 >= s1q2) {
+                            max2 = s1q1;
+                        } else {
+                            max2 = s1q2;
+                        }
+                    }
+                    System.out.println("The two maximum values are: " + max1 + " and " + max2);
+
+                    double finalQuizRes1 = ((double) max1 + max2) / 2.0 * 0.1;
+                    double finalMidRes1 = (double) s1mid * 0.2;
+                    finals1ca = (double) finalQuizRes1 + finalMidRes1;
+
+                    stuidlbl.setText(stuusername);
+                    calbl.setText(Double.toString(finals1ca));
+                    deptlbl.setText(dep);
+                    courselbl.setText(cname);
+                }
+            }
+            else if (subid.equals("ICT1123")) {
+                    String sub2 = "SELECT ca_2023_ICT1123.q1, ca_2023_ICT1123.q2, ca_2023_ICT1123.q3,ca_2023_ICT1123.q4,ca_2023_ICT1123.mid,ca_2023_ICT1123.ass1, ca_2023_ICT1123.ass2, users.dep_id, course.c_name FROM ca_2023_ICT1123 JOIN users ON ca_2023_ICT1123.s_id = users.user_id JOIN course ON users.c_id = course.c_id WHERE ca_2023_ICT1123.s_id = '" + stuusername + "'";
+                    System.out.println(sub2);
+                    ResultSet res2 = db.stm.executeQuery(sub2);
+
+                    if (res2.next()) {
+                        int s2q1 = res2.getInt("q1");
+                        int s2q2 = res2.getInt("q2");
+                        int s2q3 = res2.getInt("q3");
+                        int s2q4 = res2.getInt("q4");
+                        int s2mid = res2.getInt("mid");
+                        int s2ass1 = res2.getInt("ass1");
+                        int s2ass2 = res2.getInt("ass2");
+                        String dep = res2.getString("dep_id");
+                        String cname = res2.getString("c_name");
+
+                        int max1, max2, max3;
+
+                        if (s2q1 >= s2q2 && s2q1 >= s2q3 && s2q1 >= s2q4) {
+                            max1 = s2q1;
+                            if (s2q2 >= s2q3 && s2q2 >= s2q4) {
+                                max2 = s2q2;
+                                if (s2q3 >= s2q4) {
+                                    max3 = s2q3;
+                                } else {
+                                    max3 = s2q4;
+                                }
+                            } else if (s2q3 >= s2q2 && s2q3 >= s2q4) {
+                                max2 = s2q3;
+                                if (s2q2 >= s2q4) {
+                                    max3 = s2q2;
+                                } else {
+                                    max3 = s2q4;
+                                }
+                            } else {
+                                max2 = s2q4;
+                                if (s2q2 >= s2q3) {
+                                    max3 = s2q2;
+                                } else {
+                                    max3 = s2q3;
+                                }
+                            }
+                        } else if (s2q2 >= s2q1 && s2q2 >= s2q3 && s2q2 >= s2q4) {
+                            max1 = s2q2;
+                            if (s2q1 >= s2q3 && s2q1 >= s2q4) {
+                                max2 = s2q1;
+                                if (s2q3 >= s2q4) {
+                                    max3 = s2q3;
+                                } else {
+                                    max3 = s2q4;
+                                }
+                            } else if (s2q3 >= s2q1 && s2q3 >= s2q4) {
+                                max2 = s2q3;
+                                if (s2q1 >= s2q4) {
+                                    max3 = s2q1;
+                                } else {
+                                    max3 = s2q4;
+                                }
+                            } else {
+                                max2 = s2q4;
+                                if (s2q1 >= s2q3) {
+                                    max3 = s2q1;
+                                } else {
+                                    max3 = s2q3;
+                                }
+                            }
+                        } else if (s2q3 >= s2q1 && s2q3 >= s2q2 && s2q3 >= s2q4) {
+                            max1 = s2q3;
+                            if (s2q1 >= s2q2 && s2q1 >= s2q4) {
+                                max2 = s2q1;
+                                if (s2q2 >= s2q4) {
+                                    max3 = s2q2;
+                                } else {
+                                    max3 = s2q4;
+                                }
+                            } else if (s2q2 >= s2q1 && s2q2 >= s2q4) {
+                                max2 = s2q2;
+                                if (s2q1 >= s2q4) {
+                                    max3 = s2q1;
+                                } else {
+                                    max3 = s2q4;
+                                }
+                            } else {
+                                max2 = s2q4;
+                                if (s2q1 >= s2q2) {
+                                    max3 = s2q1;
+                                } else {
+                                    max3 = s2q2;
+                                }
+                            }
+                        } else {
+                            max1 = s2q4;
+                            if (s2q1 >= s2q2 && s2q1 >= s2q3) {
+                                max2 = s2q1;
+                                if (s2q2 >= s2q3) {
+                                    max3 = s2q2;
+                                } else {
+                                    max3 = s2q3;
+                                }
+                            } else if (s2q2 >= s2q1 && s2q2 >= s2q3) {
+                                max2 = s2q2;
+                                if (s2q1 >= s2q3) {
+                                    max3 = s2q1;
+                                } else {
+                                    max3 = s2q3;
+                                }
+                            } else {
+                                max2 = s2q3;
+                                if (s2q1 >= s2q2) {
+                                    max3 = s2q1;
+                                } else {
+                                    max3 = s2q2;
+                                }
+                            }
+                        }
+                        System.out.println("The three maximum values are: " + max1 + " and " + max2 + " and " + max3);
+
+                        double sumQuizDouble2 = (double) max1 + max2 + max3;
+                        double finalQuizRes2 = (sumQuizDouble2 / 3) * 0.1;
+                        double sumAssDouble2 = (double) s2ass1 + s2ass2;
+                        double finalAssRes2 = (sumAssDouble2 / 2) * 0.1;
+                        double finalMidRes2 = (double) s2mid * 0.2;
+                        double finalCaMarks2 = finalQuizRes2 + finalAssRes2 + finalMidRes2;
+
+                        stuidlbl.setText(stuusername);
+                        calbl.setText(Double.toString(finalCaMarks2));
+                        deptlbl.setText(dep);
+                        courselbl.setText(cname);
+                    }
+            }    
+                    
+                    else if (subid.equals("ICT1133")){
+                       System.out.println("subject 3 executed");
+                       String sub3 = "SELECT ca_2023_ICT1133.q1, ca_2023_ICT1133.q2, ca_2023_ICT1133.q3,ca_2023_ICT1133.ass1,ca_2023_ICT1133.ass2,users.dep_id, course.c_name FROM ca_2023_ICT1133 JOIN users ON ca_2023_ICT1133.s_id = users.user_id JOIN course ON users.c_id = course.c_id WHERE ca_2023_ICT1133.s_id = '" + stuusername + "'";
+                       System.out.println(sub3);
+                       ResultSet res3 = db.stm.executeQuery(sub3);
+                       
+                       if(res3.next()){
+                    int s3q1 = res3.getInt("q1");
+                    int s3q2 = res3.getInt("q2");
+                    int s3q3 = res3.getInt("q3");
+                    int s3ass1 = res3.getInt("ass1");
+                    int s3ass2 = res3.getInt("ass2");
+                    String dep = res3.getString("dep_id");
+                    String cname = res3.getString("c_name");
+                    
+                    int max1, max2;
+
+                    if (s3q1 >= s3q2 && s3q1 >= s3q3) {
+                        max1 = s3q1;
+                        if (s3q2 >= s3q3) {
+                            max2 = s3q2;
+                        } else {
+                            max2 = s3q3;
+                        }
+                    } else if (s3q2 >= s3q1 && s3q2 >= s3q3) {
+                        max1 = s3q2;
+                        if (s3q1 >= s3q3) {
+                            max2 = s3q1;
+                        } else {
+                            max2 = s3q3;
+                        }
+                    } else {
+                        max1 = s3q3;
+                        if (s3q1 >= s3q2) {
+                            max2 = s3q1;
+                        } else {
+                            max2 = s3q2;
+                        }
+                    }
+                    System.out.println("The two maximum values are: " + max1 + " and " + max2);
+
+                    double sumQuizDouble3 = (double)max1+max2;
+                    double finalQuizRes3 = (sumQuizDouble3/2)*0.1;
+                    double sumAssDouble3 = (double)s3ass1+s3ass2;
+                    double finalAssRes3 = (sumAssDouble3/2)*0.2;
+                    double finalCaMarks3 = finalQuizRes3 + finalAssRes3;
+                    
+                    stuidlbl.setText(stuusername);
+                    calbl.setText(Double.toString(finalCaMarks3));
+                    deptlbl.setText(dep);
+                    courselbl.setText(cname);
+                       }     
+                        
+                    }
+                    
+                    else if (subid.equals("ICT1143")){
+                       System.out.println("subject 4 executed");
+                       String sub4 = "SELECT ca_2023_ICT1143.q1, ca_2023_ICT1143.q2, ca_2023_ICT1143.q3,ca_2023_ICT1143.ass1,ca_2023_ICT1143.ass2,users.dep_id, course.c_name FROM ca_2023_ICT1143 JOIN users ON ca_2023_ICT1143.s_id = users.user_id JOIN course ON users.c_id = course.c_id WHERE ca_2023_ICT1143.s_id = '" + stuusername + "'";
+                       System.out.println(sub4);
+                       ResultSet res4 = db.stm.executeQuery(sub4);
+                       
+                       if(res4.next()){
+                    int s4q1 = res4.getInt("q1");
+                    int s4q2 = res4.getInt("q2");
+                    int s4q3 = res4.getInt("q3");
+                    int s4ass1 = res4.getInt("ass1");
+                    int s4ass2 = res4.getInt("ass2");
+                    String dep = res4.getString("dep_id");
+                    String cname = res4.getString("c_name");
+                    
+                    int max1, max2;
+
+                    if (s4q1 >= s4q2 && s4q1 >= s4q3) {
+                        max1 = s4q1;
+                        if (s4q2 >= s4q3) {
+                            max2 = s4q2;
+                        } else {
+                            max2 = s4q3;
+                        }
+                    } else if (s4q2 >= s4q1 && s4q2 >= s4q3) {
+                        max1 = s4q2;
+                        if (s4q1 >= s4q3) {
+                            max2 = s4q1;
+                        } else {
+                            max2 = s4q3;
+                        }
+                    } else {
+                        max1 = s4q3;
+                        if (s4q1 >= s4q2) {
+                            max2 = s4q1;
+                        } else {
+                            max2 = s4q2;
+                        }
+                    }
+                    System.out.println("The two maximum values are: " + max1 + " and " + max2);
+
+                    double sumQuizDouble4 = (double)max1+max2;
+                    double finalQuizRes4 = (sumQuizDouble4/2)*0.1;
+                    double sumAssDouble4 = (double)s4ass1+s4ass2;
+                    double finalAssRes4 = (sumAssDouble4/2)*0.2;
+                    double finalCaMarks4 = finalQuizRes4 + finalAssRes4;
+                    
+                    stuidlbl.setText(stuusername);
+                    calbl.setText(Double.toString(finalCaMarks4));
+                    deptlbl.setText(dep);
+                    courselbl.setText(cname);
+                       }     
+                        
+                    }
+                    
+                    else if (subid.equals("TMS1113")) {
+
+                String sub5 = "SELECT ca_2023_TMS1113.q1, ca_2023_TMS1113.q2, ca_2023_TMS1113.q3, ca_2023_TMS1113.mid, users.dep_id, course.c_name FROM ca_2023_TMS1113 JOIN users ON ca_2023_TMS1113.s_id = users.user_id JOIN course ON users.c_id = course.c_id WHERE ca_2023_TMS1113.s_id = '" + stuusername + "'";
+
+                ResultSet res5 = db.stm.executeQuery(sub5);
+
+                if (res5.next()) {
+                    int s5q1 = res5.getInt("q1");
+                    int s5q2 = res5.getInt("q2");
+                    int s5q3 = res5.getInt("q3");
+                    int s5mid = res5.getInt("mid");
+                    String dep = res5.getString("dep_id");
+                    String cname = res5.getString("c_name");
+
+                    int max1, max2;
+
+                    if (s5q1 >= s5q2 && s5q1 >= s5q3) {
+                        max1 = s5q1;
+                        if (s5q2 >= s5q3) {
+                            max2 = s5q2;
+                        } else {
+                            max2 = s5q3;
+                        }
+                    } else if (s5q2 >= s5q1 && s5q2 >= s5q3) {
+                        max1 = s5q2;
+                        if (s5q1 >= s5q3) {
+                            max2 = s5q1;
+                        } else {
+                            max2 = s5q3;
+                        }
+                    } else {
+                        max1 = s5q3;
+                        if (s5q1 >= s5q2) {
+                            max2 = s5q1;
+                        } else {
+                            max2 = s5q2;
+                        }
+                    }
+                    System.out.println("The two maximum values are: " + max1 + " and " + max2);
+
+                    double finalQuizRes5 =((double) max1 + max2) / 2.0 * 0.1;
+                    double finalMidRes5 = (double) s5mid * 0.2;
+                    double finals5ca = (double) finalQuizRes5 + finalMidRes5;
+
+                    stuidlbl.setText(stuusername);
+                    calbl.setText(Double.toString(finals5ca));
+                    deptlbl.setText(dep);
+                    courselbl.setText(cname);
+                }
+            }
+                    
+                    else if (subid.equals("ENG1114")) {
+
+                String sub6 = "SELECT ca_2023_ENG1114.q1, ca_2023_ENG1114.q2, ca_2023_ENG1114.q3, ca_2023_ENG1114.mid, users.dep_id, course.c_name FROM ca_2023_ENG1114 JOIN users ON ca_2023_ENG1114.s_id = users.user_id JOIN course ON users.c_id = course.c_id WHERE ca_2023_ENG1114.s_id = '" + stuusername + "'";
+
+                ResultSet res6 = db.stm.executeQuery(sub6);
+
+                if (res6.next()) {
+                    int s6q1 = res6.getInt("q1");
+                    int s6q2 = res6.getInt("q2");
+                    int s6q3 = res6.getInt("q3");
+                    int s6mid = res6.getInt("mid");
+                    String dep = res6.getString("dep_id");
+                    String cname = res6.getString("c_name");
+
+                    int max1, max2;
+
+                    if (s6q1 >= s6q2 && s6q1 >= s6q3) {
+                        max1 = s6q1;
+                        if (s6q2 >= s6q3) {
+                            max2 = s6q2;
+                        } else {
+                            max2 = s6q3;
+                        }
+                    } else if (s6q2 >= s6q1 && s6q2 >= s6q3) {
+                        max1 = s6q2;
+                        if (s6q1 >= s6q3) {
+                            max2 = s6q1;
+                        } else {
+                            max2 = s6q3;
+                        }
+                    } else {
+                        max1 = s6q3;
+                        if (s6q1 >= s6q2) {
+                            max2 = s6q1;
+                        } else {
+                            max2 = s6q2;
+                        }
+                    }
+                    System.out.println("The two maximum values are: " + max1 + " and " + max2);
+
+                    double finalQuizRes6 =((double) max1 + max2) / 2.0 * 0.1;
+                    double finalMidRes6 = (double) s6mid * 0.2;
+                    double finals6ca = (double) finalQuizRes6 + finalMidRes6;
+
+                    stuidlbl.setText(stuusername);
+                    calbl.setText(Double.toString(finals6ca));
+                    deptlbl.setText(dep);
+                    courselbl.setText(cname);
+                }
+            }
+                    
             
-        } catch (SQLException e) {
+            
+            
+                 else {
+                    Failed_Alert failed = new Failed_Alert();
+                    failed.show();
+                }
+            
+            }
+        
+         catch (SQLException e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
-        
-    
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -494,7 +834,6 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
     private javax.swing.JLabel courselbl;
     private javax.swing.JLabel deptlbl;
     private javax.swing.JPanel deptname;
-    private javax.swing.JLabel gradelbl;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel14;
@@ -505,18 +844,16 @@ public class lecturer_see_Marks_Grades extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JToggleButton jToggleButton1;
+    private javax.swing.JPanel lblca;
     private javax.swing.JLabel stuidlbl;
     // End of variables declaration//GEN-END:variables
 }

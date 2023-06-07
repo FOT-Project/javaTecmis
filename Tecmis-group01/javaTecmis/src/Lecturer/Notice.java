@@ -2,28 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Student;
+package Lecturer;
 
 import Alerts.Failed_Alert;
 import Auth.Auth;
 import DBConn.DB;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.table.DefaultTableModel;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author WW
  */
-public class Medical extends javax.swing.JFrame {
+public class Notice extends javax.swing.JFrame {
 
-    
     /**
-     * Creates new form Medical
+     * Creates new form Notice
      */
     String username;
-    public Medical() {
+    public Notice() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
 
@@ -33,14 +34,14 @@ public class Medical extends javax.swing.JFrame {
         DB db = new DB();
         db.getconnect();
         
-        String sql = "SELECT sub_id, type, date FROM medical WHERE s_id = '"+username+"'";
+             String sql = "SELECT topic, subject, date FROM notice;";
          try {
             ResultSet rs = db.stm.executeQuery(sql);
-            DefaultTableModel model = (DefaultTableModel) medTBL.getModel(); 
+            DefaultTableModel model = (DefaultTableModel) noticeTBL.getModel(); 
             model.setRowCount(0);
             
             while(rs.next()){
-                model.addRow(new String[] {rs.getString(1), rs.getString(2), rs.getDate(3).toString()});
+               model.addRow(new String[] {rs.getString(3), rs.getString(1), rs.getString(2)});
             }
              
         } catch (SQLException e) {
@@ -53,14 +54,13 @@ public class Medical extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard();
+                lecturer_Dashboard db = new lecturer_Dashboard();
                 db.show();
                 dispose();
             }
             });
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -72,52 +72,15 @@ public class Medical extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        backLBL = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        medTBL = new javax.swing.JTable();
-        backLBL = new javax.swing.JLabel();
+        noticeTBL = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(1450, 850));
-
-        jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
-        jLabel1.setText("Medical");
-
-        medTBL.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Sub_ID", "Type", "Date"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        medTBL.getTableHeader().setReorderingAllowed(false);
-        jScrollPane1.setViewportView(medTBL);
-        if (medTBL.getColumnModel().getColumnCount() > 0) {
-            medTBL.getColumnModel().getColumn(0).setResizable(false);
-        }
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -127,34 +90,62 @@ public class Medical extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Iskoola Pota", 1, 48)); // NOI18N
+        jLabel1.setText("Notice");
+
+        noticeTBL.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Date", "Tyoe", "Subject"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        noticeTBL.getTableHeader().setReorderingAllowed(false);
+        jScrollPane1.setViewportView(noticeTBL);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(627, 627, 627)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backLBL))
+                        .addComponent(backLBL)
+                        .addGap(512, 512, 512)
+                        .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(281, 281, 281)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 828, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(341, Short.MAX_VALUE))
+                        .addGap(254, 254, 254)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 869, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(327, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(backLBL)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(29, 29, 29)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(backLBL)
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(34, 34, 34)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -162,8 +153,9 @@ public class Medical extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -178,7 +170,7 @@ public class Medical extends javax.swing.JFrame {
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
         // TODO add your handling code here:
-        Dashboard gpaDb = new Dashboard();
+        lecturer_Dashboard gpaDb = new lecturer_Dashboard();
         gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -200,20 +192,20 @@ public class Medical extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Notice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Notice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Notice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Medical.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Notice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Medical().setVisible(true);
+                new Notice().setVisible(true);
             }
         });
     }
@@ -223,6 +215,6 @@ public class Medical extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable medTBL;
+    private javax.swing.JTable noticeTBL;
     // End of variables declaration//GEN-END:variables
 }
