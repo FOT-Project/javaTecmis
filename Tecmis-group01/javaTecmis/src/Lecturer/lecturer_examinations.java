@@ -4,6 +4,8 @@
  */
 package Lecturer;
 
+import Auth.StudentInstance;
+import Student.GPA;
 import javax.swing.JFrame;
 
 /**
@@ -11,7 +13,9 @@ import javax.swing.JFrame;
  * @author USER
  */
 public class lecturer_examinations extends javax.swing.JFrame {
-String username;
+//String username;
+
+
     /**
      * Creates new form lecturer_examinations
      */
@@ -61,7 +65,7 @@ String username;
         jButton2.setBackground(new java.awt.Color(76, 159, 255));
         jButton2.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Search GPA");
+        jButton2.setText("Search GPA & Grade");
         jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +83,7 @@ String username;
         jButton3.setBackground(new java.awt.Color(76, 159, 255));
         jButton3.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Search Marks & Grades");
+        jButton3.setText("Search CA Marks");
         jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,24 +165,33 @@ String username;
         // TODO add your handling code here:
         lecturer_add_CAMarks CA = new lecturer_add_CAMarks();
         CA.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         lecturer_see_Marks_Grades MarksGrade = new lecturer_see_Marks_Grades ();
         MarksGrade.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        lecturer_see_GPA GPA = new lecturer_see_GPA();
-        GPA.setVisible(true);
+//        StudentInstance studentusername = StudentInstance.getInstance();
+//        String username = studentusername.getUsername();
+//        GPA grade = new GPA();
+//        grade.show();
+
+            lecturer_see_GPA seegpa = new lecturer_see_GPA();
+            seegpa.show();
+            dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         lecturer_add_FinalMarks FinalMarks = new lecturer_add_FinalMarks();
         FinalMarks.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

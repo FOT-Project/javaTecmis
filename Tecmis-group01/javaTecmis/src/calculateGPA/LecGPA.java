@@ -1,26 +1,39 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package calculateGPA;
 
 import Auth.Auth;
+import Auth.StudentInstance;
 import DBConn.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CalGPA{
-    String username;
-    public CalGPA(){ 
-        
-    }
+/**
+ *
+ * @author Hasitha
+ */
+public class LecGPA {
     
+
+    String username;
+
     public double firstSub(){
         //getFirstSub
         try {
             DB db = new DB();
             db.getconnect();
             
-            Auth auth = Auth.getInstance();
-            username = auth.getUsername();
+//            Auth auth = Auth.getInstance();
+//            username = auth.getUsername();
+            
+            StudentInstance studentauth = StudentInstance.getInstance();
+            username = studentauth.getUsername();
+            
+            System.out.println(username);
             
             String sub1 = "SELECT ca_2023_ICT1113.q1, ca_2023_ICT1113.q2, ca_2023_ICT1113.q3, ca_2023_ICT1113.mid, final_exam_2023_ICT1113.theory,"
                     + "final_exam_2023_ICT1113.practical FROM ca_2023_ICT1113 inner join final_exam_2023_ICT1113 on "
@@ -86,6 +99,11 @@ public class CalGPA{
         try {
             DB db = new DB();
             db.getconnect();
+            
+//            StudentInstance studentauth = StudentInstance.getInstance();
+//            username = studentauth.getUsername();
+            
+            System.out.println(username);
             
             String sub2 = "SELECT ca_2023_ICT1123.q1, ca_2023_ICT1123.q2, ca_2023_ICT1123.q3, ca_2023_ICT1123.q4, ca_2023_ICT1123.ass1,"
                     + " ca_2023_ICT1123.ass2, ca_2023_ICT1123.mid, final_exam_2023_ICT1123.theory "
@@ -233,6 +251,11 @@ public class CalGPA{
                 DB db = new DB();
                 db.getconnect();
 
+//                StudentInstance studentauth = StudentInstance.getInstance();
+//                username = studentauth.getUsername();
+            
+                System.out.println(username);
+                
                 String sub3 = "SELECT ca_2023_ICT1133.q1, ca_2023_ICT1133.q2, ca_2023_ICT1133.q3, ca_2023_ICT1133.ass1, ca_2023_ICT1133.ass2,"
                         + " final_exam_2023_ICT1133.theory, final_exam_2023_ICT1133.practical FROM (ca_2023_ICT1133 inner join final_exam_2023_ICT1133 "
                         + "on final_exam_2023_ICT1133.s_id = ca_2023_ICT1133.s_id) WHERE ca_2023_ICT1133.s_id = '"+username+"'";
@@ -301,6 +324,9 @@ public class CalGPA{
             try {
                 DB db = new DB();
                 db.getconnect();
+                
+//                    StudentInstance studentauth = StudentInstance.getInstance();
+//                    username = studentauth.getUsername();
 
                 String sub4 = "SELECT ca_2023_ICT1143.q1, ca_2023_ICT1143.q2, ca_2023_ICT1143.q3, ca_2023_ICT1143.ass1, ca_2023_ICT1143.ass2, "
                         + "final_exam_2023_ICT1143.theory, final_exam_2023_ICT1143.practical FROM (ca_2023_ICT1143 inner join final_exam_2023_ICT1143 "
@@ -370,6 +396,9 @@ public class CalGPA{
             DB db = new DB();
             db.getconnect();
             
+//            StudentInstance studentauth = StudentInstance.getInstance();
+//            username = studentauth.getUsername();
+            
             String sub5 = "SELECT ca_2023_ENG1114.q1, ca_2023_ENG1114.q2, ca_2023_ENG1114.q3, ca_2023_ENG1114.mid, final_exam_2023_ENG1114.theory "
                     + "FROM (ca_2023_ENG1114 inner join final_exam_2023_ENG1114 on final_exam_2023_ENG1114.s_id = ca_2023_ENG1114.s_id) "
                     + "WHERE ca_2023_ENG1114.s_id = '"+username+"'";
@@ -433,6 +462,9 @@ public class CalGPA{
         try {
             DB db = new DB();
             db.getconnect();
+            
+//            StudentInstance studentauth = StudentInstance.getInstance();
+//            username = studentauth.getUsername();
             
             String sub6 = "SELECT ca_2023_TMS1113.q1, ca_2023_TMS1113.q2, ca_2023_TMS1113.q3, ca_2023_TMS1113.mid, final_exam_2023_TMS1113.theory FROM "
                     + "(ca_2023_TMS1113 inner join final_exam_2023_TMS1113 on final_exam_2023_TMS1113.s_id = ca_2023_TMS1113.s_id) "
@@ -555,7 +587,8 @@ public class CalGPA{
     }
 
         
-public static void main(String[] args) {
-        CalGPA newcal = new CalGPA();
-    }
+//public static void main(String[] args) {
+//        LecGPA newcal = new LecGPA();
+//    }
 }
+
