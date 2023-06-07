@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Student;
+package Lecturer;
 
 import Alerts.Failed_Alert;
 import Auth.Auth;
@@ -54,7 +54,7 @@ public class Notice extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard();
+                lecturer_Dashboard db = new lecturer_Dashboard();
                 db.show();
                 dispose();
             }
@@ -84,7 +84,6 @@ public class Notice extends javax.swing.JFrame {
 
         backLBL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
         backLBL.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        backLBL.setPreferredSize(new java.awt.Dimension(100, 100));
         backLBL.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 backLBLMouseClicked(evt);
@@ -126,7 +125,7 @@ public class Notice extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(backLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backLBL)
                         .addGap(512, 512, 512)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -140,7 +139,7 @@ public class Notice extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(backLBL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backLBL)
                         .addGap(26, 26, 26))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
@@ -171,7 +170,7 @@ public class Notice extends javax.swing.JFrame {
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
         // TODO add your handling code here:
-        Dashboard gpaDb = new Dashboard();
+        lecturer_Dashboard gpaDb = new lecturer_Dashboard();
         gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -201,7 +200,6 @@ public class Notice extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Notice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

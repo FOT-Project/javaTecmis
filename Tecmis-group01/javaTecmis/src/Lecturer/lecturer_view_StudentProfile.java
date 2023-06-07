@@ -545,25 +545,28 @@ public class lecturer_view_StudentProfile extends javax.swing.JFrame {
         // TODO add your handling code here:
         lecturer_show_medical Med = new lecturer_show_medical();
         Med.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         lecturer_see_attendence Attend = new lecturer_see_attendence();
         Attend.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         lecturer_examinations Exams =new lecturer_examinations();
         Exams.setVisible(true);
-        
+        dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         lecturer_see_eligibility Eligi = new lecturer_see_eligibility();
         Eligi.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jLabel22MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel22MouseClicked
