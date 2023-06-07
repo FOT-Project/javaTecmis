@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Student;
+package Lecturer;
 
 import Alerts.Failed_Alert;
 import Auth.Auth;
@@ -54,7 +54,7 @@ public class Notice extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
-                Dashboard db = new Dashboard();
+                lecturer_Dashboard db = new lecturer_Dashboard();
                 db.show();
                 dispose();
             }
@@ -103,17 +103,18 @@ public class Notice extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Date", "Type", "Subject"
+                "Date", "Tyoe", "Subject"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                true, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        noticeTBL.setEnabled(false);
         noticeTBL.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(noticeTBL);
 
@@ -170,7 +171,7 @@ public class Notice extends javax.swing.JFrame {
 
     private void backLBLMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_backLBLMouseClicked
         // TODO add your handling code here:
-        Dashboard gpaDb = new Dashboard();
+        lecturer_Dashboard gpaDb = new lecturer_Dashboard();
         gpaDb.show();
         dispose();
     }//GEN-LAST:event_backLBLMouseClicked
@@ -200,7 +201,6 @@ public class Notice extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Notice.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

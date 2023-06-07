@@ -165,27 +165,33 @@ public class lecturer_examinations extends javax.swing.JFrame {
         // TODO add your handling code here:
         lecturer_add_CAMarks CA = new lecturer_add_CAMarks();
         CA.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         lecturer_see_Marks_Grades MarksGrade = new lecturer_see_Marks_Grades ();
         MarksGrade.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        StudentInstance studentusername = StudentInstance.getInstance();
-        String username = studentusername.getUsername();
-        GPA grade = new GPA();
-        grade.show();
-        
+//        StudentInstance studentusername = StudentInstance.getInstance();
+//        String username = studentusername.getUsername();
+//        GPA grade = new GPA();
+//        grade.show();
+
+            lecturer_see_GPA seegpa = new lecturer_see_GPA();
+            seegpa.show();
+            dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         lecturer_add_FinalMarks FinalMarks = new lecturer_add_FinalMarks();
         FinalMarks.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

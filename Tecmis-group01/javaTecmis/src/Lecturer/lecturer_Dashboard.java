@@ -7,7 +7,6 @@ package Lecturer;
 import DBConn.DB;
 import javax.swing.JFrame;
 import Main.Welcome;
-import Student.Notice;
 
 /**
  *
@@ -336,26 +335,28 @@ public class lecturer_Dashboard extends javax.swing.JFrame {
         // TODO add your handling code here:
         lecturer_profile Profile = new lecturer_profile();
         Profile.setVisible(true);
-        
+        dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        Notice notice= new Notice();
+        Notice notice = new Notice();
         notice.setVisible(true);
-        
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         leturer_courses Courses= new leturer_courses();
         Courses.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         lecturer_find_student SearchStudent = new lecturer_find_student();
         SearchStudent.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked

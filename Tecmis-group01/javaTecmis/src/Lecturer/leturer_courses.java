@@ -135,14 +135,14 @@ public class leturer_courses extends javax.swing.JFrame {
         // TODO add your handling code here:
         lecturer_update_coursetable Updatecourse = new lecturer_update_coursetable();
         Updatecourse.setVisible(true);
-        
+        dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         lecturer_add_materials Materials = new lecturer_add_materials();
         Materials.setVisible(true);
-                
+        dispose();        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked

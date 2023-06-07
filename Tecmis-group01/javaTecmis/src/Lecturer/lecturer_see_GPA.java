@@ -8,10 +8,15 @@ import Alerts.Failed_Alert;
 import Auth.Auth;
 import Auth.StudentInstance;
 import DBConn.DB;
+import Student.Dashboard;
+import calculateGPA.CalGPA;
+import calculateGPA.LecGPA;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -27,41 +32,115 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         
-        DB db = new DB();
-        db.getconnect();
-        
         StudentInstance studentusername = StudentInstance.getInstance();
         String user = studentusername.getUsername();
         System.out.println(studentusername);
         
+        DB db = new DB();
+        db.getconnect();
         
+        jLabel9.setText(user);
         
+        LecGPA cal = new LecGPA();
+        
+        double sub1gpv = cal.firstSub(); 
+        double sub2gpv = cal.secondSub();
+        double sub3gpv = cal.thirdSub();
+        double sub4gpv = cal.fourthSub();
+        double sub5gpv = cal.fifthSub();
+        double sub6gpv = cal.sixthSub();
+        
+        double finalGpa = ((sub1gpv*3) + (sub2gpv*3) + (sub3gpv*3) + (sub4gpv*3) + (sub5gpv*4) + (sub6gpv*3))/19;
+        DecimalFormat df = new DecimalFormat("0.00");
+        jLabel13.setText(df.format(finalGpa));
+        
+        if(finalGpa >= 3.7 ){
+            jLabel16.setText("First Class");
+        }
+        else if(finalGpa >= 3.3 && finalGpa < 3.69){
+            jLabel16.setText("Upper Second Class");
+        }
+        else if(finalGpa >= 3.0 && finalGpa < 3.29){
+            jLabel16.setText("Lower Second Class");
+        }
+        else if(finalGpa >= 2.0 && finalGpa < 2.99){
+            jLabel16.setText("Third Class");
+        }
+        else{
+             jLabel16.setText("Fail");
+        }
 
-        
         String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+user+"'";
+        
         try {
-            ResultSet res = db.stm.executeQuery(mysql);
-             if(res.next()){            
+
+           ResultSet res = db.stm.executeQuery(mysql);
+           
+            if(res.next()){            
                 String depname = res.getString("dep_name");
                 String cname = res.getString("c_name");
-                float gpa = res.getFloat("gpa");
                 //String class = res.getString();
-                jLabel9.setText(user);
+               
                 jLabel10.setText(depname);
-                jLabel11.setText(cname);
-                jLabel13.setText(String.valueOf(gpa));
-                //classTxtLBL.setText();
-             
+                jLabel15.setText(cname);
                 
-                }else{
+              
+//              gpaTxtLBL.setText(String.valueOf(cal.finalGPA));
+       
+//                classTxtLBL.setText();
+                System.out.println(user);
+                System.out.println(finalGpa);
+                System.out.println(depname);
+                System.out.println(cname);
+
+            }else{
+                System.out.println("fail 1");
                Failed_Alert failed = new Failed_Alert();
                failed.show();
             }
-
             
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, e);
+           System.out.println(e);
+                           System.out.println("fail 2");
+
+            Failed_Alert failed = new Failed_Alert();
+            failed.show();
+            
+            failed.addWindowListener(new WindowAdapter() {
+            @Override
+                
+            public void windowClosed(WindowEvent e) {
+                Dashboard db = new Dashboard();
+                db.show();
+                dispose();
+            }
+            });
         }
+        
+//        String mysql = "select users.user_id, department.dep_name, course.c_name, users.gpa from ((users inner join department on department.dep_id = users.dep_id) inner join course on course.c_id = users.c_id) where users.user_id = '"+user+"'";
+//        try {
+//            ResultSet res = db.stm.executeQuery(mysql);
+//             if(res.next()){            
+//                String depname = res.getString("dep_name");
+//                String cname = res.getString("c_name");
+//                float gpa = res.getFloat("gpa");
+//                //String class = res.getString();
+//                jLabel9.setText(user);
+//                jLabel10.setText(depname);
+//                jLabel11.setText(cname);
+//                jLabel13.setText(String.valueOf(gpa));
+//                //classTxtLBL.setText();
+//             
+//                
+//                }else{
+//               Failed_Alert failed = new Failed_Alert();
+//               failed.show();
+//            }
+//
+//            
+//        } catch (SQLException e) {
+//            JOptionPane.showMessageDialog(null, e);
+//        }
 
        
             
@@ -92,13 +171,13 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lbldep = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        lblcoursename = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
         lblgpa = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        lblgrade = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
+        lbldep1 = new javax.swing.JPanel();
+        jLabel15 = new javax.swing.JLabel();
+        lblgpa1 = new javax.swing.JPanel();
+        jLabel16 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -167,34 +246,13 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
             .addGroup(lbldepLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         lbldepLayout.setVerticalGroup(
             lbldepLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lbldepLayout.createSequentialGroup()
                 .addComponent(jLabel10)
-                .addGap(0, 29, Short.MAX_VALUE))
-        );
-
-        lblcoursename.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel11.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
-
-        javax.swing.GroupLayout lblcoursenameLayout = new javax.swing.GroupLayout(lblcoursename);
-        lblcoursename.setLayout(lblcoursenameLayout);
-        lblcoursenameLayout.setHorizontalGroup(
-            lblcoursenameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblcoursenameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(409, Short.MAX_VALUE))
-        );
-        lblcoursenameLayout.setVerticalGroup(
-            lblcoursenameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblcoursenameLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel11)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addGap(0, 41, Short.MAX_VALUE))
         );
 
         lblgpa.setBackground(new java.awt.Color(255, 255, 255));
@@ -208,38 +266,58 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
             .addGroup(lblgpaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(421, Short.MAX_VALUE))
         );
         lblgpaLayout.setVerticalGroup(
             lblgpaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(lblgpaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jLabel12.setFont(new java.awt.Font("Iskoola Pota", 1, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(153, 153, 153));
         jLabel12.setText("Grade");
 
-        lblgrade.setBackground(new java.awt.Color(255, 255, 255));
+        lbldep1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel14.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
 
-        javax.swing.GroupLayout lblgradeLayout = new javax.swing.GroupLayout(lblgrade);
-        lblgrade.setLayout(lblgradeLayout);
-        lblgradeLayout.setHorizontalGroup(
-            lblgradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblgradeLayout.createSequentialGroup()
+        javax.swing.GroupLayout lbldep1Layout = new javax.swing.GroupLayout(lbldep1);
+        lbldep1.setLayout(lbldep1Layout);
+        lbldep1Layout.setHorizontalGroup(
+            lbldep1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lbldep1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(18, Short.MAX_VALUE))
+        );
+        lbldep1Layout.setVerticalGroup(
+            lbldep1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lbldep1Layout.createSequentialGroup()
+                .addComponent(jLabel15)
+                .addGap(0, 29, Short.MAX_VALUE))
+        );
+
+        lblgpa1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel16.setFont(new java.awt.Font("Iskoola Pota", 0, 20)); // NOI18N
+
+        javax.swing.GroupLayout lblgpa1Layout = new javax.swing.GroupLayout(lblgpa1);
+        lblgpa1.setLayout(lblgpa1Layout);
+        lblgpa1Layout.setHorizontalGroup(
+            lblgpa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblgpa1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        lblgradeLayout.setVerticalGroup(
-            lblgradeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(lblgradeLayout.createSequentialGroup()
+        lblgpa1Layout.setVerticalGroup(
+            lblgpa1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(lblgpa1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel14)
+                .addComponent(jLabel16)
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -249,25 +327,25 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel3)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel12)))
+                    .addComponent(jLabel4))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbldep1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblcoursename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel12)))
-                        .addGap(41, 41, 41)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(lbldep, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblgpa, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblstuid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblgrade, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(74, Short.MAX_VALUE))
+                            .addComponent(lblstuid, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(lblgpa1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(74, 74, 74))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +361,7 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel4)
-                    .addComponent(lblcoursename, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lbldep1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
@@ -291,7 +369,7 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(lblgrade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblgpa1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -308,9 +386,11 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(230, 230, 230)))
+
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -319,7 +399,7 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(0, 24, Short.MAX_VALUE))
+                        .addGap(0, 12, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel1)))
@@ -389,10 +469,10 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -403,10 +483,10 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JPanel lblcoursename;
     private javax.swing.JPanel lbldep;
+    private javax.swing.JPanel lbldep1;
     private javax.swing.JPanel lblgpa;
-    private javax.swing.JPanel lblgrade;
+    private javax.swing.JPanel lblgpa1;
     private javax.swing.JPanel lblstuid;
     // End of variables declaration//GEN-END:variables
 }
