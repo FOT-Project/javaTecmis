@@ -7,6 +7,7 @@ package Admin;
 import Alerts.Done_Alert;
 import Alerts.Failed_Alert;
 import DBConn.DB;
+import DBConn.DBconn;
 import Main.Login;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -18,6 +19,7 @@ import java.sql.ResultSet;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.sql.*;
 
 /**
  *
@@ -221,15 +223,22 @@ public class Admin_Add_Time_Table extends javax.swing.JFrame {
         String level = levelbox.getSelectedItem().toString();
 //        String level = txtlevel.getText();
 
-        DB db = new DB();
-        db.getconnect();
+        DBconn dbconn = new DBconn();
+        Connection conn = dbconn.connect();
+
+
 
         try {
             FileInputStream inputStream = new FileInputStream(filename);
 
-            String sql = "INSERT INTO timetable (c_id, level, tt_pdf) VALUES ('" + courseId + "', '" + level + "', '" + inputStream + "')";
+            PreparedStatement stm = conn.prepareStatement("INSERT INTO timetable (c_id, level, tt_pdf) VALUES (?,?,?)");
+                    
 
-            db.stm.executeUpdate(sql);
+            stm.setString(1,courseId);
+            stm.setInt(2, Integer.parseInt(level));
+            stm.setBinaryStream(3, inputStream);
+            
+            stm.executeUpdate();
 
         
                 Done_Alert done = new Done_Alert();
