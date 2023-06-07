@@ -114,6 +114,7 @@ public class Notice extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        noticeTBL.setEnabled(false);
         noticeTBL.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(noticeTBL);
 
