@@ -193,7 +193,7 @@ public class Login extends javax.swing.JFrame {
                    Admin_Dashboard admin = new Admin_Dashboard();
                    admin.show();
                }else if(position == 2){
-                   Officer_Dashboard officer = new Officer_Dashboard(username);
+                   Officer_Dashboard officer = new Officer_Dashboard();
                    officer.show();
                }else if(position == 3){
                    lecturer_Dashboard lecturer = new lecturer_Dashboard();

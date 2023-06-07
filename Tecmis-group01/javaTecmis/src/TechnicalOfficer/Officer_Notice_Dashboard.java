@@ -42,6 +42,7 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -94,6 +95,7 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         jButton1.setText("Show Notice");
         jButton1.setAlignmentX(375.0F);
         jButton1.setAlignmentY(588.0F);
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.setPreferredSize(new java.awt.Dimension(274, 49));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +169,7 @@ public class Officer_Notice_Dashboard extends javax.swing.JFrame {
         Officer_Dashboard Dashboard = new Officer_Dashboard();
         Dashboard.show();
         dispose();
+        
     }//GEN-LAST:event_jLabel1MouseClicked
 
     /**

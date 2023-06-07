@@ -66,6 +66,7 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/Go Back.png"))); // NOI18N
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -286,9 +287,9 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
 
-//        Officer_User_Profile UserProfleDashboard = new Officer_User_Profile(username);
-//        UserProfleDashboard.show();
-//        dispose();
+        Officer_User_Profile UserProfleDashboard = new Officer_User_Profile(username);
+        UserProfleDashboard.show();
+        dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -297,8 +298,6 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
         
         DB db = new DB();
         db.getconnect();
-        
-        //String uname = username;   //String IDNumber = IdNum.getText();
         
         String Name = name.getText();
         String Email = email.getText();
@@ -317,15 +316,7 @@ public class Officer_Update_Profile extends javax.swing.JFrame {
             
             Done_Alert done = new Done_Alert();
             done.show();
-//            done.addWindowListener(new WindowAdapter(){
-//                @Override
-//                public void windowClosed(WindowEvent e) {
-//                    Officer_User_Profile UserProfile = new  Officer_User_Profile(username);
-//                    UserProfile.show();
-//                    dispose();
-//                }
-//            });
-
+            
             name.setText("");
             email.setText("");
             address.setText("");
