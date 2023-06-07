@@ -185,7 +185,7 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
 
         try {
 
-            String sql = "SELECT tt_pdf FROM u812963415_javag1.timetable where c_id = '" + courseId + "' and level = '" + level + "';";
+            String sql = "SELECT tt_pdf FROM tecmis.timetable where c_id = '" + courseId + "' and level = '" + level + "';";
 
             ResultSet result = db.stm.executeQuery(sql);
 
@@ -195,9 +195,9 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
                 txtcourse.setText("");
                 levelbox.setSelectedItem(1);
 
-                Blob pdfBlob = (Blob) result.getBlob("tt_pdf");
+                Blob pdfBlob = (Blob)result.getBlob("tt_pdf");
                 byte[] pdfBytes = pdfBlob.getBytes(1, (int) pdfBlob.length());
-                OutputStream outputStream = new FileOutputStream("downloaded_file.pdf");
+                OutputStream outputStream = new FileOutputStream("Timetable.pdf");
                 outputStream.write(pdfBytes);
                 outputStream.close();
                 System.out.println("PDF file downloaded successfully.");
@@ -205,6 +205,7 @@ public class Admin_Find_Timetable extends javax.swing.JFrame {
                 done.addWindowListener(new WindowAdapter() {
                     @Override
                     public void windowClosed(WindowEvent e) {
+                        dispose();
                         Admin_Time_Table_Dashboard dashboard = new Admin_Time_Table_Dashboard();
                         dashboard.show();
                     }
