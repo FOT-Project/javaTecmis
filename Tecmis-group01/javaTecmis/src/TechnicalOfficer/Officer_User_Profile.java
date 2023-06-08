@@ -139,6 +139,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
         jLabel3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel3.setPreferredSize(new java.awt.Dimension(146, 135));
 
+        jTextField1.setEditable(false);
         jTextField1.setBackground(new java.awt.Color(245, 245, 245));
         jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
@@ -148,6 +149,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        jTextField2.setEditable(false);
         jTextField2.setBackground(new java.awt.Color(245, 245, 245));
         jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
@@ -157,6 +159,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
         jTextField2.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField2.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        jTextField3.setEditable(false);
         jTextField3.setBackground(new java.awt.Color(245, 245, 245));
         jTextField3.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(153, 153, 153));
@@ -166,6 +169,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
         jTextField3.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField3.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        jTextField4.setEditable(false);
         jTextField4.setBackground(new java.awt.Color(245, 245, 245));
         jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(153, 153, 153));
@@ -175,6 +179,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
         jTextField4.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField4.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        jTextField5.setEditable(false);
         jTextField5.setBackground(new java.awt.Color(245, 245, 245));
         jTextField5.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(153, 153, 153));
@@ -184,6 +189,7 @@ public class Officer_User_Profile extends javax.swing.JFrame {
         jTextField5.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField5.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        jTextField6.setEditable(false);
         jTextField6.setBackground(new java.awt.Color(245, 245, 245));
         jTextField6.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField6.setForeground(new java.awt.Color(153, 153, 153));

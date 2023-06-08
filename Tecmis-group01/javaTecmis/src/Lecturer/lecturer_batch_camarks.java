@@ -56,7 +56,7 @@ public class lecturer_batch_camarks extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel3.setText("Search Batch");
+        jLabel3.setText("Enter Level");
 
         batchca.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         batchca.addActionListener(new java.awt.event.ActionListener() {
@@ -208,9 +208,10 @@ public class lecturer_batch_camarks extends javax.swing.JFrame {
             @Override
                 
             public void windowClosed(WindowEvent e) {
+                
+                dispose();
                 Dashboard db = new Dashboard();
                 db.show();
-                dispose();
             }
             });
         }
