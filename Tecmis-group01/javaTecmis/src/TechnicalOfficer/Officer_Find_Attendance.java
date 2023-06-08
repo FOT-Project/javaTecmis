@@ -82,6 +82,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
         jPanel3.setAlignmentY(246.0F);
         jPanel3.setPreferredSize(new java.awt.Dimension(409, 312));
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -95,6 +96,7 @@ public class Officer_Find_Attendance extends javax.swing.JFrame {
             }
         });
 
+        aaa.setEditable(false);
         aaa.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         aaa.setForeground(new java.awt.Color(153, 153, 153));
         aaa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
