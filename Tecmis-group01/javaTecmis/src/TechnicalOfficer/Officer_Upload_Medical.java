@@ -116,6 +116,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        suuuuuuuuu.setEditable(false);
         suuuuuuuuu.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         suuuuuuuuu.setForeground(new java.awt.Color(153, 153, 153));
         suuuuuuuuu.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -124,6 +125,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         suuuuuuuuu.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         suuuuuuuuu.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        jTextField3.setEditable(false);
         jTextField3.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField3.setForeground(new java.awt.Color(153, 153, 153));
         jTextField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -133,6 +135,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
         jTextField3.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField3.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(153, 153, 153));
         jTextField4.setText("Type");
@@ -174,6 +177,7 @@ public class Officer_Upload_Medical extends javax.swing.JFrame {
             }
         });
 
+        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);

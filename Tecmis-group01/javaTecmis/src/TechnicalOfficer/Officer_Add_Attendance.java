@@ -86,6 +86,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         jPanel3.setAlignmentY(183.0F);
         jPanel3.setPreferredSize(new java.awt.Dimension(465, 548));
 
+        jTextField1.setEditable(false);
         jTextField1.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(153, 153, 153));
         jTextField1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -94,6 +95,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         jTextField1.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField1.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        jTextField2.setEditable(false);
         jTextField2.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(153, 153, 153));
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -102,6 +104,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         jTextField2.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField2.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        aaaa.setEditable(false);
         aaaa.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         aaaa.setForeground(new java.awt.Color(153, 153, 153));
         aaaa.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -110,6 +113,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         aaaa.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         aaaa.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        jTextField4.setEditable(false);
         jTextField4.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField4.setForeground(new java.awt.Color(153, 153, 153));
         jTextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
@@ -118,6 +122,7 @@ public class Officer_Add_Attendance extends javax.swing.JFrame {
         jTextField4.setSelectedTextColor(new java.awt.Color(153, 153, 153));
         jTextField4.setSelectionColor(new java.awt.Color(255, 255, 255));
 
+        jTextField5.setEditable(false);
         jTextField5.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField5.setForeground(new java.awt.Color(153, 153, 153));
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.LEFT);

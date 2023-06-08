@@ -64,7 +64,7 @@ public class lecturer_see_GPA extends javax.swing.JFrame {
             jLabel16.setText("Lower Second Class");
         }
         else if(finalGpa >= 2.0 && finalGpa < 2.99){
-            jLabel16.setText("Third Class");
+            jLabel16.setText("Genaral");
         }
         else{
              jLabel16.setText("Fail");

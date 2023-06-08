@@ -119,6 +119,7 @@ public class Officer_Notice extends javax.swing.JFrame {
         jPanel5.setAlignmentY(148.0F);
         jPanel5.setPreferredSize(new java.awt.Dimension(824, 196));
 
+        date.setEditable(false);
         date.setBackground(new java.awt.Color(245, 245, 245));
         date.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         date.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -127,6 +128,7 @@ public class Officer_Notice extends javax.swing.JFrame {
         date.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         date.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        topic.setEditable(false);
         topic.setBackground(new java.awt.Color(245, 245, 245));
         topic.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         topic.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -137,6 +139,7 @@ public class Officer_Notice extends javax.swing.JFrame {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
+        subject.setEditable(false);
         subject.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
         subject.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         subject.setText("Please be advised that CA 02 for this course will be an online quiz which will be held on 11th Saturday at 8am. \n");
@@ -191,6 +194,7 @@ public class Officer_Notice extends javax.swing.JFrame {
         jPanel7.setAlignmentY(148.0F);
         jPanel7.setPreferredSize(new java.awt.Dimension(824, 196));
 
+        jTextField11.setEditable(false);
         jTextField11.setBackground(new java.awt.Color(245, 245, 245));
         jTextField11.setFont(new java.awt.Font("Iskoola Pota", 1, 14)); // NOI18N
         jTextField11.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -199,6 +203,7 @@ public class Officer_Notice extends javax.swing.JFrame {
         jTextField11.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         jTextField11.setSelectionColor(new java.awt.Color(245, 245, 245));
 
+        jTextField12.setEditable(false);
         jTextField12.setBackground(new java.awt.Color(245, 245, 245));
         jTextField12.setFont(new java.awt.Font("Iskoola Pota", 1, 20)); // NOI18N
         jTextField12.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -209,6 +214,7 @@ public class Officer_Notice extends javax.swing.JFrame {
 
         jPanel8.setBackground(new java.awt.Color(255, 255, 255));
 
+        jTextField14.setEditable(false);
         jTextField14.setFont(new java.awt.Font("Iskoola Pota", 0, 14)); // NOI18N
         jTextField14.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField14.setText("This will be open for two hours. 10 minutes are allocated per attempt.");
